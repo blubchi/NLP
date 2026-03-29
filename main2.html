@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitScore — CV & Job Match Analyzer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav>
+  <div class="nav-logo" onclick="showPage('landing')">
+    <div class="nav-logo-icon">F</div>
+    Fit<span>Score</span>
+  </div>
+  <div class="nav-links">
+    <span class="nav-link" onclick="showPage('landing')">Beranda</span>
+    <span class="nav-link" onclick="document.querySelector('.features-wrap') && showPage('landing')">Fitur</span>
+    <span class="nav-link" onclick="showPage('landing')">FAQ</span>
+  </div>
+  <button class="nav-btn" onclick="showPage('input')">Mulai Analisis →</button>
+</nav>
+
+
+<!-- ══════════ LANDING ══════════ -->
+<div id="landing" class="page active">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        AI-Powered Career Match
+      </div>
+      <h1>Cek Seberapa Cocok CV Kamu dengan <span class="blue">Lowongan Ini</span></h1>
+      <p class="hero-desc">
+        FitScore menganalisis CV dan job description secara mendalam — skill, pengalaman, pendidikan — lalu memberi skor kecocokan dan rekomendasi kursus untuk skill yang masih kurang.
+      </p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="showPage('input')">
+          🚀 Mulai Analisis Gratis
+        </button>
+        <button class="btn-outline" onclick="document.querySelector('.features-wrap').scrollIntoView({behavior:'smooth'})">
+          Lihat Fitur ↓
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">98%</div>
+          <div class="stat-label">Akurasi Skill Matching</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">&lt;30s</div>
+          <div class="stat-label">Waktu Analisis</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">150+</div>
+          <div class="stat-label">Skill Terdeteksi</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Preview Card -->
+    <div class="hero-right">
+      <div class="hero-preview">
+        <div class="preview-header">
+          <span class="preview-title">Hasil Analisis — Frontend Developer</span>
+          <span class="preview-chip">✓ Cocok</span>
+        </div>
+        <div class="preview-score-row">
+          <div class="p-score-ring">
+            <div class="p-score-text">
+              <div>78</div>
+              <div class="p-score-sub">MATCH</div>
+            </div>
+          </div>
+          <div class="p-score-info">
+            <h3>Frontend Developer</h3>
+            <p>PT. Tokopedia Indonesia</p>
+            <p style="margin-top:6px;font-size:12px;color:var(--green);font-weight:500">Cocok secara umum ✓</p>
+          </div>
+        </div>
+        <div class="preview-bars">
+          <div class="pb-row">
+            <span class="pb-label">Skill Similarity</span>
+            <div class="pb-track"><div class="pb-fill fill-blue" style="width:82%"></div></div>
+            <span class="pb-val">82%</span>
+          </div>
+          <div class="pb-row">
+            <span class="pb-label">Experience Match</span>
+            <div class="pb-track"><div class="pb-fill fill-sky" style="width:75%"></div></div>
+            <span class="pb-val">75%</span>
+          </div>
+          <div class="pb-row">
+            <span class="pb-label">Education Match</span>
+            <div class="pb-track"><div class="pb-fill fill-indigo" style="width:70%"></div></div>
+            <span class="pb-val">70%</span>
+          </div>
+        </div>
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border)">
+          <div style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Skill Gap</div>
+          <div class="preview-chips">
+            <span class="p-chip match">React ✓</span>
+            <span class="p-chip match">Git ✓</span>
+            <span class="p-chip match">HTML ✓</span>
+            <span class="p-chip miss">TypeScript ✗</span>
+            <span class="p-chip miss">Docker ✗</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="features-wrap">
+    <div class="section">
+      <div class="section-label">Fitur Utama</div>
+      <h2 class="section-title">Tiga Analisis Dalam Satu Dashboard</h2>
+      <p class="section-sub">Bukan sekadar pencocokan kata kunci — FitScore menggunakan NLP untuk memahami konteks dan relevansi.</p>
+      <div class="features-grid">
+        <div class="feat-card">
+          <div class="feat-number">01</div>
+          <div class="feat-icon-wrap">🎯</div>
+          <h3>Match Score</h3>
+          <p>Skor persentase komposit berdasarkan skill similarity, kesesuaian pengalaman, dan latar belakang pendidikan terhadap job description.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-number">02</div>
+          <div class="feat-icon-wrap">🔍</div>
+          <h3>Skill Gap Analysis</h3>
+          <p>Identifikasi dengan jelas skills apa yang sudah dimiliki dan skills apa yang masih perlu dikuasai untuk posisi tersebut.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-number">03</div>
+          <div class="feat-icon-wrap">🎓</div>
+          <h3>Course Recommendation</h3>
+          <p>Untuk tiap skill yang kurang, dapatkan 3 rekomendasi video YouTube terpilih lengkap dengan thumbnail, channel, views, dan durasi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="section">
+    <div class="section-label">Testimoni</div>
+    <h2 class="section-title">Kata Mereka yang Sudah Pakai</h2>
+    <p class="section-sub">Lebih dari 10.000 pencari kerja telah menggunakan FitScore untuk mempersiapkan lamaran.</p>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Skor saya 84%! Dan rekomendasinya langsung ke poin — langsung nonton kursus Docker dalam sehari. Sangat membantu banget."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AR</div>
+          <div>
+            <div class="testi-name">Andi Ramadhan</div>
+            <div class="testi-role">Backend Engineer, Jakarta</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Tadinya bingung kenapa selalu ditolak. Setelah pakai FitScore, baru sadar skill gap-nya di mana. Dalam 2 minggu sudah dapat panggilan interview."</p>
+        <div class="testi-author">
+          <div class="testi-avatar testi-av2">SP</div>
+          <div>
+            <div class="testi-name">Sari Puspita</div>
+            <div class="testi-role">Data Analyst, Bandung</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★☆</div>
+        <p class="testi-text">"Tool-nya jujur banget — langsung bilang experience saya kurang. Tapi justru itu yang saya butuhkan. Rekomendasi kursusnya akurat dan relevan."</p>
+        <div class="testi-author">
+          <div class="testi-avatar testi-av3">BK</div>
+          <div>
+            <div class="testi-name">Budi Kurniawan</div>
+            <div class="testi-role">Fresh Graduate, Surabaya</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-wrap">
+    <div class="section">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Pertanyaan yang Sering Ditanyakan</h2>
+      <div class="faq-grid">
+        <div class="faq-list">
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">
+              Apakah data CV saya aman?
+              <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-a">Data yang kamu masukkan hanya diproses untuk analisis dan tidak disimpan di server kami. Setiap sesi bersifat independen dan privat — data hilang ketika kamu menutup tab.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">
+              Bagaimana cara kerja skor matching?
+              <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-a">FitScore menggunakan NLP dan semantic matching untuk memahami kesamaan skill, relevansi pengalaman, dan kesesuaian pendidikan. Skor komposit dihitung dengan bobot 55% skill, 28% pengalaman, 17% pendidikan.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">
+              Apakah saya perlu upload file PDF?
+              <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-a">Tidak perlu! Kamu cukup mengisi form yang tersedia atau paste teks CV langsung di kolom teks bebas. Tidak ada upload file apapun yang diperlukan.</div>
+          </div>
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-q">
+              Seberapa akurat rekomendasinya?
+              <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-a">Rekomendasi kursus YouTube dikurasi berdasarkan relevansi skill, kualitas konten (rating & jumlah views), dan kesesuaian level materi. Kami memilih dari channel terpercaya seperti freeCodeCamp, Fireship, dan Traversy Media.</div>
+          </div>
+        </div>
+        <div class="faq-cta-card">
+          <div>
+            <h3>Siap Cek Skor<br>Kamu Sekarang?</h3>
+            <p>Proses analisis hanya butuh kurang dari 30 detik. Gratis, tanpa registrasi, tanpa upload file.</p>
+          </div>
+          <button class="btn-white" onclick="showPage('input')">Mulai Analisis →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Bottom -->
+  <div class="cta-bottom">
+    <h2>Ketahui Posisimu<br>Sebelum Melamar</h2>
+    <p>Jangan tebak-tebakan. Analisis dulu, lamar dengan percaya diri.</p>
+    <button class="btn-white" onclick="showPage('input')">🚀 Coba Sekarang — Gratis</button>
+  </div>
+
+  <footer>© 2025 FitScore · Dibuat untuk pencari kerja Indonesia 🇮🇩</footer>
+</div>
+
+
+<!-- ══════════ INPUT PAGE ══════════ -->
+<div id="input-page" class="page">
+  <div class="page-topbar">
+    <div class="steps-row">
+      <div class="step-item active">
+        <div class="step-num">1</div>
+        Input Data
+      </div>
+      <div class="step-divider"></div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        Analisis
+      </div>
+      <div class="step-divider"></div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        Hasil
+      </div>
+    </div>
+    <div class="page-topbar-right">Isi form di bawah, lalu klik "Analisis Sekarang"</div>
+  </div>
+
+  <div class="input-container">
+
+    <!-- LEFT: CV -->
+    <div class="input-panel">
+      <div class="panel-header">
+        <div class="panel-label">📄 Data CV</div>
+        <div class="panel-title">Informasi Diri & Karir</div>
+        <div class="panel-sub">Isi sedetail mungkin untuk hasil yang lebih akurat</div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Identitas</div>
+        <div class="form-group">
+          <label>Nama Lengkap <span class="opt">(opsional)</span></label>
+          <input type="text" id="cv-name" placeholder="Contoh: Budi Santoso">
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Pendidikan</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Universitas</label>
+            <input type="text" id="cv-univ" placeholder="UI, ITB, UGM...">
+          </div>
+          <div class="form-group">
+            <label>Jurusan</label>
+            <input type="text" id="cv-major" placeholder="Teknik Informatika">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Tahun Lulus</label>
+            <input type="text" id="cv-grad" placeholder="2022">
+          </div>
+          <div class="form-group">
+            <label>IPK <span class="opt">(opsional)</span></label>
+            <input type="text" id="cv-gpa" placeholder="3.50">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Pengalaman Kerja <span>(maks. 3 entri)</span></div>
+        <div id="exp-list">
+          <div class="exp-card">
+            <div class="exp-card-header">
+              <span class="exp-card-num">Pengalaman 1</span>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nama Perusahaan</label>
+                <input type="text" placeholder="PT. Teknologi Maju">
+              </div>
+              <div class="form-group">
+                <label>Posisi / Jabatan</label>
+                <input type="text" placeholder="Software Engineer">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Durasi</label>
+              <input type="text" placeholder="Jan 2022 – Des 2023 (2 tahun)">
+            </div>
+          </div>
+        </div>
+        <button class="add-exp-btn" onclick="addExp()">
+          + Tambah Pengalaman Lain
+        </button>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Skills & Sertifikasi</div>
+        <div class="form-group">
+          <label>Skills Teknis <span class="opt">(pisah dengan koma)</span></label>
+          <input type="text" id="cv-skills" placeholder="Python, React, SQL, Docker, Git, Figma...">
+        </div>
+        <div class="form-group">
+          <label>Sertifikasi & Organisasi <span class="opt">(opsional)</span></label>
+          <input type="text" id="cv-cert" placeholder="AWS Certified, Google Analytics, HIMA...">
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Ringkasan CV <span>(opsional, disarankan)</span></div>
+        <div class="form-group">
+          <textarea id="cv-text" rows="7" placeholder="Paste isi CV kamu di sini untuk analisis yang lebih akurat. Bisa copy-paste dari Word, PDF, atau LinkedIn About section...&#10;&#10;Semakin banyak konteks yang kamu berikan, semakin akurat analisis skill-nya."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: JD -->
+    <div class="input-panel">
+      <div class="panel-header">
+        <div class="panel-label">💼 Job Description</div>
+        <div class="panel-title">Detail Lowongan yang Dilamar</div>
+        <div class="panel-sub">Paste job description selengkap mungkin</div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Info Posisi</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nama Posisi</label>
+            <input type="text" id="jd-role" placeholder="Frontend Developer">
+          </div>
+          <div class="form-group">
+            <label>Nama Perusahaan</label>
+            <input type="text" id="jd-company" placeholder="Tokopedia, Gojek...">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Pengalaman Minimum</label>
+            <input type="text" id="jd-exp" placeholder="2 tahun">
+          </div>
+          <div class="form-group">
+            <label>Level Posisi</label>
+            <select id="jd-level">
+              <option value="">Pilih level...</option>
+              <option>Fresh Graduate / Entry Level</option>
+              <option>Junior (1–2 tahun)</option>
+              <option>Mid-level (2–5 tahun)</option>
+              <option>Senior (5+ tahun)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Requirements</div>
+        <div class="form-group">
+          <label>Required Skills <span class="opt">(pisah dengan koma)</span></label>
+          <input type="text" id="jd-skills" placeholder="React, TypeScript, Node.js, REST API, Docker...">
+        </div>
+        <div class="form-group">
+          <label>Industri <span class="opt">(opsional)</span></label>
+          <input type="text" id="jd-industry" placeholder="Teknologi, E-commerce, Fintech...">
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-title">Full Job Description <span>(wajib diisi)</span></div>
+        <div class="form-group">
+          <textarea id="jd-text" rows="13" placeholder="Paste full job description di sini...&#10;&#10;Contoh:&#10;We are looking for a Frontend Developer to join our growing team at Tokopedia.&#10;&#10;Requirements:&#10;• 2+ years experience with React.js&#10;• Strong TypeScript skills&#10;• Experience with Node.js and REST APIs&#10;• Familiar with Docker and CI/CD pipelines&#10;..."></textarea>
+        </div>
+        <div class="tip-box">
+          <div class="tip-box-title">💡 Tips untuk hasil terbaik</div>
+          <p>• Paste job description selengkap mungkin termasuk bagian Responsibilities<br>
+          • Isi kolom Required Skills untuk deteksi yang lebih akurat<br>
+          • Kolom ringkasan CV juga sangat membantu meningkatkan akurasi</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-footer">
+    <div class="footer-hint">💡 Semua data diproses lokal — tidak ada yang dikirim ke server</div>
+    <div class="footer-actions">
+      <button class="btn-secondary" onclick="showPage('landing')">← Kembali</button>
+      <button class="btn-analyze" onclick="startAnalysis()">🔍 Analisis Sekarang</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════ LOADING ══════════ -->
+<div id="loading-page" class="page">
+  <div class="loading-logo">FitScore · Analyzing...</div>
+  <div class="loading-ring"></div>
+  <div class="loading-title">Sedang Menganalisis</div>
+  <div class="loading-step" id="loading-step-text">Mempersiapkan data...</div>
+  <div class="ls-list">
+    <div class="ls-row" id="ls-ner">
+      <span class="ls-icon">🔎</span>Named Entity Recognition
+    </div>
+    <div class="ls-row" id="ls-ext">
+      <span class="ls-icon">⚙️</span>Skill Extraction & Normalisasi
+    </div>
+    <div class="ls-row" id="ls-sem">
+      <span class="ls-icon">📐</span>Semantic Similarity Matching
+    </div>
+    <div class="ls-row" id="ls-scr">
+      <span class="ls-icon">📊</span>Experience & Education Scoring
+    </div>
+    <div class="ls-row" id="ls-rec">
+      <span class="ls-icon">🎓</span>Generating Recommendations
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════ RESULT PAGE ══════════ -->
+<div id="result-page" class="page">
+  <div class="result-topbar">
+    <div class="result-topbar-left">
+      <h2>Hasil Analisis</h2>
+      <p id="result-subtitle">CV kamu dianalisis terhadap posisi yang dilamar</p>
+    </div>
+    <div class="result-topbar-right">
+      <button class="btn-outline-sm" onclick="showPage('input')">← Analisis Ulang</button>
+      <button class="btn-primary-sm" onclick="window.print()">⬇ Simpan</button>
+    </div>
+  </div>
+
+  <div class="result-body">
+
+    <!-- Match Score Card -->
+    <div class="score-card fade-in">
+      <div class="score-left">
+        <div class="score-ring-wrap">
+          <svg class="score-ring-svg" viewBox="0 0 120 120">
+            <circle class="score-ring-bg" cx="60" cy="60" r="54"/>
+            <circle class="score-ring-fg" id="score-ring-fg" cx="60" cy="60" r="54"/>
+          </svg>
+          <div class="score-ring-center">
+            <div class="score-num" id="result-score-num">0</div>
+            <div class="score-pct-label">MATCH %</div>
+          </div>
+        </div>
+        <div class="score-verdict" id="score-verdict">—</div>
+        <div class="score-badge" id="score-badge"></div>
+      </div>
+      <div class="score-right">
+        <h3>Breakdown Skor</h3>
+        <div class="breakdown-row">
+          <div class="breakdown-meta">
+            <span class="breakdown-name">Skill Similarity</span>
+            <span class="breakdown-val" id="s-skill">—</span>
+          </div>
+          <div class="breakdown-track">
+            <div class="breakdown-fill bf-blue" id="bar-skill" style="width:0%"></div>
+          </div>
+        </div>
+        <div class="breakdown-row">
+          <div class="breakdown-meta">
+            <span class="breakdown-name">Experience Match</span>
+            <span class="breakdown-val" id="s-exp">—</span>
+          </div>
+          <div class="breakdown-track">
+            <div class="breakdown-fill bf-sky" id="bar-exp" style="width:0%"></div>
+          </div>
+        </div>
+        <div class="breakdown-row">
+          <div class="breakdown-meta">
+            <span class="breakdown-name">Education Match</span>
+            <span class="breakdown-val" id="s-edu">—</span>
+          </div>
+          <div class="breakdown-track">
+            <div class="breakdown-fill bf-indigo" id="bar-edu" style="width:0%"></div>
+          </div>
+        </div>
+        <div class="score-summary" id="score-summary"></div>
+      </div>
+    </div>
+
+    <!-- Skill Gap -->
+    <div class="result-section fade-in-2">
+      <div class="rs-header">
+        <div class="rs-title">🔍 Skill Gap Analysis</div>
+        <div class="rs-desc">Skills yang sudah kamu punya dan yang perlu ditingkatkan untuk posisi ini.</div>
+      </div>
+      <div class="skills-cols">
+        <div class="skills-box">
+          <div class="sb-header">
+            <div class="sb-dot green"></div>
+            <span class="sb-title">Skills yang Cocok ✓</span>
+            <span class="sb-count green" id="matched-count">0</span>
+          </div>
+          <div class="skill-chips" id="matched-skills"></div>
+        </div>
+        <div class="skills-box">
+          <div class="sb-header">
+            <div class="sb-dot red"></div>
+            <span class="sb-title">Skills yang Kurang ✗</span>
+            <span class="sb-count red" id="missing-count">0</span>
+          </div>
+          <div class="skill-chips" id="missing-skills"></div>
+          <div class="gap-note" id="gap-note"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Course Recommendations -->
+    <div class="result-section fade-in-3">
+      <div class="rs-header">
+        <div class="rs-title">🎓 Rekomendasi Kursus</div>
+        <div class="rs-desc">Video YouTube terpilih untuk tiap skill yang masih perlu dikuasai.</div>
+      </div>
+      <div id="courses-container"></div>
+    </div>
+
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

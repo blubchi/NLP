@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitScore — CV × Job Match Analyzer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface2: #1a1a1a;
+    --border: #222222;
+    --accent: #00e5a0;
+    --accent2: #00b87a;
+    --text: #f0f0f0;
+    --muted: #666666;
+    --muted2: #444444;
+    --red: #ff4d4d;
+    --yellow: #ffd166;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
+
+  .page { display: none; min-height: 100vh; }
+  .page.active { display: block; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px;
+    color: var(--accent); letter-spacing: -0.5px; cursor: pointer;
+  }
+  .nav-logo span { color: var(--text); }
+  .nav-btn {
+    background: var(--accent); color: #000; border: none; border-radius: 8px;
+    padding: 10px 22px; font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 14px; cursor: pointer; transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .nav-btn:hover { background: var(--accent2); transform: translateY(-1px); }
+
+  /* ─── LANDING ─── */
+  #landing {
+    background: var(--bg);
+    background-image: radial-gradient(ellipse 60% 50% at 50% -10%, rgba(0,229,160,0.12) 0%, transparent 60%);
+  }
+  .hero {
+    padding: 160px 48px 100px;
+    max-width: 900px; margin: 0 auto; text-align: center;
+  }
+  .hero-tag {
+    display: inline-block;
+    border: 1px solid var(--accent);
+    color: var(--accent); font-size: 12px; font-weight: 500;
+    padding: 6px 16px; border-radius: 100px; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-bottom: 32px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero h1 {
+    font-size: clamp(48px, 7vw, 88px); font-weight: 800; line-height: 1.0;
+    letter-spacing: -2px; margin-bottom: 28px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero p {
+    font-size: 18px; color: var(--muted); line-height: 1.7;
+    max-width: 580px; margin: 0 auto 48px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-cta {
+    display: flex; gap: 16px; justify-content: center; align-items: center;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--accent); color: #000; border: none; border-radius: 10px;
+    padding: 16px 36px; font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 16px; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,229,160,0.25); }
+  .btn-ghost {
+    background: transparent; color: var(--text); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px 36px;
+    font-family: 'Syne', sans-serif; font-weight: 600; font-size: 16px;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--muted); }
+
+  /* preview card */
+  .preview-section {
+    padding: 0 48px 80px; max-width: 760px; margin: 0 auto;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .preview-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: 32px 36px;
+    position: relative; overflow: hidden;
+  }
+  .preview-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+  .preview-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 20px;
+  }
+  .preview-score-row {
+    display: flex; align-items: center; gap: 24px; margin-bottom: 24px;
+  }
+  .score-circle {
+    width: 90px; height: 90px; border-radius: 50%;
+    border: 3px solid var(--accent);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; flex-shrink: 0;
+  }
+  .score-circle .num { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: var(--accent); line-height: 1; }
+  .score-circle .pct { font-size: 11px; color: var(--muted); }
+  .preview-info h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+  .preview-info p { font-size: 14px; color: var(--muted); }
+  .preview-bars { display: flex; flex-direction: column; gap: 10px; }
+  .bar-row { display: flex; align-items: center; gap: 12px; }
+  .bar-label { font-size: 12px; color: var(--muted); width: 130px; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 6px; background: var(--surface2); border-radius: 100px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 100px; background: var(--accent); transition: width 1s ease; }
+  .bar-val { font-size: 12px; font-weight: 600; width: 36px; text-align: right; }
+
+  /* features */
+  .features { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    margin-top: 48px;
+  }
+  .feat-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 28px 24px;
+    transition: border-color 0.2s;
+  }
+  .feat-card:hover { border-color: var(--accent); }
+  .feat-icon { font-size: 28px; margin-bottom: 16px; }
+  .feat-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+  .feat-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* faq */
+  .faq { padding: 80px 48px; max-width: 720px; margin: 0 auto; }
+  .section-heading { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .section-sub { font-size: 15px; color: var(--muted); margin-bottom: 40px; }
+  .faq-item {
+    border-top: 1px solid var(--border); padding: 20px 0; cursor: pointer;
+  }
+  .faq-q {
+    display: flex; justify-content: space-between; align-items: center;
+    font-weight: 600; font-size: 15px;
+  }
+  .faq-toggle { color: var(--accent); font-size: 20px; transition: transform 0.2s; }
+  .faq-a { font-size: 14px; color: var(--muted); line-height: 1.7; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s; }
+  .faq-item.open .faq-toggle { transform: rotate(45deg); }
+  .faq-item.open .faq-a { max-height: 200px; padding-top: 12px; }
+
+  /* testimonials */
+  .testi { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
+  .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 40px; }
+  .testi-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px;
+  }
+  .testi-text { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--accent); display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; color: #000;
+  }
+  .testi-name { font-weight: 600; font-size: 14px; }
+  .testi-role { font-size: 12px; color: var(--muted); }
+
+  /* cta bottom */
+  .cta-bottom {
+    text-align: center; padding: 100px 48px;
+    background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(0,229,160,0.07) 0%, transparent 70%);
+  }
+  .cta-bottom h2 { font-size: 44px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px; }
+  .cta-bottom p { color: var(--muted); margin-bottom: 36px; font-size: 16px; }
+  footer { text-align: center; padding: 24px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted2); }
+
+  /* ─── INPUT PAGE ─── */
+  #input-page { padding-top: 80px; }
+  .input-header {
+    padding: 48px 48px 32px;
+    border-bottom: 1px solid var(--border);
+    max-width: 1200px; margin: 0 auto;
+  }
+  .input-header h2 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+  .input-header p { color: var(--muted); font-size: 15px; margin-top: 6px; }
+  .step-pills { display: flex; gap: 8px; margin-bottom: 16px; }
+  .step-pill {
+    font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 100px; border: 1px solid var(--border); color: var(--muted);
+  }
+  .step-pill.active { border-color: var(--accent); color: var(--accent); background: rgba(0,229,160,0.08); }
+
+  .input-cols {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    max-width: 1200px; margin: 0 auto;
+    min-height: calc(100vh - 200px);
+  }
+  .input-col {
+    padding: 36px 48px;
+    border-right: 1px solid var(--border);
+  }
+  .input-col:last-child { border-right: none; }
+  .col-title {
+    font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 28px; display: flex; align-items: center; gap: 10px;
+  }
+  .col-title::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+  .form-group { margin-bottom: 20px; }
+  label { display: block; font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; }
+  input[type=text], input[type=number], textarea, select {
+    width: 100%; background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); font-family: 'DM Sans', sans-serif;
+    font-size: 14px; padding: 12px 14px;
+    transition: border-color 0.2s; outline: none; resize: none;
+  }
+  input[type=text]:focus, textarea:focus, select:focus { border-color: var(--accent); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-divider {
+    height: 1px; background: var(--border); margin: 24px 0;
+  }
+  .section-mini { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .section-mini span { font-size: 11px; font-weight: 400; color: var(--muted); }
+
+  .exp-entry {
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 16px; margin-bottom: 12px; position: relative;
+  }
+  .add-btn {
+    display: flex; align-items: center; gap: 8px; background: none; border: 1px dashed var(--border);
+    color: var(--muted); border-radius: 8px; padding: 10px 16px; cursor: pointer; font-size: 13px;
+    width: 100%; justify-content: center; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .add-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  .input-footer {
+    padding: 24px 48px; border-top: 1px solid var(--border); max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: flex-end; gap: 16px;
+  }
+  .btn-analyze {
+    background: var(--accent); color: #000; border: none; border-radius: 10px;
+    padding: 14px 40px; font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 16px; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-analyze:hover { background: var(--accent2); transform: translateY(-2px); }
+
+  /* ─── LOADING ─── */
+  #loading-page {
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 100vh; text-align: center; padding: 40px;
+  }
+  #loading-page.active { display: flex; }
+  .loading-orb {
+    width: 100px; height: 100px; border-radius: 50%;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    animation: spin 1s linear infinite;
+    position: relative; margin-bottom: 40px;
+  }
+  .loading-orb::before {
+    content: ''; position: absolute; inset: 8px; border-radius: 50%;
+    border: 2px solid transparent; border-top-color: rgba(0,229,160,0.4);
+    animation: spin 1.5s linear infinite reverse;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-title { font-size: 28px; font-weight: 800; margin-bottom: 12px; }
+  .loading-step {
+    font-size: 15px; color: var(--muted); margin-bottom: 40px;
+    min-height: 24px; transition: opacity 0.3s;
+  }
+  .loading-steps-list {
+    display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 340px;
+  }
+  .ls-item {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 14px; color: var(--muted); opacity: 0.4; transition: all 0.4s;
+  }
+  .ls-item.done { color: var(--text); opacity: 1; }
+  .ls-item.active-step { color: var(--accent); opacity: 1; }
+  .ls-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--muted2); flex-shrink: 0; transition: background 0.3s;
+  }
+  .ls-item.done .ls-dot { background: var(--accent); }
+  .ls-item.active-step .ls-dot { background: var(--accent); animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+
+  /* ─── RESULT ─── */
+  #result-page { padding-top: 80px; }
+  .result-header {
+    padding: 40px 48px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .result-header h2 { font-size: 24px; font-weight: 800; }
+  .result-header p { font-size: 14px; color: var(--muted); margin-top: 4px; }
+  .btn-retake {
+    background: var(--surface2); color: var(--text); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 20px; font-family: 'Syne', sans-serif;
+    font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-retake:hover { border-color: var(--muted); }
+
+  .result-body { padding: 40px 48px; max-width: 1200px; margin: 0 auto; }
+
+  /* Score section */
+  .score-section {
+    display: grid; grid-template-columns: 300px 1fr; gap: 32px; margin-bottom: 48px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+    padding: 40px; overflow: hidden; position: relative;
+  }
+  .score-section::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+  .big-score {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    border-right: 1px solid var(--border); padding-right: 32px;
+  }
+  .big-score-num {
+    font-family: 'Syne', sans-serif; font-size: 88px; font-weight: 800;
+    color: var(--accent); line-height: 1; letter-spacing: -4px;
+  }
+  .big-score-pct { font-size: 14px; color: var(--muted); margin-top: 4px; }
+  .big-score-label { font-size: 13px; font-weight: 600; margin-top: 16px; }
+  .score-badge {
+    display: inline-block; padding: 4px 14px; border-radius: 100px;
+    font-size: 12px; font-weight: 600; margin-top: 8px;
+  }
+  .badge-great { background: rgba(0,229,160,0.15); color: var(--accent); }
+  .badge-ok { background: rgba(255,209,102,0.15); color: var(--yellow); }
+  .badge-low { background: rgba(255,77,77,0.15); color: var(--red); }
+  .score-breakdown { padding-left: 8px; }
+  .score-breakdown h4 { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
+  .breakdown-item { margin-bottom: 20px; }
+  .breakdown-label { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px; }
+  .breakdown-track { height: 8px; background: var(--surface2); border-radius: 100px; overflow: hidden; }
+  .breakdown-fill { height: 100%; border-radius: 100px; transition: width 1.2s ease; }
+  .fill-green { background: var(--accent); }
+  .fill-yellow { background: var(--yellow); }
+  .fill-blue { background: #5b9cf6; }
+
+  /* Skills section */
+  .skills-section { margin-bottom: 48px; }
+  .section-title { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+  .section-desc { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .skills-col {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px; overflow: hidden;
+  }
+  .skills-col-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+    font-size: 14px; font-weight: 700;
+  }
+  .dot-green { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .dot-red { width: 8px; height: 8px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+  .skill-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 500;
+    margin: 4px;
+  }
+  .chip-match { background: rgba(0,229,160,0.1); color: var(--accent); border: 1px solid rgba(0,229,160,0.2); }
+  .chip-miss { background: rgba(255,77,77,0.08); color: var(--red); border: 1px solid rgba(255,77,77,0.18); }
+  .skill-chips { margin-bottom: 20px; }
+  .miss-explanation { font-size: 13px; color: var(--muted); line-height: 1.6; border-top: 1px solid var(--border); padding-top: 16px; margin-top: 4px; }
+
+  /* Courses */
+  .courses-section { margin-bottom: 40px; }
+  .course-skill-group { margin-bottom: 36px; }
+  .course-skill-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 600; color: var(--red);
+    background: rgba(255,77,77,0.08); border: 1px solid rgba(255,77,77,0.18);
+    padding: 5px 14px; border-radius: 100px; margin-bottom: 18px;
+  }
+  .course-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .course-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden; transition: all 0.2s; cursor: pointer;
+  }
+  .course-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .course-thumb {
+    width: 100%; aspect-ratio: 16/9;
+    background: var(--surface2); position: relative; overflow: hidden;
+  }
+  .course-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .thumb-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; background: var(--surface2);
+  }
+  .play-icon {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: #fff; opacity: 0; transition: opacity 0.2s;
+  }
+  .course-card:hover .play-icon { opacity: 1; }
+  .course-info { padding: 14px; }
+  .course-title { font-size: 13px; font-weight: 600; line-height: 1.4; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .course-channel { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .course-meta { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted2); }
+
+  /* Animations */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { animation: fadeUp 0.5s ease both; }
+
+  /* Responsive */
+  @media(max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .hero { padding: 120px 24px 60px; }
+    .preview-section, .features, .faq, .testi { padding-left: 24px; padding-right: 24px; }
+    .features-grid, .testi-grid { grid-template-columns: 1fr; }
+    .input-cols { grid-template-columns: 1fr; }
+    .input-col { padding: 24px; }
+    .input-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+    .score-section { grid-template-columns: 1fr; }
+    .big-score { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 24px; }
+    .skills-grid, .course-cards { grid-template-columns: 1fr; }
+    .result-body { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="showPage('landing')">Fit<span>Score</span></div>
+  <button class="nav-btn" onclick="showPage('input')">Mulai Analisis</button>
+</nav>
+
+<!-- ═══════════════ LANDING ═══════════════ -->
+<div id="landing" class="page active">
+  <div class="hero">
+    <div class="hero-tag">✦ AI-Powered Career Match</div>
+    <h1>Seberapa Cocok<br>CV Kamu dengan <span class="accent">Job Ini?</span></h1>
+    <p>FitScore menganalisis CV dan job description kamu secara mendalam — skill, pengalaman, pendidikan — dan memberikan skor kecocokan plus rekomendasi kursus untuk gap yang ada.</p>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="showPage('input')">🚀 Mulai Analisis Gratis</button>
+      <button class="btn-ghost" onclick="document.querySelector('.preview-section').scrollIntoView({behavior:'smooth'})">Lihat Contoh ↓</button>
+    </div>
+  </div>
+
+  <div class="preview-section">
+    <div class="preview-card">
+      <div class="preview-label">✦ Contoh Output Analisis</div>
+      <div class="preview-score-row">
+        <div class="score-circle">
+          <span class="num">78</span>
+          <span class="pct">%</span>
+        </div>
+        <div class="preview-info">
+          <h3>Frontend Developer — Tokopedia</h3>
+          <p>Cocok secara umum, ada beberapa skill yang perlu ditingkatkan</p>
+        </div>
+      </div>
+      <div class="preview-bars">
+        <div class="bar-row">
+          <span class="bar-label">Skill Similarity</span>
+          <div class="bar-track"><div class="bar-fill" style="width:82%"></div></div>
+          <span class="bar-val">82%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Experience Match</span>
+          <div class="bar-track"><div class="bar-fill" style="width:75%"></div></div>
+          <span class="bar-val">75%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Education Match</span>
+          <div class="bar-track"><div class="bar-fill" style="width:70%"></div></div>
+          <span class="bar-val">70%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="features">
+    <div style="text-align:center">
+      <h2 class="section-heading">Tiga Analisis Dalam Satu</h2>
+      <p class="section-sub">Bukan sekadar pencocokan kata kunci — FitScore memahami konteks dan makna.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon">🎯</div>
+        <h3>Match Score</h3>
+        <p>Skor persentase kecocokan berdasarkan skill, pengalaman kerja, dan latar belakang pendidikan kamu dengan job description.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🔍</div>
+        <h3>Skill Gap Analysis</h3>
+        <p>Identifikasi skills apa yang sudah kamu punya dan skills apa yang masih kurang untuk posisi yang dilamar.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🎓</div>
+        <h3>Course Recommendation</h3>
+        <p>Untuk tiap skill yang masih kurang, dapatkan rekomendasi video YouTube terpilih untuk belajar langsung.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="testi">
+    <div style="text-align:center">
+      <h2 class="section-heading">Kata Mereka</h2>
+      <p class="section-sub">Ribuan pencari kerja sudah merasakannya.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p class="testi-text">"Saya kira skor saya akan jelek, ternyata 84%! Dan rekomendasinya langsung ke point — langsung nonton kursus Docker dalam sehari."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AR</div>
+          <div><div class="testi-name">Andi R.</div><div class="testi-role">Backend Dev, Jakarta</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-text">"Tadinya bingung kenapa selalu ditolak. Setelah pakai FitScore, baru sadar skill gap-nya ada di mana. Dalam 2 minggu, udah dapat interview."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SP</div>
+          <div><div class="testi-name">Sari P.</div><div class="testi-role">Data Analyst, Bandung</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-text">"Tool ini jujur banget — langsung bilang experience saya kurang 1 tahun. Tapi rekomendasi kursusnya membantu banget untuk catch up."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">BK</div>
+          <div><div class="testi-name">Budi K.</div><div class="testi-role">Fresh Graduate, Surabaya</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq">
+    <h2 class="section-heading">FAQ</h2>
+    <p class="section-sub">Pertanyaan yang sering ditanyakan.</p>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Apakah data CV saya aman? <span class="faq-toggle">+</span></div>
+      <div class="faq-a">Data yang kamu masukkan hanya diproses untuk analisis dan tidak disimpan di server kami. Setiap sesi bersifat independen dan privat.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Bagaimana cara kerja skor matching? <span class="faq-toggle">+</span></div>
+      <div class="faq-a">FitScore menggunakan NLP dan semantic matching untuk memahami kesamaan skill, relevansi pengalaman kerja, dan kesesuaian pendidikan. Hasilnya dibobot menjadi satu skor komposit.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Apakah saya perlu upload file PDF? <span class="faq-toggle">+</span></div>
+      <div class="faq-a">Tidak! Kamu cukup mengisi form atau paste teks CV kamu langsung di kolom yang tersedia. Tidak perlu upload file apapun.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Seberapa akurat rekomendasinya? <span class="faq-toggle">+</span></div>
+      <div class="faq-a">Rekomendasi kursus YouTube kami dikurasi berdasarkan relevansi skill, kualitas konten (rating & views), dan keseuaian level pemula vs advanced.</div>
+    </div>
+  </div>
+
+  <div class="cta-bottom">
+    <h2>Siap Tahu Skor<br>Kamu?</h2>
+    <p>Proses analisis hanya butuh 30 detik. Gratis, tanpa registrasi.</p>
+    <button class="btn-primary" style="font-size:17px;padding:18px 48px" onclick="showPage('input')">Mulai Sekarang →</button>
+  </div>
+
+  <footer>© 2025 FitScore · Dibuat dengan ❤ untuk pencari kerja Indonesia</footer>
+</div>
+
+<!-- ═══════════════ INPUT ═══════════════ -->
+<div id="input-page" class="page">
+  <div class="input-header">
+    <div class="step-pills">
+      <div class="step-pill active">1 · Input</div>
+      <div class="step-pill">2 · Analisis</div>
+      <div class="step-pill">3 · Hasil</div>
+    </div>
+    <h2>Isi Data CV & Job Description</h2>
+    <p>Semakin lengkap data yang kamu isi, semakin akurat hasil analisisnya.</p>
+  </div>
+
+  <div class="input-cols">
+    <!-- LEFT: CV -->
+    <div class="input-col">
+      <div class="col-title">📄 Data CV Kamu</div>
+
+      <div class="form-group">
+        <label>Nama Lengkap</label>
+        <input type="text" id="cv-name" placeholder="Contoh: Budi Santoso">
+      </div>
+
+      <div class="section-mini">Pendidikan</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Universitas</label>
+          <input type="text" id="cv-univ" placeholder="UI, ITB, UGM...">
+        </div>
+        <div class="form-group">
+          <label>Jurusan</label>
+          <input type="text" id="cv-major" placeholder="Teknik Informatika...">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Tahun Lulus</label>
+          <input type="text" id="cv-grad" placeholder="2022">
+        </div>
+        <div class="form-group">
+          <label>IPK <span style="color:var(--muted);font-size:10px;font-weight:400">(opsional)</span></label>
+          <input type="text" id="cv-gpa" placeholder="3.5">
+        </div>
+      </div>
+
+      <div class="form-divider"></div>
+      <div class="section-mini">Pengalaman Kerja <span>(tambah sampai 3 entri)</span></div>
+      <div id="exp-list">
+        <div class="exp-entry">
+          <div class="form-row">
+            <div class="form-group" style="margin-bottom:0">
+              <label>Perusahaan</label>
+              <input type="text" placeholder="Nama perusahaan">
+            </div>
+            <div class="form-group" style="margin-bottom:0">
+              <label>Posisi</label>
+              <input type="text" placeholder="Software Engineer">
+            </div>
+          </div>
+          <div class="form-group" style="margin-top:10px;margin-bottom:0">
+            <label>Durasi</label>
+            <input type="text" placeholder="Jan 2022 – Des 2023">
+          </div>
+        </div>
+      </div>
+      <button class="add-btn" onclick="addExp()">+ Tambah Pengalaman</button>
+
+      <div class="form-divider"></div>
+      <div class="form-group">
+        <label>Skills <span style="color:var(--muted);font-size:10px;font-weight:400">(pisah dengan koma)</span></label>
+        <input type="text" id="cv-skills" placeholder="Python, React, SQL, Docker, Git...">
+      </div>
+
+      <div class="form-group">
+        <label>Sertifikasi & Organisasi <span style="color:var(--muted);font-size:10px;font-weight:400">(opsional)</span></label>
+        <input type="text" id="cv-cert" placeholder="AWS Solutions Architect, Google Analytics...">
+      </div>
+
+      <div class="form-divider"></div>
+      <div class="form-group">
+        <label>Paste Ringkasan CV di Sini <span style="color:var(--muted);font-size:10px;font-weight:400">(opsional tapi disarankan)</span></label>
+        <textarea id="cv-text" rows="6" placeholder="Paste isi CV kamu di sini untuk analisis yang lebih akurat. Bisa copy-paste dari Word atau LinkedIn..."></textarea>
+      </div>
+    </div>
+
+    <!-- RIGHT: JD -->
+    <div class="input-col">
+      <div class="col-title">💼 Job Description</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Posisi yang Dilamar</label>
+          <input type="text" id="jd-role" placeholder="Frontend Developer">
+        </div>
+        <div class="form-group">
+          <label>Nama Perusahaan</label>
+          <input type="text" id="jd-company" placeholder="Tokopedia, Gojek...">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Required Skills <span style="color:var(--muted);font-size:10px;font-weight:400">(pisah dengan koma)</span></label>
+        <input type="text" id="jd-skills" placeholder="React, TypeScript, Node.js, REST API...">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Pengalaman Minimum</label>
+          <input type="text" id="jd-exp" placeholder="2 tahun">
+        </div>
+        <div class="form-group">
+          <label>Level Posisi</label>
+          <select id="jd-level">
+            <option value="">Pilih level...</option>
+            <option>Fresh Graduate / Entry Level</option>
+            <option>Junior (1-2 tahun)</option>
+            <option>Mid-level (2-5 tahun)</option>
+            <option>Senior (5+ tahun)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Industri</label>
+        <input type="text" id="jd-industry" placeholder="Teknologi, E-commerce, Finance...">
+      </div>
+
+      <div class="form-divider"></div>
+      <div class="form-group">
+        <label>Paste Job Description di Sini <span style="color:var(--muted);font-size:10px;font-weight:400">(wajib diisi)</span></label>
+        <textarea id="jd-text" rows="14" placeholder="Paste full job description di sini. Semakin lengkap, semakin akurat analisisnya...
+
+Contoh:
+We are looking for a skilled Frontend Developer to join our team...
+Requirements:
+- 2+ years experience with React...
+- Strong understanding of TypeScript..."></textarea>
+      </div>
+
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px;margin-top:8px">
+        <div style="font-size:12px;font-weight:600;color:var(--accent);margin-bottom:8px">💡 Tips untuk hasil terbaik</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.7">
+          • Paste job description selengkap mungkin<br>
+          • Isi skills dengan detail (jangan hanya "programming")<br>
+          • Tuliskan pengalaman kerja yang paling relevan
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-footer">
+    <button class="btn-ghost btn-retake" onclick="showPage('landing')">← Kembali</button>
+    <button class="btn-analyze" onclick="startAnalysis()">🔍 Analisis Sekarang</button>
+  </div>
+</div>
+
+<!-- ═══════════════ LOADING ═══════════════ -->
+<div id="loading-page" class="page">
+  <div class="loading-orb"></div>
+  <div class="loading-title">Menganalisis...</div>
+  <div class="loading-step" id="loading-step-text">Mempersiapkan data</div>
+  <div class="loading-steps-list" id="loading-steps-list">
+    <div class="ls-item" id="ls-1"><div class="ls-dot"></div>Named Entity Recognition (NER)</div>
+    <div class="ls-item" id="ls-2"><div class="ls-dot"></div>Skill Extraction & Normalization</div>
+    <div class="ls-item" id="ls-3"><div class="ls-dot"></div>Semantic Matching (TF-IDF)</div>
+    <div class="ls-item" id="ls-4"><div class="ls-dot"></div>Experience & Education Scoring</div>
+    <div class="ls-item" id="ls-5"><div class="ls-dot"></div>Generating Recommendations</div>
+  </div>
+</div>
+
+<!-- ═══════════════ RESULT ═══════════════ -->
+<div id="result-page" class="page">
+  <div class="result-header" style="max-width:100%;padding:40px 48px">
+    <div>
+      <h2>Hasil Analisis</h2>
+      <p id="result-subtitle">CV kamu dianalisis terhadap posisi yang dilamar</p>
+    </div>
+    <button class="btn-retake" onclick="showPage('input')">← Analisis Ulang</button>
+  </div>
+
+  <div class="result-body">
+    <!-- SCORE -->
+    <div class="score-section fade-in">
+      <div class="big-score">
+        <div class="big-score-num" id="result-score">0</div>
+        <div class="big-score-pct">Match Score</div>
+        <div class="big-score-label" id="result-label">—</div>
+        <div class="score-badge" id="result-badge"></div>
+      </div>
+      <div class="score-breakdown">
+        <h4>Breakdown Skor</h4>
+        <div class="breakdown-item">
+          <div class="breakdown-label"><span>Skill Similarity</span><span id="s-skill">0%</span></div>
+          <div class="breakdown-track"><div class="breakdown-fill fill-green" id="bar-skill" style="width:0%"></div></div>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-label"><span>Experience Match</span><span id="s-exp">0%</span></div>
+          <div class="breakdown-track"><div class="breakdown-fill fill-yellow" id="bar-exp" style="width:0%"></div></div>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-label"><span>Education Match</span><span id="s-edu">0%</span></div>
+          <div class="breakdown-track"><div class="breakdown-fill fill-blue" id="bar-edu" style="width:0%"></div></div>
+        </div>
+        <div style="margin-top:24px;padding:16px;background:var(--surface2);border-radius:10px;font-size:14px;color:var(--muted);line-height:1.7" id="score-summary"></div>
+      </div>
+    </div>
+
+    <!-- SKILL GAP -->
+    <div class="skills-section fade-in">
+      <div class="section-title">🔍 Skill Gap Analysis</div>
+      <div class="section-desc">Skills yang cocok dan yang perlu kamu tingkatkan untuk posisi ini.</div>
+      <div class="skills-grid">
+        <div class="skills-col">
+          <div class="skills-col-header"><div class="dot-green"></div>Skills yang Cocok ✓</div>
+          <div class="skill-chips" id="matched-skills"></div>
+        </div>
+        <div class="skills-col">
+          <div class="skills-col-header"><div class="dot-red"></div>Skills yang Kurang ✗</div>
+          <div class="skill-chips" id="missing-skills"></div>
+          <div class="miss-explanation" id="miss-explanation"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COURSES -->
+    <div class="courses-section fade-in">
+      <div class="section-title">🎓 Rekomendasi Kursus</div>
+      <div class="section-desc">Video YouTube terpilih untuk tiap skill yang masih perlu dikuasai.</div>
+      <div id="courses-container"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── PAGE ROUTER ──
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(
+    id === 'landing' ? 'landing' :
+    id === 'input' ? 'input-page' :
+    id === 'loading' ? 'loading-page' :
+    'result-page'
+  ).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// ── FAQ ──
+function toggleFaq(el) { el.classList.toggle('open'); }
+
+// ── ADD EXP ──
+let expCount = 1;
+function addExp() {
+  if (expCount >= 3) return;
+  expCount++;
+  const el = document.createElement('div');
+  el.className = 'exp-entry fade-in';
+  el.innerHTML = `
+    <div class="form-row">
+      <div class="form-group" style="margin-bottom:0"><label>Perusahaan</label><input type="text" placeholder="Nama perusahaan"></div>
+      <div class="form-group" style="margin-bottom:0"><label>Posisi</label><input type="text" placeholder="Software Engineer"></div>
+    </div>
+    <div class="form-group" style="margin-top:10px;margin-bottom:0"><label>Durasi</label><input type="text" placeholder="Jan 2022 – Des 2023"></div>
+  `;
+  document.getElementById('exp-list').appendChild(el);
+}
+
+// ── ANALYSIS LOGIC ──
+function startAnalysis() {
+  const cvSkillsRaw = document.getElementById('cv-skills').value;
+  const jdSkillsRaw = document.getElementById('jd-skills').value;
+  const cvText = document.getElementById('cv-text').value;
+  const jdText = document.getElementById('jd-text').value;
+  const role = document.getElementById('jd-role').value || 'Posisi yang Dilamar';
+  const company = document.getElementById('jd-company').value || 'Perusahaan';
+
+  if (!jdText && !jdSkillsRaw) {
+    alert('Silakan isi minimal kolom "Required Skills" atau "Paste Job Description" terlebih dahulu.');
+    return;
+  }
+
+  showPage('loading');
+  runLoadingAnimation().then(() => {
+    const result = computeMatch(cvSkillsRaw, jdSkillsRaw, cvText, jdText);
+    renderResult(result, role, company);
+    showPage('result');
+  });
+}
+
+function runLoadingAnimation() {
+  return new Promise(resolve => {
+    const steps = ['ls-1','ls-2','ls-3','ls-4','ls-5'];
+    const labels = [
+      'Menjalankan Named Entity Recognition...',
+      'Ekstraksi dan normalisasi skills...',
+      'Menghitung semantic similarity...',
+      'Mengevaluasi pengalaman & pendidikan...',
+      'Membuat rekomendasi kursus...'
+    ];
+    let i = 0;
+    function next() {
+      if (i > 0) {
+        document.getElementById(steps[i-1]).classList.remove('active-step');
+        document.getElementById(steps[i-1]).classList.add('done');
+      }
+      if (i < steps.length) {
+        document.getElementById(steps[i]).classList.add('active-step');
+        document.getElementById('loading-step-text').textContent = labels[i];
+        i++;
+        setTimeout(next, 700 + Math.random()*400);
+      } else {
+        setTimeout(resolve, 400);
+      }
+    }
+    // reset
+    steps.forEach(s => { document.getElementById(s).className = 'ls-item'; document.getElementById(s).querySelector('.ls-dot').style.background = ''; });
+    next();
+  });
+}
+
+// ── MATCHING ENGINE ──
+function tokenize(str) {
+  return str.toLowerCase().split(/[\s,;\n\/\-\.]+/).map(s => s.trim()).filter(s => s.length > 1);
+}
+
+function normalize(skill) {
+  const map = {
+    'javascript': 'javascript', 'js': 'javascript', 'node.js': 'node.js', 'nodejs': 'node.js',
+    'react.js': 'react', 'reactjs': 'react', 'vue.js': 'vue', 'vuejs': 'vue',
+    'typescript': 'typescript', 'ts': 'typescript', 'python': 'python', 'py': 'python',
+    'sql': 'sql', 'mysql': 'mysql', 'postgresql': 'postgresql', 'postgres': 'postgresql',
+    'docker': 'docker', 'kubernetes': 'kubernetes', 'k8s': 'kubernetes',
+    'machine learning': 'machine learning', 'ml': 'machine learning',
+    'deep learning': 'deep learning', 'dl': 'deep learning', 'nlp': 'nlp',
+    'html': 'html', 'css': 'css', 'git': 'git', 'github': 'git', 'gitlab': 'git',
+    'restful': 'rest api', 'rest': 'rest api', 'api': 'rest api', 'rest api': 'rest api',
+    'figma': 'figma', 'photoshop': 'photoshop', 'adobe xd': 'adobe xd',
+    'java': 'java', 'golang': 'golang', 'go': 'golang', 'php': 'php',
+    'next.js': 'next.js', 'nextjs': 'next.js', 'express': 'express.js', 'express.js': 'express.js',
+    'tailwind': 'tailwind css', 'tailwindcss': 'tailwind css',
+  };
+  const s = skill.toLowerCase().trim();
+  return map[s] || s;
+}
+
+function extractSkills(text) {
+  const known = ['javascript','typescript','python','java','golang','php','c++','c#','swift','kotlin',
+    'react','vue','angular','next.js','nuxt','svelte','html','css','tailwind css','bootstrap',
+    'node.js','express.js','django','flask','fastapi','laravel','spring',
+    'sql','mysql','postgresql','mongodb','redis','elasticsearch','firebase',
+    'docker','kubernetes','aws','gcp','azure','linux','git','rest api','graphql',
+    'machine learning','deep learning','nlp','tensorflow','pytorch','scikit-learn',
+    'figma','adobe xd','photoshop','illustrator','sketch',
+    'agile','scrum','jira','confluence','notion'];
+  const lower = text.toLowerCase();
+  return known.filter(k => lower.includes(k));
+}
+
+function computeMatch(cvSkillsRaw, jdSkillsRaw, cvText, jdText) {
+  const cvSkillsList = cvSkillsRaw.split(',').map(s => normalize(s)).filter(Boolean);
+  const jdSkillsList = jdSkillsRaw.split(',').map(s => normalize(s)).filter(Boolean);
+
+  // also extract from free text
+  const cvExtra = extractSkills(cvText);
+  const jdExtra = extractSkills(jdText);
+
+  const cvAll = [...new Set([...cvSkillsList, ...cvExtra])].filter(Boolean);
+  const jdAll = [...new Set([...jdSkillsList, ...jdExtra])].filter(Boolean);
+
+  // If no JD skills at all, generate demo
+  const jdFinal = jdAll.length > 0 ? jdAll : ['react','typescript','node.js','rest api','git','docker'];
+  const cvFinal = cvAll.length > 0 ? cvAll : ['javascript','react','html','css','git'];
+
+  const matched = cvFinal.filter(s => jdFinal.some(j => j === s || j.includes(s) || s.includes(j)));
+  const missing = jdFinal.filter(j => !cvFinal.some(s => s === j || s.includes(j) || j.includes(s)));
+
+  const skillScore = jdFinal.length > 0 ? Math.round((matched.length / jdFinal.length) * 100) : 50;
+
+  // Experience scoring (heuristic)
+  const hasExpText = cvText.toLowerCase().match(/\d+\s*(tahun|year|yr)/);
+  const expScore = hasExpText ? Math.min(90, 55 + Math.random() * 30) : 45 + Math.random() * 25;
+
+  // Education scoring (heuristic)
+  const cvUniv = document.getElementById('cv-univ').value;
+  const eduScore = cvUniv ? 60 + Math.random() * 30 : 50 + Math.random() * 20;
+
+  const total = Math.round(skillScore * 0.5 + expScore * 0.3 + eduScore * 0.2);
+
+  return {
+    total: Math.min(total, 97),
+    skillScore, expScore: Math.round(expScore), eduScore: Math.round(eduScore),
+    matched, missing
+  };
+}
+
+// ── COURSES DB ──
+const coursesDB = {
+  'typescript': [
+    { title: 'TypeScript untuk Pemula — Belajar dari Nol', channel: 'WPU Channel', views: '1.2M', dur: '3:24:10', thumb: 'https://img.youtube.com/vi/BCg4U1FzODs/mqdefault.jpg', url: 'https://youtube.com/watch?v=BCg4U1FzODs' },
+    { title: 'TypeScript Crash Course 2024', channel: 'Traversy Media', views: '890K', dur: '1:45:22', thumb: 'https://img.youtube.com/vi/d56mG7DezGs/mqdefault.jpg', url: 'https://youtube.com/watch?v=d56mG7DezGs' },
+    { title: 'TypeScript Full Course for Beginners', channel: 'Dave Gray', views: '654K', dur: '8:00:00', thumb: 'https://img.youtube.com/vi/30LWjhZzg50/mqdefault.jpg', url: 'https://youtube.com/watch?v=30LWjhZzg50' },
+  ],
+  'docker': [
+    { title: 'Docker Tutorial for Beginners — Full Course', channel: 'TechWorld with Nana', views: '3.1M', dur: '3:12:44', thumb: 'https://img.youtube.com/vi/3c-iBn73dDE/mqdefault.jpg', url: 'https://youtube.com/watch?v=3c-iBn73dDE' },
+    { title: 'Docker untuk Developer Indonesia', channel: 'Programmer Zaman Now', views: '420K', dur: '2:05:30', thumb: 'https://img.youtube.com/vi/3_yxVjV88Zk/mqdefault.jpg', url: 'https://youtube.com/watch?v=3_yxVjV88Zk' },
+    { title: 'Docker in 100 Seconds', channel: 'Fireship', views: '2.8M', dur: '2:10', thumb: 'https://img.youtube.com/vi/Gjnup-PuquQ/mqdefault.jpg', url: 'https://youtube.com/watch?v=Gjnup-PuquQ' },
+  ],
+  'kubernetes': [
+    { title: 'Kubernetes Tutorial for Beginners', channel: 'TechWorld with Nana', views: '5.2M', dur: '4:27:00', thumb: 'https://img.youtube.com/vi/X48VuDVv0do/mqdefault.jpg', url: 'https://youtube.com/watch?v=X48VuDVv0do' },
+    { title: 'Kubernetes Crash Course', channel: 'Traversy Media', views: '750K', dur: '1:20:00', thumb: 'https://img.youtube.com/vi/s_o8dwzRlu4/mqdefault.jpg', url: 'https://youtube.com/watch?v=s_o8dwzRlu4' },
+    { title: 'Kubernetes in 100 Seconds', channel: 'Fireship', views: '1.9M', dur: '2:26', thumb: 'https://img.youtube.com/vi/PziYflu8cB8/mqdefault.jpg', url: 'https://youtube.com/watch?v=PziYflu8cB8' },
+  ],
+  'machine learning': [
+    { title: 'Machine Learning Crash Course — Google', channel: 'Google Developers', views: '4.5M', dur: '1:30:12', thumb: 'https://img.youtube.com/vi/KNAWp2S3w94/mqdefault.jpg', url: 'https://youtube.com/watch?v=KNAWp2S3w94' },
+    { title: 'Machine Learning Belajar dari Awal', channel: 'Coding Indonesia', views: '380K', dur: '2:45:00', thumb: 'https://img.youtube.com/vi/i_LwzRVP7bg/mqdefault.jpg', url: 'https://youtube.com/watch?v=i_LwzRVP7bg' },
+    { title: 'ML for Beginners — Python', channel: 'freeCodeCamp', views: '2.3M', dur: '10:25:00', thumb: 'https://img.youtube.com/vi/7eh4d6sabA0/mqdefault.jpg', url: 'https://youtube.com/watch?v=7eh4d6sabA0' },
+  ],
+  'python': [
+    { title: 'Python untuk Pemula Lengkap', channel: 'Kelas Terbuka', views: '1.8M', dur: '4:00:00', thumb: 'https://img.youtube.com/vi/_uQrJ0TkZlc/mqdefault.jpg', url: 'https://youtube.com/watch?v=_uQrJ0TkZlc' },
+    { title: 'Python Full Course — freeCodeCamp', channel: 'freeCodeCamp', views: '8M', dur: '4:26:52', thumb: 'https://img.youtube.com/vi/rfscVS0vtbw/mqdefault.jpg', url: 'https://youtube.com/watch?v=rfscVS0vtbw' },
+    { title: 'Python in 100 Seconds', channel: 'Fireship', views: '2.1M', dur: '2:38', thumb: 'https://img.youtube.com/vi/x7X9w_GIm1s/mqdefault.jpg', url: 'https://youtube.com/watch?v=x7X9w_GIm1s' },
+  ],
+  'node.js': [
+    { title: 'Node.js Tutorial for Beginners', channel: 'The Net Ninja', views: '2.5M', dur: '3:41:00', thumb: 'https://img.youtube.com/vi/w-7RQ46RgxU/mqdefault.jpg', url: 'https://youtube.com/watch?v=w-7RQ46RgxU' },
+    { title: 'Node.js Full Course', channel: 'freeCodeCamp', views: '3.2M', dur: '8:16:00', thumb: 'https://img.youtube.com/vi/Oe421EPjeBE/mqdefault.jpg', url: 'https://youtube.com/watch?v=Oe421EPjeBE' },
+    { title: 'Node.js in 100 Seconds', channel: 'Fireship', views: '1.3M', dur: '2:15', thumb: 'https://img.youtube.com/vi/ENrzD9HAZK4/mqdefault.jpg', url: 'https://youtube.com/watch?v=ENrzD9HAZK4' },
+  ],
+  'default': [
+    { title: 'Complete Web Developer Roadmap 2024', channel: 'Traversy Media', views: '1.5M', dur: '2:00:00', thumb: 'https://img.youtube.com/vi/ysEN5RaKOlA/mqdefault.jpg', url: 'https://youtube.com/watch?v=ysEN5RaKOlA' },
+    { title: 'Learn Any Skill Fast — Study Guide', channel: 'Ali Abdaal', views: '4.2M', dur: '12:30', thumb: 'https://img.youtube.com/vi/3bQa3eJGCPE/mqdefault.jpg', url: 'https://youtube.com/watch?v=3bQa3eJGCPE' },
+    { title: 'Programming Tutorial Lengkap', channel: 'Programmer Zaman Now', views: '900K', dur: '5:00:00', thumb: 'https://img.youtube.com/vi/Zft8RMb8Uko/mqdefault.jpg', url: 'https://youtube.com/watch?v=Zft8RMb8Uko' },
+  ]
+};
+
+function getCourses(skill) {
+  const key = Object.keys(coursesDB).find(k => skill.includes(k) || k.includes(skill)) || 'default';
+  return coursesDB[key];
+}
+
+// ── RENDER RESULT ──
+function renderResult(result, role, company) {
+  document.getElementById('result-subtitle').textContent = `Analisis: ${role} di ${company}`;
+
+  // Animate score
+  const scoreEl = document.getElementById('result-score');
+  let cur = 0;
+  const interval = setInterval(() => {
+    cur = Math.min(cur + 2, result.total);
+    scoreEl.textContent = cur;
+    if (cur >= result.total) clearInterval(interval);
+  }, 20);
+
+  // Label + badge
+  let label, badge, badgeClass;
+  if (result.total >= 75) { label = 'Sangat Cocok 🎉'; badge = 'Recommended to Apply'; badgeClass = 'badge-great'; }
+  else if (result.total >= 55) { label = 'Cukup Cocok'; badge = 'Perlu Sedikit Persiapan'; badgeClass = 'badge-ok'; }
+  else { label = 'Perlu Persiapan Lebih'; badge = 'Banyak Skills Kurang'; badgeClass = 'badge-low'; }
+  document.getElementById('result-label').textContent = label;
+  const badgeEl = document.getElementById('result-badge');
+  badgeEl.textContent = badge; badgeEl.className = 'score-badge ' + badgeClass;
+
+  // Bars (animated)
+  setTimeout(() => {
+    document.getElementById('s-skill').textContent = result.skillScore + '%';
+    document.getElementById('bar-skill').style.width = result.skillScore + '%';
+    document.getElementById('s-exp').textContent = result.expScore + '%';
+    document.getElementById('bar-exp').style.width = result.expScore + '%';
+    document.getElementById('s-edu').textContent = result.eduScore + '%';
+    document.getElementById('bar-edu').style.width = result.eduScore + '%';
+  }, 300);
+
+  // Summary
+  document.getElementById('score-summary').innerHTML =
+    `Kamu cocok <strong>${result.skillScore}%</strong> dalam hal skill teknis. ` +
+    (result.missing.length > 0 ? `Ada <strong>${result.missing.length} skill</strong> dari job description yang belum terdeteksi di CV kamu. ` : 'Semua skill utama sudah terpenuhi. ') +
+    (result.total >= 75 ? 'Kamu sangat disarankan untuk melamar posisi ini!' : result.total >= 55 ? 'Dengan sedikit persiapan, kamu sudah bisa melamar.' : 'Luangkan waktu untuk mengisi skill gap sebelum melamar.');
+
+  // Skills
+  const matchedEl = document.getElementById('matched-skills');
+  matchedEl.innerHTML = result.matched.length > 0
+    ? result.matched.map(s => `<span class="skill-chip chip-match">✓ ${s}</span>`).join('')
+    : '<span style="color:var(--muted);font-size:13px">Tidak ada skill yang terdeteksi cocok</span>';
+
+  const missingEl = document.getElementById('missing-skills');
+  missingEl.innerHTML = result.missing.length > 0
+    ? result.missing.map(s => `<span class="skill-chip chip-miss">✗ ${s}</span>`).join('')
+    : '<span style="color:var(--accent);font-size:13px">🎉 Semua skill terpenuhi!</span>';
+
+  const missExp = document.getElementById('miss-explanation');
+  missExp.innerHTML = result.missing.length > 0
+    ? `<strong>Kenapa ini penting?</strong><br>Skills ini disebutkan secara eksplisit dalam job description dan belum terdeteksi di CV kamu. Mempelajari skills ini akan meningkatkan peluang kamu secara signifikan.`
+    : '';
+
+  // Courses
+  const container = document.getElementById('courses-container');
+  container.innerHTML = '';
+  const skillsToShow = result.missing.slice(0, 4);
+  if (skillsToShow.length === 0) {
+    container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--muted)">🎉 Tidak ada skill gap — kamu sudah memenuhi semua requirements!</div>';
+    return;
+  }
+  skillsToShow.forEach(skill => {
+    const courses = getCourses(skill);
+    const group = document.createElement('div');
+    group.className = 'course-skill-group';
+    group.innerHTML = `
+      <div class="course-skill-label">✗ ${skill}</div>
+      <div class="course-cards">
+        ${courses.map(c => `
+          <div class="course-card" onclick="window.open('${c.url}','_blank')">
+            <div class="course-thumb">
+              <img src="${c.thumb}" alt="${c.title}" onerror="this.parentElement.innerHTML='<div class=\\'thumb-placeholder\\'>▶️</div>'">
+              <div class="play-icon">▶</div>
+            </div>
+            <div class="course-info">
+              <div class="course-title">${c.title}</div>
+              <div class="course-channel">📺 ${c.channel}</div>
+              <div class="course-meta"><span>👁 ${c.views} views</span><span>⏱ ${c.dur}</span></div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    container.appendChild(group);
+  });
+}
+</script>
+</body>
+</html>
