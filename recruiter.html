@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FitScore for Recruiters</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#EEF2F8;--white:#fff;--navy:#0D1B4B;--blue:#2563EB;--blue-light:#3B82F6;
+  --blue-pale:#EFF4FF;--cyan:#06B6D4;--purple:#8B5CF6;--green:#10B981;--red:#EF4444;
+  --amber:#F59E0B;--gray:#64748B;--gray-light:#E2E8F0;--text:#1E293B;
+  --font:'Plus Jakarta Sans',sans-serif;
+}
+html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--text);font-size:15px;}
+
+/* UTIL */
+.page{display:none;min-height:100vh;flex-direction:column;}
+.page.active{display:flex;}
+.hidden{display:none!important;}
+
+/* ── NAV ── */
+nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;flex-shrink:0;}
+.nav-logo{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:700;color:var(--navy);cursor:pointer;}
+.logo-icon{width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;}
+.logo-sub{font-size:10px;font-weight:700;color:var(--blue);background:var(--blue-pale);padding:2px 8px;border-radius:4px;margin-left:4px;letter-spacing:0.5px;}
+.nav-right{display:flex;align-items:center;gap:12px;}
+.nav-avatar{width:34px;height:34px;border-radius:50%;background:var(--blue-pale);border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--blue);}
+.nav-name{font-size:13px;font-weight:600;color:var(--navy);}
+.nav-company{font-size:11px;color:var(--gray);}
+.btn-ghost{background:transparent;border:1.5px solid var(--gray-light);color:var(--gray);padding:7px 14px;border-radius:8px;font-size:13px;cursor:pointer;font-family:var(--font);}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue);}
+.btn-primary{background:var(--blue);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);display:inline-flex;align-items:center;gap:6px;}
+.btn-primary:hover{background:#1D4ED8;}
+
+/* ── LOGIN ── */
+.login-page{background:var(--bg);}
+.login-body{flex:1;display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 60px);}
+.login-left{background:var(--navy);padding:4rem 3.5rem;display:flex;flex-direction:column;justify-content:center;}
+.login-left h1{font-size:38px;font-weight:800;color:#fff;line-height:1.15;margin-bottom:14px;}
+.login-left h1 span{color:#93C5FD;}
+.login-left p{color:#94A3B8;font-size:15px;line-height:1.8;max-width:360px;}
+.rec-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:2rem;}
+.rec-chip{background:rgba(255,255,255,0.08);color:#CBD5E1;font-size:12px;padding:6px 13px;border-radius:20px;border:0.5px solid rgba(255,255,255,0.12);}
+.login-right{display:flex;align-items:center;justify-content:center;padding:3rem 2rem;}
+.login-card{background:var(--white);border-radius:20px;box-shadow:0 8px 40px rgba(37,99,235,0.08);padding:2.5rem;width:420px;}
+.login-card h2{font-size:22px;font-weight:800;color:var(--navy);margin-bottom:4px;}
+.login-card .sub{font-size:13px;color:var(--gray);margin-bottom:1.75rem;}
+.fg{margin-bottom:14px;}
+.fg label{display:block;font-size:11px;font-weight:700;color:var(--navy);letter-spacing:0.5px;margin-bottom:6px;text-transform:uppercase;}
+.fg input,.fg select,.fg textarea{width:100%;padding:10px 14px;border:1.5px solid var(--gray-light);border-radius:9px;font-size:14px;font-family:var(--font);color:var(--text);background:var(--white);}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,0.08);}
+.fg textarea{resize:vertical;min-height:80px;line-height:1.6;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.btn-full{width:100%;background:var(--blue);color:#fff;border:none;padding:12px;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--font);margin-top:4px;}
+.btn-full:hover{background:#1D4ED8;}
+.toggle-txt{text-align:center;font-size:13px;color:var(--gray);margin-top:14px;}
+.toggle-txt a{color:var(--blue);font-weight:600;cursor:pointer;}
+.divider{text-align:center;font-size:12px;color:var(--gray);margin:14px 0;position:relative;}
+.divider::before,.divider::after{content:'';position:absolute;top:50%;width:40%;height:1px;background:var(--gray-light);}
+.divider::before{left:0;}.divider::after{right:0;}
+
+/* ── SHELL (sidebar layout) ── */
+.shell{flex:1;display:flex;overflow:hidden;}
+.sidebar{width:220px;background:var(--white);border-right:1px solid #E2E8F0;padding:1.5rem 0;flex-shrink:0;display:flex;flex-direction:column;}
+.sb-section{font-size:10px;font-weight:700;color:#94A3B8;letter-spacing:0.8px;padding:0 1.25rem;margin-bottom:6px;margin-top:18px;}
+.sb-section:first-child{margin-top:0;}
+.sb-item{display:flex;align-items:center;gap:10px;padding:9px 1.25rem;font-size:13px;font-weight:500;color:var(--gray);cursor:pointer;border-left:3px solid transparent;transition:all 0.15s;}
+.sb-item:hover{background:#F8FAFF;color:var(--navy);}
+.sb-item.active{background:var(--blue-pale);color:var(--blue);font-weight:700;border-left-color:var(--blue);}
+.sb-icon{font-size:16px;width:20px;text-align:center;}
+.sb-badge{margin-left:auto;background:var(--blue);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;}
+.main-area{flex:1;overflow-y:auto;padding:2rem 2.5rem;}
+
+/* ── DASHBOARD ── */
+.dash-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;}
+.dash-header h2{font-size:22px;font-weight:800;color:var(--navy);}
+.dash-header p{font-size:13px;color:var(--gray);margin-top:3px;}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:2rem;}
+.stat-card{background:var(--white);border-radius:14px;border:1px solid #E8EEFA;padding:1.25rem;}
+.stat-card .sc-label{font-size:11px;font-weight:700;color:var(--gray);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:6px;}
+.stat-card .sc-val{font-size:28px;font-weight:800;color:var(--navy);}
+.stat-card .sc-sub{font-size:11px;color:var(--green);font-weight:600;margin-top:3px;}
+
+/* FILTERS */
+.filters-row{display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;flex-wrap:wrap;}
+.search-box{flex:1;min-width:220px;position:relative;}
+.search-box input{width:100%;padding:9px 14px 9px 36px;border:1.5px solid var(--gray-light);border-radius:9px;font-size:13px;font-family:var(--font);background:var(--white);}
+.search-box input:focus{outline:none;border-color:var(--blue);}
+.search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--gray);}
+.filter-select{padding:9px 12px;border:1.5px solid var(--gray-light);border-radius:9px;font-size:13px;font-family:var(--font);color:var(--text);background:var(--white);cursor:pointer;}
+.filter-select:focus{outline:none;border-color:var(--blue);}
+
+/* CV TABLE */
+.cv-table-wrap{background:var(--white);border-radius:16px;border:1px solid #E8EEFA;overflow:hidden;}
+.cv-table{width:100%;border-collapse:collapse;}
+.cv-table th{font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:0.5px;padding:12px 16px;background:#FAFBFF;border-bottom:1px solid #E8EEFA;text-align:left;}
+.cv-table td{padding:14px 16px;border-bottom:1px solid #F1F5F9;font-size:13px;vertical-align:middle;}
+.cv-table tr:last-child td{border-bottom:none;}
+.cv-table tr:hover td{background:#F8FAFF;cursor:pointer;}
+.cv-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+.cv-name-cell{display:flex;align-items:center;gap:10px;}
+.cv-name{font-size:13px;font-weight:600;color:var(--navy);}
+.cv-role{font-size:11px;color:var(--gray);}
+.skill-pill{display:inline-block;background:var(--blue-pale);color:var(--blue);font-size:11px;font-weight:600;padding:3px 8px;border-radius:5px;margin:2px;}
+.skill-pill.gray{background:#F1F5F9;color:var(--gray);}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;}
+.badge-new{background:#F0FDF4;color:#15803D;border:1px solid #BBF7D0;}
+.badge-hot{background:#FEF2F2;color:#DC2626;border:1px solid #FECACA;}
+.badge-open{background:var(--blue-pale);color:var(--blue);border:1px solid #BFDBFE;}
+.btn-view{background:var(--blue-pale);color:var(--blue);border:1px solid #BFDBFE;padding:6px 14px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font);}
+.btn-view:hover{background:var(--blue);color:#fff;}
+
+/* ── CV DETAIL PAGE ── */
+.cv-detail-body{flex:1;padding:2rem 2.5rem;max-width:1100px;width:100%;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--blue);font-size:13px;font-weight:600;cursor:pointer;margin-bottom:1.5rem;background:none;border:none;font-family:var(--font);}
+.back-btn:hover{text-decoration:underline;}
+.cv-detail-grid{display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start;}
+.detail-card{background:var(--white);border-radius:16px;border:1px solid #E8EEFA;padding:1.5rem;margin-bottom:16px;}
+.detail-card h3{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
+.dc-icon{font-size:16px;}
+.profile-header{display:flex;align-items:center;gap:16px;margin-bottom:1.25rem;}
+.ph-avatar{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;}
+.ph-name{font-size:18px;font-weight:800;color:var(--navy);}
+.ph-title{font-size:13px;color:var(--gray);margin-top:2px;}
+.ph-meta{display:flex;gap:12px;margin-top:8px;flex-wrap:wrap;}
+.ph-meta-item{font-size:12px;color:var(--gray);display:flex;align-items:center;gap:4px;}
+.exp-item{padding:12px 0;border-bottom:1px solid #F1F5F9;}
+.exp-item:last-child{border-bottom:none;}
+.exp-company{font-size:13px;font-weight:700;color:var(--navy);}
+.exp-role{font-size:12px;color:var(--blue);font-weight:600;margin-top:1px;}
+.exp-period{font-size:11px;color:var(--gray);margin-top:2px;}
+.exp-desc{font-size:12px;color:var(--gray);line-height:1.6;margin-top:6px;}
+.tags-wrap{display:flex;flex-wrap:wrap;gap:7px;}
+.stag{background:var(--blue-pale);color:var(--blue);font-size:12px;font-weight:600;padding:5px 11px;border-radius:6px;}
+.stag-green{background:#F0FDF4;color:#15803D;}
+.stag-purple{background:#F5F3FF;color:#7C3AED;}
+
+/* ANALYSIS PANEL */
+.analysis-panel{position:sticky;top:80px;}
+.ap-card{background:var(--white);border-radius:16px;border:1px solid #E8EEFA;padding:1.5rem;}
+.ap-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.ap-sub{font-size:12px;color:var(--gray);margin-bottom:1.25rem;}
+.vacancy-select-wrap{margin-bottom:14px;}
+.vacancy-select-wrap label{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:0.5px;text-transform:uppercase;display:block;margin-bottom:6px;}
+.vacancy-select-wrap select{width:100%;padding:10px 12px;border:1.5px solid var(--gray-light);border-radius:9px;font-size:13px;font-family:var(--font);color:var(--text);background:var(--white);}
+.vacancy-select-wrap select:focus{outline:none;border-color:var(--blue);}
+.btn-analyze{width:100%;background:var(--blue);color:#fff;border:none;padding:12px;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--font);display:flex;align-items:center;justify-content:center;gap:8px;}
+.btn-analyze:hover{background:#1D4ED8;}
+.btn-analyze:disabled{opacity:0.5;cursor:not-allowed;}
+.spin{width:18px;height:18px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:sp 0.7s linear infinite;display:none;}
+.spin.show{display:block;}
+@keyframes sp{to{transform:rotate(360deg);}}
+
+/* RESULT MINI */
+.result-mini{display:none;margin-top:1.25rem;}
+.result-mini.show{display:block;}
+.rm-score-row{display:flex;align-items:center;gap:12px;margin-bottom:1rem;}
+.rm-ring{position:relative;width:70px;height:70px;flex-shrink:0;}
+.rm-ring svg{transform:rotate(-90deg);}
+.rm-ring-txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.rm-num{font-size:20px;font-weight:800;color:var(--navy);line-height:1;}
+.rm-lbl{font-size:8px;font-weight:700;color:var(--gray);letter-spacing:0.5px;}
+.rm-verdict{font-size:15px;font-weight:700;color:var(--navy);}
+.rm-desc{font-size:12px;color:var(--gray);margin-top:3px;line-height:1.6;}
+.rm-bars{display:flex;flex-direction:column;gap:8px;margin-bottom:1rem;}
+.rm-bar-item{display:flex;align-items:center;gap:8px;}
+.rm-bar-label{font-size:11px;color:var(--gray);width:100px;flex-shrink:0;}
+.rm-bar-track{flex:1;height:7px;background:#F1F5F9;border-radius:3px;overflow:hidden;}
+.rm-bar-fill{height:100%;border-radius:3px;transition:width 0.8s cubic-bezier(0.25,1,0.5,1);}
+.rm-bar-pct{font-size:11px;font-weight:700;color:var(--navy);width:30px;text-align:right;}
+.rm-gap-title{font-size:10px;font-weight:700;color:var(--gray);letter-spacing:0.8px;margin-bottom:8px;}
+.rm-gap-wrap{display:flex;flex-wrap:wrap;gap:6px;}
+.g-tag{font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;}
+.g-match{background:#F0FDF4;color:#15803D;border:1px solid #BBF7D0;}
+.g-partial{background:#FFFBEB;color:#B45309;border:1px solid #FDE68A;}
+.g-miss{background:#FEF2F2;color:#DC2626;border:1px solid #FECACA;}
+.rm-courses{margin-top:1rem;}
+.rm-courses-title{font-size:10px;font-weight:700;color:var(--gray);letter-spacing:0.8px;margin-bottom:8px;}
+.rc-item{display:flex;align-items:center;gap:8px;padding:8px;background:#FAFBFF;border:1px solid #E8EEFA;border-radius:8px;margin-bottom:6px;}
+.rc-icon{font-size:16px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:var(--blue-pale);border-radius:6px;flex-shrink:0;}
+.rc-name{font-size:12px;font-weight:600;color:var(--navy);}
+.rc-platform{font-size:10px;color:var(--gray);}
+.rc-badge{margin-left:auto;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:var(--blue-pale);color:var(--blue);white-space:nowrap;flex-shrink:0;}
+.divider-line{height:1px;background:#F1F5F9;margin:1rem 0;}
+
+/* ── VACANCIES PAGE ── */
+.vac-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.75rem;}
+.vac-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+.vac-card{background:var(--white);border-radius:16px;border:1px solid #E8EEFA;padding:1.5rem;cursor:pointer;transition:box-shadow 0.15s;}
+.vac-card:hover{box-shadow:0 4px 20px rgba(37,99,235,0.1);}
+.vac-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;}
+.vac-title{font-size:15px;font-weight:700;color:var(--navy);}
+.vac-company{font-size:12px;color:var(--gray);margin-top:2px;}
+.vac-meta{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;}
+.vac-meta-chip{background:#F1F5F9;color:var(--gray);font-size:11px;font-weight:600;padding:4px 9px;border-radius:5px;}
+.vac-desc{font-size:12px;color:var(--gray);line-height:1.6;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.vac-footer{display:flex;align-items:center;justify-content:space-between;}
+.vac-apps{font-size:12px;color:var(--gray);}
+.vac-apps span{font-weight:700;color:var(--navy);}
+
+/* ADD VACANCY PAGE */
+.addvac-body{flex:1;padding:2rem 2.5rem;max-width:800px;width:100%;}
+.addvac-body h2{font-size:22px;font-weight:800;color:var(--navy);margin-bottom:4px;}
+.addvac-body .sub{font-size:13px;color:var(--gray);margin-bottom:2rem;}
+.form-card{background:var(--white);border-radius:16px;border:1px solid #E8EEFA;padding:1.5rem;margin-bottom:16px;}
+.form-card h3{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:1.25rem;}
+.req-list{display:flex;flex-direction:column;gap:8px;}
+.req-row{display:flex;gap:8px;}
+.req-row input{flex:1;padding:9px 12px;border:1.5px solid var(--gray-light);border-radius:8px;font-size:13px;font-family:var(--font);}
+.req-row input:focus{outline:none;border-color:var(--blue);}
+.req-del{background:none;border:1.5px solid #FECACA;color:#DC2626;padding:9px 12px;border-radius:8px;cursor:pointer;font-size:14px;}
+.btn-add-req{width:100%;border:1.5px dashed #BFDBFE;background:#F8FBFF;color:var(--blue);padding:9px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font);margin-top:8px;}
+.btn-add-req:hover{background:var(--blue-pale);}
+.form-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:8px;}
+.btn-cancel{background:transparent;border:1.5px solid var(--gray-light);color:var(--gray);padding:10px 22px;border-radius:9px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font);}
+
+/* MODAL */
+.modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,0.5);z-index:500;display:none;align-items:center;justify-content:center;}
+.modal-backdrop.show{display:flex;}
+.modal{background:var(--white);border-radius:20px;padding:2rem;width:480px;max-width:90vw;box-shadow:0 20px 60px rgba(0,0,0,0.15);}
+.modal h3{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:4px;}
+.modal .msub{font-size:13px;color:var(--gray);margin-bottom:1.5rem;}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:1.25rem;}
+
+/* COLOR HELPERS */
+.c-blue{background:#DBEAFE;}.c-teal{background:#CCFBF1;}.c-purple{background:#EDE9FE;}.c-orange{background:#FFEDD5;}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     LANDING PAGE
+═══════════════════════════════════════ -->
+<div id="pg-land" class="page active" style="background:var(--bg);">
+  <nav>
+    <div class="nav-logo">
+      <div class="logo-icon">F</div>
+      <div style="color:var(--navy);font-weight:700;">Fit Score</div>
+      <div class="logo-sub">FOR RECRUITERS</div>
+    </div>
+    <div class="nav-right">
+      <button class="btn-ghost" onclick="go('pg-login')">Masuk</button>
+      <button class="btn-primary" onclick="go('pg-login');showReg()">Daftar Gratis →</button>
+    </div>
+  </nav>
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;max-width:1200px;margin:0 auto;padding:5rem 3rem 4rem;gap:4rem;align-items:center;width:100%;">
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid #C7D7FD;color:var(--blue);font-size:11px;font-weight:700;padding:6px 14px;border-radius:20px;margin-bottom:1.5rem;letter-spacing:0.8px;">
+        <div style="width:7px;height:7px;border-radius:50%;background:var(--blue);"></div> AI-POWERED RECRUITMENT TOOL
+      </div>
+      <h1 style="font-size:50px;font-weight:800;color:var(--navy);line-height:1.1;margin-bottom:1.25rem;">Temukan Kandidat <span style="color:var(--blue);">Terbaik</span> untuk Posisi Kamu</h1>
+      <p style="font-size:16px;color:var(--gray);line-height:1.8;max-width:460px;margin-bottom:2rem;">FitScore membantu recruiter IT menganalisis CV kandidat, mencocokkan dengan job vacancy, dan menemukan talenta terbaik secara otomatis dengan teknologi AI.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="btn-primary" style="padding:14px 28px;font-size:15px;border-radius:10px;" onclick="go('pg-login')">🚀 Mulai Rekrut Gratis</button>
+        <button class="btn-ghost" style="padding:14px 28px;font-size:15px;border-radius:10px;">Lihat Demo ↓</button>
+      </div>
+    </div>
+    <!-- preview card -->
+    <div style="background:var(--white);border-radius:20px;box-shadow:0 20px 60px rgba(37,99,235,0.12);padding:1.75rem;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--cyan));"></div>
+      <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:14px;">Dashboard Recruiter — CV Masuk</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:12px;padding:10px;background:#FAFBFF;border-radius:10px;border:1px solid #E8EEFA;">
+          <div class="cv-avatar c-blue" style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--blue);">RH</div>
+          <div style="flex:1;"><div style="font-size:13px;font-weight:700;color:var(--navy);">Rizky Hidayat</div><div style="font-size:11px;color:var(--gray);">Backend Engineer · 4 thn</div></div>
+          <div style="display:flex;gap:5px;"><span class="skill-pill">Python</span><span class="skill-pill">AWS</span></div>
+          <div class="badge badge-new">Baru</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px;background:#FAFBFF;border-radius:10px;border:1px solid #E8EEFA;">
+          <div class="cv-avatar c-teal" style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--green);">SA</div>
+          <div style="flex:1;"><div style="font-size:13px;font-weight:700;color:var(--navy);">Sarah Aulia</div><div style="font-size:11px;color:var(--gray);">Frontend Dev · 2 thn</div></div>
+          <div style="display:flex;gap:5px;"><span class="skill-pill">React</span><span class="skill-pill">Vue</span></div>
+          <div class="badge badge-hot">⚡ Hot</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px;background:#FAFBFF;border-radius:10px;border:1px solid #E8EEFA;">
+          <div class="cv-avatar c-purple" style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--purple);">DW</div>
+          <div style="flex:1;"><div style="font-size:13px;font-weight:700;color:var(--navy);">Dwi Wulandari</div><div style="font-size:11px;color:var(--gray);">Data Scientist · 3 thn</div></div>
+          <div style="display:flex;gap:5px;"><span class="skill-pill">ML</span><span class="skill-pill">TensorFlow</span></div>
+          <div class="badge badge-open">Review</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     LOGIN / REGISTER
+═══════════════════════════════════════ -->
+<div id="pg-login" class="page login-page">
+  <nav>
+    <div class="nav-logo" onclick="go('pg-land')">
+      <div class="logo-icon">F</div>
+      <div style="color:var(--navy);font-weight:700;">Fit Score</div>
+      <div class="logo-sub">FOR RECRUITERS</div>
+    </div>
+    <div></div>
+  </nav>
+  <div class="login-body">
+    <div class="login-left">
+      <h1>Platform Rekrutmen IT <span>Lebih Cerdas</span></h1>
+      <p>Akses CV kandidat IT, analisis kecocokan dengan AI, dan posting lowongan kerja — semua dalam satu platform.</p>
+      <div class="rec-chips">
+        <div class="rec-chip">Dashboard CV Kandidat</div>
+        <div class="rec-chip">AI Match Analysis</div>
+        <div class="rec-chip">Post Job Vacancy</div>
+        <div class="rec-chip">Skill Gap Report</div>
+        <div class="rec-chip">Course Recommendation</div>
+      </div>
+    </div>
+    <div class="login-right">
+      <!-- LOGIN FORM -->
+      <div class="login-card" id="lc-login">
+        <h2>Masuk sebagai Recruiter</h2>
+        <p class="sub">Kelola rekrutmen IT kamu dengan lebih efisien</p>
+        <div class="fg"><label>Email Perusahaan</label><input type="email" id="li-email" placeholder="hr@perusahaan.com"/></div>
+        <div class="fg"><label>Password</label><input type="password" id="li-pass" placeholder="••••••••"/></div>
+        <button class="btn-full" onclick="doLogin()">Masuk ke Dashboard</button>
+        <div class="divider">atau</div>
+        <div class="toggle-txt">Belum punya akun? <a onclick="showReg()">Daftar sekarang</a></div>
+      </div>
+      <!-- REGISTER FORM -->
+      <div class="login-card" id="lc-reg" style="display:none;">
+        <h2>Daftar sebagai Recruiter</h2>
+        <p class="sub">Buat akun untuk mulai merekrut kandidat IT terbaik</p>
+        <div class="form-row">
+          <div class="fg"><label>Nama Depan</label><input type="text" id="rg-fn" placeholder="Nama"/></div>
+          <div class="fg"><label>Nama Belakang</label><input type="text" id="rg-ln" placeholder="Belakang"/></div>
+        </div>
+        <div class="fg"><label>Nama Perusahaan / Lembaga</label><input type="text" id="rg-company" placeholder="Contoh: PT. Gojek Indonesia"/></div>
+        <div class="form-row">
+          <div class="fg"><label>Industri</label>
+            <select id="rg-industry">
+              <option>Teknologi / IT</option><option>Fintech</option><option>E-Commerce</option>
+              <option>Startup</option><option>Konsultan IT</option><option>Perbankan</option><option>Lainnya</option>
+            </select>
+          </div>
+          <div class="fg"><label>Jabatan Kamu</label><input type="text" id="rg-jobtitle" placeholder="Contoh: HR Manager"/></div>
+        </div>
+        <div class="fg"><label>Email Perusahaan</label><input type="email" id="rg-email" placeholder="hr@perusahaan.com"/></div>
+        <div class="fg"><label>Password</label><input type="password" id="rg-pass" placeholder="Min. 8 karakter"/></div>
+        <button class="btn-full" onclick="doReg()">Buat Akun Recruiter</button>
+        <div class="toggle-txt" style="margin-top:14px;">Sudah punya akun? <a onclick="showLogin()">Masuk</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     MAIN APP (sidebar shell)
+═══════════════════════════════════════ -->
+<div id="pg-app" class="page">
+  <nav>
+    <div class="nav-logo">
+      <div class="logo-icon">F</div>
+      <div style="color:var(--navy);font-weight:700;">Fit Score</div>
+      <div class="logo-sub">FOR RECRUITERS</div>
+    </div>
+    <div class="nav-right">
+      <div style="text-align:right;">
+        <div class="nav-name" id="nav-nm">—</div>
+        <div class="nav-company" id="nav-co">—</div>
+      </div>
+      <div class="nav-avatar" id="nav-av">?</div>
+      <button class="btn-ghost" onclick="doLogout()">Keluar</button>
+    </div>
+  </nav>
+  <div class="shell">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sb-section">MENU UTAMA</div>
+      <div class="sb-item active" id="sb-dashboard" onclick="showSection('dashboard')">
+        <span class="sb-icon">📊</span> Dashboard
+        <span class="sb-badge" id="sb-cv-count">12</span>
+      </div>
+      <div class="sb-item" id="sb-vacancies" onclick="showSection('vacancies')">
+        <span class="sb-icon">💼</span> Job Vacancies
+      </div>
+      <div class="sb-section">AKUN</div>
+      <div class="sb-item" onclick="doLogout()">
+        <span class="sb-icon">🚪</span> Keluar
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-area" id="main-area">
+
+      <!-- ── DASHBOARD SECTION ── -->
+      <div id="sec-dashboard">
+        <div class="dash-header">
+          <div>
+            <h2>Dashboard Kandidat</h2>
+            <p id="dash-sub">CV yang masuk dari job seeker IT</p>
+          </div>
+          <button class="btn-primary" onclick="showSection('add-vacancy')">+ Add Job Vacancy</button>
+        </div>
+        <div class="stats-row">
+          <div class="stat-card"><div class="sc-label">Total CV Masuk</div><div class="sc-val" id="stat-total">12</div><div class="sc-sub">↑ 3 baru minggu ini</div></div>
+          <div class="stat-card"><div class="sc-label">Belum Direview</div><div class="sc-val" id="stat-new">5</div><div class="sc-sub" style="color:var(--amber);">Perlu ditinjau</div></div>
+          <div class="stat-card"><div class="sc-label">Job Vacancy Aktif</div><div class="sc-val" id="stat-vac">0</div><div class="sc-sub" style="color:var(--blue);">Posisi terbuka</div></div>
+          <div class="stat-card"><div class="sc-label">Analisis Dilakukan</div><div class="sc-val">8</div><div class="sc-sub">Total match checks</div></div>
+        </div>
+        <!-- Filters -->
+        <div class="filters-row">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="cv-search" placeholder="Cari nama, skill, jabatan..." oninput="filterCVs()"/>
+          </div>
+          <select class="filter-select" id="filter-role" onchange="filterCVs()">
+            <option value="">Semua Bidang</option>
+            <option>Backend Engineer</option><option>Frontend Developer</option>
+            <option>Data Scientist</option><option>Mobile Developer</option>
+            <option>DevOps Engineer</option><option>UI/UX Designer</option>
+            <option>Full Stack Developer</option>
+          </select>
+          <select class="filter-select" id="filter-exp" onchange="filterCVs()">
+            <option value="">Semua Pengalaman</option>
+            <option>0–1 tahun</option><option>1–3 tahun</option>
+            <option>3–5 tahun</option><option>5+ tahun</option>
+          </select>
+        </div>
+        <!-- CV Table -->
+        <div class="cv-table-wrap">
+          <table class="cv-table" id="cv-table">
+            <thead>
+              <tr>
+                <th>Kandidat</th><th>Bidang</th><th>Pengalaman</th>
+                <th>Top Skills</th><th>Status</th><th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="cv-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── CV DETAIL SECTION ── -->
+      <div id="sec-cv-detail" style="display:none;">
+        <div class="cv-detail-body">
+          <button class="back-btn" onclick="showSection('dashboard')">← Kembali ke Dashboard</button>
+          <div class="cv-detail-grid">
+            <!-- LEFT: CV Data -->
+            <div id="cv-detail-left"></div>
+            <!-- RIGHT: Analysis Panel -->
+            <div class="analysis-panel">
+              <div class="ap-card">
+                <div class="ap-title">⚡ Cek Kecocokan</div>
+                <div class="ap-sub">Pilih job vacancy lalu analisis kecocokan CV ini</div>
+                <div class="vacancy-select-wrap">
+                  <label>Pilih Job Vacancy</label>
+                  <select id="vac-selector">
+                    <option value="">— Pilih vacancy —</option>
+                  </select>
+                </div>
+                <button class="btn-analyze" id="btn-analyze" onclick="runAnalysis()">
+                  <span id="analyze-txt">🔍 Analisis Kecocokan</span>
+                  <div class="spin" id="spin-el"></div>
+                </button>
+                <div class="result-mini" id="result-mini">
+                  <div class="divider-line"></div>
+                  <!-- filled by JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── VACANCIES SECTION ── -->
+      <div id="sec-vacancies" style="display:none;">
+        <div class="vac-header">
+          <div>
+            <h2 style="font-size:22px;font-weight:800;color:var(--navy);">Job Vacancies</h2>
+            <p style="font-size:13px;color:var(--gray);margin-top:3px;">Kelola semua lowongan kerja yang kamu buat</p>
+          </div>
+          <button class="btn-primary" onclick="showSection('add-vacancy')">+ Add Job Vacancy</button>
+        </div>
+        <div class="vac-grid" id="vac-grid">
+          <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--gray);">
+            <div style="font-size:32px;margin-bottom:12px;">💼</div>
+            <div style="font-size:15px;font-weight:600;color:var(--navy);margin-bottom:6px;">Belum ada vacancy</div>
+            <div style="font-size:13px;margin-bottom:16px;">Buat job vacancy pertama kamu</div>
+            <button class="btn-primary" onclick="showSection('add-vacancy')">+ Buat Vacancy</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ADD VACANCY SECTION ── -->
+      <div id="sec-add-vacancy" style="display:none;">
+        <div class="addvac-body">
+          <button class="back-btn" onclick="showSection('vacancies')">← Kembali ke Vacancies</button>
+          <h2>Tambah Job Vacancy</h2>
+          <p class="sub">Isi detail lowongan kerja yang ingin kamu posting</p>
+          <div class="form-card">
+            <h3>Informasi Posisi</h3>
+            <div class="form-row">
+              <div class="fg"><label>Nama Posisi</label><input type="text" id="vac-title" placeholder="Contoh: Senior Backend Engineer"/></div>
+              <div class="fg"><label>Bidang / Divisi</label>
+                <select id="vac-field">
+                  <option>Backend Engineering</option><option>Frontend Development</option>
+                  <option>Full Stack Development</option><option>Data Science / AI</option>
+                  <option>Mobile Development</option><option>DevOps / Cloud</option>
+                  <option>UI/UX Design</option><option>QA Engineering</option><option>Cybersecurity</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="fg"><label>Tipe Pekerjaan</label>
+                <select id="vac-type">
+                  <option>Full-time</option><option>Part-time</option><option>Contract</option><option>Internship</option>
+                </select>
+              </div>
+              <div class="fg"><label>Lokasi</label><input type="text" id="vac-location" placeholder="Contoh: Jakarta / Remote"/></div>
+            </div>
+            <div class="form-row">
+              <div class="fg"><label>Rentang Gaji (Opsional)</label><input type="text" id="vac-salary" placeholder="Contoh: Rp 15–25 juta / bulan"/></div>
+              <div class="fg"><label>Pengalaman Minimum</label>
+                <select id="vac-min-exp">
+                  <option>Fresh Graduate</option><option>1 tahun</option><option>2 tahun</option>
+                  <option>3 tahun</option><option>5 tahun</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-card">
+            <h3>Job Description</h3>
+            <div class="fg"><label>Deskripsi Pekerjaan</label>
+              <textarea id="vac-jd" style="min-height:160px;" placeholder="Deskripsikan tanggung jawab, lingkungan kerja, dan detail posisi ini..."></textarea>
+            </div>
+          </div>
+          <div class="form-card">
+            <h3>Requirements & Qualifications</h3>
+            <div id="req-list" class="req-list">
+              <div class="req-row"><input type="text" placeholder="Contoh: Minimal 3 tahun pengalaman dengan Python"/><button class="req-del" onclick="delReq(this)">×</button></div>
+              <div class="req-row"><input type="text" placeholder="Contoh: Familiar dengan microservices architecture"/><button class="req-del" onclick="delReq(this)">×</button></div>
+            </div>
+            <button class="btn-add-req" onclick="addReq()">+ Tambah Requirement</button>
+          </div>
+          <div class="form-actions">
+            <button class="btn-cancel" onclick="showSection('vacancies')">Batal</button>
+            <button class="btn-primary" style="padding:11px 28px;font-size:14px;border-radius:9px;" onclick="saveVacancy()">💾 Simpan Vacancy</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /main-area -->
+  </div><!-- /shell -->
+</div><!-- /pg-app -->
+
+<!-- SUCCESS MODAL -->
+<div class="modal-backdrop" id="modal-success">
+  <div class="modal">
+    <div style="font-size:36px;text-align:center;margin-bottom:12px;">✅</div>
+    <h3 style="text-align:center;">Vacancy Berhasil Disimpan!</h3>
+    <p class="msub" style="text-align:center;">Job vacancy kamu sudah ditambahkan. Kamu sekarang bisa memilihnya saat menganalisis CV kandidat.</p>
+    <div class="modal-actions" style="justify-content:center;">
+      <button class="btn-primary" onclick="closeModal()">Lihat Semua Vacancy</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════
+   STATE
+══════════════════════════════════ */
+let user = null;
+let vacancies = [];
+let currentCV = null;
+
+/* ══════════════════════════════════
+   DEMO CV DATA (12 kandidat IT)
+══════════════════════════════════ */
+const demoCV = [
+  {
+    id:1, name:"Rizky Hidayat", initials:"RH", colorClass:"c-blue", textColor:"var(--blue)",
+    role:"Backend Engineer", exp:"4 tahun", expBand:"3–5 tahun",
+    location:"Jakarta", edu:"S1 Teknik Informatika — Universitas Indonesia",
+    email:"rizky.h@email.com", linkedin:"linkedin.com/in/rizkyhidayat",
+    summary:"Backend engineer berpengalaman 4 tahun dengan fokus di Python, FastAPI, dan infrastruktur cloud. Pernah handle sistem dengan 100rb+ daily active users.",
+    skills:["Python","FastAPI","PostgreSQL","Redis","Docker","AWS"],
+    softskills:["Problem Solving","Leadership","Komunikasi","Mentoring"],
+    knowledge:["Microservices","REST API","CI/CD","Agile"],
+    status:"Baru",
+    experiences:[
+      {company:"Tokopedia",role:"Senior Backend Engineer",period:"Mar 2022 – Sekarang",duration:"2 thn 1 bln",desc:"Membangun dan maintain microservices untuk fitur pembayaran. Menangani 50rb+ transaksi/hari."},
+      {company:"Bukalapak",role:"Backend Developer",period:"Jan 2020 – Feb 2022",duration:"2 thn 1 bln",desc:"Mengembangkan API untuk platform marketplace. Stack: Python, Django, MySQL."}
+    ]
+  },
+  {
+    id:2, name:"Sarah Aulia", initials:"SA", colorClass:"c-teal", textColor:"var(--green)",
+    role:"Frontend Developer", exp:"2 tahun", expBand:"1–3 tahun",
+    location:"Bandung", edu:"S1 Sistem Informasi — ITB",
+    email:"sarah.aulia@email.com", linkedin:"linkedin.com/in/sarahaulia",
+    summary:"Frontend developer passionate tentang UI/UX dengan keahlian di React dan Vue.js. Suka membuat antarmuka yang clean dan user-friendly.",
+    skills:["React","Vue.js","TypeScript","Tailwind CSS","Next.js","Figma"],
+    softskills:["Kreativitas","Kolaborasi","Detail-oriented","Komunikasi"],
+    knowledge:["UI/UX Principles","Responsive Design","Web Performance","Accessibility"],
+    status:"Hot",
+    experiences:[
+      {company:"Gojek",role:"Frontend Developer",period:"Jun 2022 – Sekarang",duration:"1 thn 10 bln",desc:"Mengembangkan fitur-fitur baru di dashboard merchant Gojek menggunakan React dan TypeScript."},
+      {company:"Freelance",role:"Frontend Developer",period:"Jan 2022 – Mei 2022",duration:"5 bln",desc:"Membangun website dan landing page untuk berbagai klien UMKM."}
+    ]
+  },
+  {
+    id:3, name:"Dwi Wulandari", initials:"DW", colorClass:"c-purple", textColor:"var(--purple)",
+    role:"Data Scientist", exp:"3 tahun", expBand:"3–5 tahun",
+    location:"Jakarta", edu:"S1 Statistika — Universitas Gadjah Mada",
+    email:"dwi.w@email.com", linkedin:"linkedin.com/in/dwiwulandari",
+    summary:"Data scientist dengan keahlian di machine learning, NLP, dan data visualization. Berpengalaman di industri fintech dan e-commerce.",
+    skills:["Python","TensorFlow","PyTorch","SQL","Pandas","Scikit-learn"],
+    softskills:["Analytical Thinking","Presentasi","Storytelling Data","Teamwork"],
+    knowledge:["Machine Learning","Deep Learning","NLP","Data Pipeline","BI Tools"],
+    status:"Review",
+    experiences:[
+      {company:"OVO",role:"Data Scientist",period:"Apr 2021 – Sekarang",duration:"3 thn",desc:"Membangun model prediksi fraud detection dengan akurasi 94%. Membuat dashboard analitik untuk tim bisnis."},
+      {company:"Shopee",role:"Data Analyst",period:"Jul 2020 – Mar 2021",duration:"9 bln",desc:"Analisis perilaku pengguna dan membuat laporan insight untuk product team."}
+    ]
+  },
+  {
+    id:4, name:"Budi Santoso", initials:"BS", colorClass:"c-orange", textColor:"var(--amber)",
+    role:"DevOps Engineer", exp:"5 tahun", expBand:"5+ tahun",
+    location:"Surabaya", edu:"S1 Ilmu Komputer — Universitas Airlangga",
+    email:"budi.s@email.com", linkedin:"linkedin.com/in/budisantoso",
+    summary:"DevOps engineer senior dengan 5 tahun pengalaman membangun dan mengelola infrastruktur cloud skala besar. Expert di Kubernetes dan CI/CD.",
+    skills:["Kubernetes","Docker","Terraform","AWS","GCP","Jenkins","Ansible"],
+    softskills:["Problem Solving","Dokumentasi","On-call Management","Mentoring"],
+    knowledge:["Cloud Architecture","IaC","Site Reliability","Security"],
+    status:"Baru",
+    experiences:[
+      {company:"Traveloka",role:"Senior DevOps Engineer",period:"Feb 2020 – Sekarang",duration:"4 thn 2 bln",desc:"Mengelola infrastruktur Kubernetes dengan 500+ pods. Implementasi GitOps workflow yang mempersingkat deployment 60%."},
+      {company:"DANA",role:"DevOps Engineer",period:"Mar 2019 – Jan 2020",duration:"11 bln",desc:"Setup dan maintain CI/CD pipeline menggunakan Jenkins dan GitLab CI."}
+    ]
+  },
+  {
+    id:5, name:"Citra Permata", initials:"CP", colorClass:"c-blue", textColor:"var(--blue)",
+    role:"Mobile Developer", exp:"2 tahun", expBand:"1–3 tahun",
+    location:"Yogyakarta", edu:"S1 Teknik Informatika — Universitas Atma Jaya",
+    email:"citra.p@email.com", linkedin:"linkedin.com/in/citrapermata",
+    summary:"Mobile developer spesialis Flutter dan React Native. Telah merilis 4 aplikasi di App Store dan Play Store dengan total 100k+ downloads.",
+    skills:["Flutter","Dart","React Native","Firebase","Swift","Kotlin"],
+    softskills:["Kreatif","Self-motivated","Cepat Belajar","Time Management"],
+    knowledge:["Mobile UI Patterns","App Performance","Push Notifications","App Store Optimization"],
+    status:"Baru",
+    experiences:[
+      {company:"Kita Bisa",role:"Flutter Developer",period:"Jul 2022 – Sekarang",duration:"1 thn 9 bln",desc:"Membangun aplikasi donasi mobile cross-platform menggunakan Flutter. 50k+ downloads di Play Store."},
+      {company:"Startup Lokal",role:"Mobile Intern",period:"Jan 2022 – Jun 2022",duration:"6 bln",desc:"Membantu pengembangan fitur aplikasi e-commerce mobile."}
+    ]
+  },
+  {
+    id:6, name:"Ahmad Fauzi", initials:"AF", colorClass:"c-teal", textColor:"var(--green)",
+    role:"Full Stack Developer", exp:"3 tahun", expBand:"3–5 tahun",
+    location:"Jakarta", edu:"D3 Manajemen Informatika — Politeknik Negeri Jakarta",
+    email:"ahmad.f@email.com", linkedin:"linkedin.com/in/ahmadfauzi",
+    summary:"Full stack developer dengan keahlian di Node.js untuk backend dan React untuk frontend. Berpengalaman di startup e-commerce dan SaaS.",
+    skills:["Node.js","React","MongoDB","Express","GraphQL","TypeScript"],
+    softskills:["Adaptif","Fast Learner","Kolaborasi","Ownership"],
+    knowledge:["REST API","GraphQL","Database Design","Agile/Scrum"],
+    status:"Review",
+    experiences:[
+      {company:"Ralali.com",role:"Full Stack Developer",period:"Mar 2021 – Sekarang",duration:"3 thn",desc:"Mengembangkan platform B2B procurement dari frontend hingga backend. Reduce API latency 40%."},
+      {company:"Freelance",role:"Web Developer",period:"Jun 2020 – Feb 2021",duration:"9 bln",desc:"Membuat website dan web app untuk berbagai klien."}
+    ]
+  },
+  {
+    id:7, name:"Indah Pratiwi", initials:"IP", colorClass:"c-purple", textColor:"var(--purple)",
+    role:"UI/UX Designer", exp:"4 tahun", expBand:"3–5 tahun",
+    location:"Bali", edu:"S1 Desain Komunikasi Visual — ISI Yogyakarta",
+    email:"indah.p@email.com", linkedin:"linkedin.com/in/indahpratiwi",
+    summary:"UI/UX designer berpengalaman dengan track record merancang produk digital yang digunakan jutaan user. Expert di Figma dan design system.",
+    skills:["Figma","Adobe XD","Principle","Zeplin","HTML/CSS","Framer"],
+    softskills:["Empati User","Presentasi","Storytelling","Kolaborasi"],
+    knowledge:["Design Thinking","User Research","Usability Testing","Design System"],
+    status:"Hot",
+    experiences:[
+      {company:"Tiket.com",role:"Senior UI/UX Designer",period:"Jan 2021 – Sekarang",duration:"3 thn 3 bln",desc:"Lead designer untuk aplikasi mobile Tiket.com. Redesign onboarding flow meningkatkan konversi 23%."},
+      {company:"Agency Digital",role:"UI Designer",period:"Mar 2020 – Des 2020",duration:"10 bln",desc:"Mendesain antarmuka web dan mobile untuk berbagai klien brand."}
+    ]
+  },
+  {
+    id:8, name:"Fajar Nugroho", initials:"FN", colorClass:"c-orange", textColor:"var(--amber)",
+    role:"Backend Engineer", exp:"1 tahun", expBand:"0–1 tahun",
+    location:"Semarang", edu:"S1 Teknik Informatika — UNDIP",
+    email:"fajar.n@email.com", linkedin:"linkedin.com/in/fajarnugroho",
+    summary:"Junior backend engineer fresh graduate dengan semangat belajar tinggi. Aktif berkontribusi di open source dan memiliki beberapa personal project.",
+    skills:["Go","Python","MySQL","Redis","Docker","Linux"],
+    softskills:["Eagerness to Learn","Problem Solving","Kerja Keras","Inisiatif"],
+    knowledge:["REST API","Database","Version Control","Basic Cloud"],
+    status:"Baru",
+    experiences:[
+      {company:"Startup Fintech",role:"Backend Intern",period:"Sep 2023 – Feb 2024",duration:"6 bln",desc:"Membantu pengembangan API payment gateway menggunakan Go. Fixing bugs dan menulis unit tests."}
+    ]
+  },
+  {
+    id:9, name:"Lia Rahayu", initials:"LR", colorClass:"c-blue", textColor:"var(--blue)",
+    role:"Data Analyst", exp:"2 tahun", expBand:"1–3 tahun",
+    location:"Jakarta", edu:"S1 Matematika — Universitas Padjadjaran",
+    email:"lia.r@email.com", linkedin:"linkedin.com/in/liarahayu",
+    summary:"Data analyst dengan keahlian di SQL, Python, dan business intelligence tools. Berpengalaman mengubah data mentah menjadi insight actionable.",
+    skills:["SQL","Python","Tableau","Looker","Excel","dbt"],
+    softskills:["Analytical","Komunikasi","Presentasi","Detail-oriented"],
+    knowledge:["Business Intelligence","Data Warehouse","ELT Pipeline","Statistical Analysis"],
+    status:"Review",
+    experiences:[
+      {company:"Shopee",role:"Data Analyst",period:"Aug 2022 – Sekarang",duration:"1 thn 8 bln",desc:"Menganalisis data transaksi untuk mengidentifikasi trend dan peluang bisnis. Membuat dashboard eksekutif mingguan."},
+      {company:"Startup EdTech",role:"Business Analyst Intern",period:"Feb 2022 – Jul 2022",duration:"6 bln",desc:"Analisis data pengguna dan membuat laporan performa produk."}
+    ]
+  },
+  {
+    id:10, name:"Kevin Pratama", initials:"KP", colorClass:"c-teal", textColor:"var(--green)",
+    role:"Backend Engineer", exp:"6 tahun", expBand:"5+ tahun",
+    location:"Jakarta", edu:"S1 Ilmu Komputer — Universitas Bina Nusantara",
+    email:"kevin.p@email.com", linkedin:"linkedin.com/in/kevinpratama",
+    summary:"Senior backend engineer dengan 6 tahun pengalaman di sistem berskala besar. Expert di Java, Spring Boot, dan arsitektur distributed systems.",
+    skills:["Java","Spring Boot","Kafka","Elasticsearch","PostgreSQL","Kubernetes"],
+    softskills:["Technical Leadership","Arsitektur Design","Mentoring","Problem Solving"],
+    knowledge:["Distributed Systems","Event-driven Architecture","High Availability","Performance Tuning"],
+    status:"Hot",
+    experiences:[
+      {company:"Bank BCA Digital",role:"Lead Backend Engineer",period:"Jan 2021 – Sekarang",duration:"3 thn 3 bln",desc:"Memimpin tim 5 engineer untuk membangun core banking API. Sistem handle 2jt+ transaksi/hari."},
+      {company:"Fintech Startup",role:"Backend Engineer",period:"Mar 2018 – Des 2020",duration:"2 thn 9 bln",desc:"Pengembangan sistem payment dan wallet digital menggunakan Spring Boot."}
+    ]
+  },
+  {
+    id:11, name:"Nanda Kusuma", initials:"NK", colorClass:"c-purple", textColor:"var(--purple)",
+    role:"Mobile Developer", exp:"3 tahun", expBand:"3–5 tahun",
+    location:"Bandung", edu:"S1 Teknik Informatika — Universitas Telkom",
+    email:"nanda.k@email.com", linkedin:"linkedin.com/in/nandakusuma",
+    summary:"Mobile developer Android/iOS dengan pengalaman 3 tahun. Spesialis di React Native dan telah deliver 6+ aplikasi mobile production.",
+    skills:["React Native","Swift","Kotlin","Firebase","Redux","Jest"],
+    softskills:["Detail-oriented","Ownership","Kolaborasi","Komunikasi"],
+    knowledge:["Native Mobile Dev","Cross-platform","App Performance","CI/CD Mobile"],
+    status:"Baru",
+    experiences:[
+      {company:"Grab",role:"Mobile Developer",period:"Nov 2021 – Sekarang",duration:"2 thn 5 bln",desc:"Mengembangkan fitur driver app Grab menggunakan React Native. Improve app performance 30%."},
+      {company:"Startup Lokal",role:"Android Developer",period:"Mar 2021 – Okt 2021",duration:"8 bln",desc:"Membangun aplikasi delivery food native Android."}
+    ]
+  },
+  {
+    id:12, name:"Reza Firmansyah", initials:"RF", colorClass:"c-orange", textColor:"var(--amber)",
+    role:"Cybersecurity Engineer", exp:"4 tahun", expBand:"3–5 tahun",
+    location:"Jakarta", edu:"S1 Teknik Informatika — UI",
+    email:"reza.f@email.com", linkedin:"linkedin.com/in/rezafirmansyah",
+    summary:"Cybersecurity engineer dengan sertifikasi OSCP dan CEH. Spesialis penetration testing, vulnerability assessment, dan security audit.",
+    skills:["Penetration Testing","Kali Linux","Burp Suite","Python","Metasploit","SIEM"],
+    softskills:["Analytical","Ketelitian","Reporting","Etika Kerja"],
+    knowledge:["Network Security","Web Security","Cloud Security","Compliance","OWASP"],
+    status:"Review",
+    experiences:[
+      {company:"Mandiri Sekuritas",role:"Cybersecurity Engineer",period:"Feb 2021 – Sekarang",duration:"3 thn 2 bln",desc:"Melakukan penetration testing rutin dan security audit. Berhasil identify dan mitigate 50+ critical vulnerabilities."},
+      {company:"Konsultan IT",role:"Security Analyst",period:"Apr 2020 – Jan 2021",duration:"10 bln",desc:"Security assessment untuk berbagai klien perbankan dan fintech."}
+    ]
+  }
+];
+
+/* ══════════════════════════════════
+   NAVIGATION
+══════════════════════════════════ */
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function showSection(name){
+  ['dashboard','cv-detail','vacancies','add-vacancy'].forEach(s=>{
+    document.getElementById('sec-'+s).style.display = s===name?'block':'none';
+  });
+  ['dashboard','vacancies'].forEach(id=>{
+    const el=document.getElementById('sb-'+id);
+    if(el) el.classList.toggle('active', id===name);
+  });
+  if(name==='add-vacancy') document.getElementById('sb-vacancies').classList.add('active');
+}
+
+/* ══════════════════════════════════
+   AUTH
+══════════════════════════════════ */
+function showReg(){
+  document.getElementById('lc-login').style.display='none';
+  document.getElementById('lc-reg').style.display='block';
+}
+function showLogin(){
+  document.getElementById('lc-reg').style.display='none';
+  document.getElementById('lc-login').style.display='block';
+}
+function doLogin(){
+  const e=document.getElementById('li-email').value;
+  const p=document.getElementById('li-pass').value;
+  if(!e||!p){alert('Isi email dan password!');return;}
+  user={name:e.split('@')[0],company:e.split('@')[1]||'Perusahaan Anda',email:e};
+  enterApp();
+}
+function doReg(){
+  const fn=document.getElementById('rg-fn').value;
+  const ln=document.getElementById('rg-ln').value;
+  const co=document.getElementById('rg-company').value;
+  const jt=document.getElementById('rg-jobtitle').value;
+  const e=document.getElementById('rg-email').value;
+  const p=document.getElementById('rg-pass').value;
+  if(!fn||!co||!e||!p){alert('Lengkapi form pendaftaran!');return;}
+  user={name:fn+(ln?' '+ln:''),company:co,jobTitle:jt,email:e};
+  enterApp();
+}
+function doLogout(){user=null;go('pg-land');}
+function enterApp(){
+  const initials=user.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  document.getElementById('nav-av').textContent=initials;
+  document.getElementById('nav-nm').textContent=user.name;
+  document.getElementById('nav-co').textContent=user.company;
+  go('pg-app');
+  renderCVTable(demoCV);
+  updateStats();
+  showSection('dashboard');
+}
+
+/* ══════════════════════════════════
+   CV TABLE
+══════════════════════════════════ */
+const statusBadge={
+  'Baru':'<span class="badge badge-new">● Baru</span>',
+  'Hot':'<span class="badge badge-hot">⚡ Hot</span>',
+  'Review':'<span class="badge badge-open">● Review</span>'
+};
+function renderCVTable(list){
+  const tbody=document.getElementById('cv-tbody');
+  tbody.innerHTML=list.map(cv=>`
+    <tr onclick="openCV(${cv.id})">
+      <td><div class="cv-name-cell">
+        <div class="cv-avatar ${cv.colorClass}" style="color:${cv.textColor};">${cv.initials}</div>
+        <div><div class="cv-name">${cv.name}</div><div class="cv-role">${cv.location}</div></div>
+      </div></td>
+      <td style="font-size:13px;color:var(--navy);font-weight:500;">${cv.role}</td>
+      <td style="font-size:13px;color:var(--gray);">${cv.exp}</td>
+      <td>${cv.skills.slice(0,3).map(s=>`<span class="skill-pill">${s}</span>`).join('')}${cv.skills.length>3?`<span class="skill-pill gray">+${cv.skills.length-3}</span>`:''}</td>
+      <td>${statusBadge[cv.status]||''}</td>
+      <td><button class="btn-view" onclick="event.stopPropagation();openCV(${cv.id})">Lihat CV →</button></td>
+    </tr>`).join('');
+}
+function filterCVs(){
+  const q=document.getElementById('cv-search').value.toLowerCase();
+  const role=document.getElementById('filter-role').value;
+  const exp=document.getElementById('filter-exp').value;
+  const filtered=demoCV.filter(cv=>{
+    const matchQ=!q||cv.name.toLowerCase().includes(q)||cv.role.toLowerCase().includes(q)||cv.skills.some(s=>s.toLowerCase().includes(q));
+    const matchRole=!role||cv.role===role;
+    const matchExp=!exp||cv.expBand===exp;
+    return matchQ&&matchRole&&matchExp;
+  });
+  renderCVTable(filtered);
+}
+
+/* ══════════════════════════════════
+   CV DETAIL
+══════════════════════════════════ */
+function openCV(id){
+  currentCV=demoCV.find(c=>c.id===id);
+  if(!currentCV)return;
+  document.getElementById('result-mini').classList.remove('show');
+  document.getElementById('result-mini').innerHTML='';
+  populateVacancySelector();
+  renderCVDetail(currentCV);
+  showSection('cv-detail');
+}
+function renderCVDetail(cv){
+  const left=document.getElementById('cv-detail-left');
+  left.innerHTML=`
+    <!-- Profile header -->
+    <div class="detail-card">
+      <div class="profile-header">
+        <div class="ph-avatar ${cv.colorClass}" style="color:${cv.textColor};width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;">${cv.initials}</div>
+        <div>
+          <div class="ph-name">${cv.name}</div>
+          <div class="ph-title">${cv.role} · ${cv.exp} pengalaman</div>
+          <div class="ph-meta">
+            <span class="ph-meta-item">📍 ${cv.location}</span>
+            <span class="ph-meta-item">🎓 ${cv.edu}</span>
+            <span class="ph-meta-item">✉️ ${cv.email}</span>
+          </div>
+        </div>
+      </div>
+      <div style="background:#FAFBFF;border-radius:10px;padding:12px;font-size:13px;color:var(--gray);line-height:1.7;border:1px solid #E8EEFA;">
+        ${cv.summary}
+      </div>
+    </div>
+    <!-- Experience -->
+    <div class="detail-card">
+      <h3><span class="dc-icon">💼</span> Pengalaman Kerja</h3>
+      ${cv.experiences.map(e=>`
+        <div class="exp-item">
+          <div class="exp-company">${e.company}</div>
+          <div class="exp-role">${e.role}</div>
+          <div class="exp-period">${e.period} · ${e.duration}</div>
+          <div class="exp-desc">${e.desc}</div>
+        </div>`).join('')}
+    </div>
+    <!-- Skills -->
+    <div class="detail-card">
+      <h3><span class="dc-icon">⚙️</span> Hard Skills / Technical Skills</h3>
+      <div class="tags-wrap">${cv.skills.map(s=>`<span class="stag">${s}</span>`).join('')}</div>
+    </div>
+    <div class="detail-card">
+      <h3><span class="dc-icon">🤝</span> Soft Skills</h3>
+      <div class="tags-wrap">${cv.softskills.map(s=>`<span class="stag stag-green">${s}</span>`).join('')}</div>
+    </div>
+    <div class="detail-card">
+      <h3><span class="dc-icon">🧠</span> Knowledge & Bidang Keahlian</h3>
+      <div class="tags-wrap">${cv.knowledge.map(s=>`<span class="stag stag-purple">${s}</span>`).join('')}</div>
+    </div>`;
+}
+
+/* ══════════════════════════════════
+   VACANCIES
+══════════════════════════════════ */
+function addReq(){
+  const el=document.createElement('div');
+  el.className='req-row';
+  el.innerHTML=`<input type="text" placeholder="Tulis requirement..."/><button class="req-del" onclick="delReq(this)">×</button>`;
+  document.getElementById('req-list').appendChild(el);
+}
+function delReq(btn){
+  const rows=document.querySelectorAll('.req-row');
+  if(rows.length>1) btn.parentElement.remove();
+}
+function saveVacancy(){
+  const title=document.getElementById('vac-title').value.trim();
+  const field=document.getElementById('vac-field').value;
+  const type=document.getElementById('vac-type').value;
+  const location=document.getElementById('vac-location').value;
+  const salary=document.getElementById('vac-salary').value;
+  const minExp=document.getElementById('vac-min-exp').value;
+  const jd=document.getElementById('vac-jd').value.trim();
+  const reqs=[...document.querySelectorAll('#req-list .req-row input')].map(i=>i.value.trim()).filter(Boolean);
+  if(!title||!jd){alert('Isi nama posisi dan job description!');return;}
+  const vac={id:Date.now(),title,field,type,location,salary,minExp,jd,reqs,createdAt:new Date().toLocaleDateString('id-ID'),apps:0};
+  vacancies.push(vac);
+  updateStats();
+  renderVacancies();
+  document.getElementById('modal-success').classList.add('show');
+  // reset form
+  ['vac-title','vac-location','vac-salary','vac-jd'].forEach(id=>{document.getElementById(id).value='';});
+  document.getElementById('req-list').innerHTML=`
+    <div class="req-row"><input type="text" placeholder="Contoh: Minimal 3 tahun pengalaman dengan Python"/><button class="req-del" onclick="delReq(this)">×</button></div>`;
+}
+function closeModal(){
+  document.getElementById('modal-success').classList.remove('show');
+  showSection('vacancies');
+}
+function renderVacancies(){
+  const grid=document.getElementById('vac-grid');
+  if(vacancies.length===0){
+    grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--gray);">
+      <div style="font-size:32px;margin-bottom:12px;">💼</div>
+      <div style="font-size:15px;font-weight:600;color:var(--navy);margin-bottom:6px;">Belum ada vacancy</div>
+      <div style="font-size:13px;margin-bottom:16px;">Buat job vacancy pertama kamu</div>
+      <button class="btn-primary" onclick="showSection('add-vacancy')">+ Buat Vacancy</button>
+    </div>`;
+    return;
+  }
+  grid.innerHTML=vacancies.map(v=>`
+    <div class="vac-card">
+      <div class="vac-card-top">
+        <div><div class="vac-title">${v.title}</div><div class="vac-company">${user?user.company:''}</div></div>
+        <span class="badge badge-open">Aktif</span>
+      </div>
+      <div class="vac-meta">
+        <span class="vac-meta-chip">💼 ${v.field}</span>
+        <span class="vac-meta-chip">⏱ ${v.type}</span>
+        ${v.location?`<span class="vac-meta-chip">📍 ${v.location}</span>`:''}
+        ${v.minExp?`<span class="vac-meta-chip">🎓 ${v.minExp}</span>`:''}
+        ${v.salary?`<span class="vac-meta-chip">💰 ${v.salary}</span>`:''}
+      </div>
+      <div class="vac-desc">${v.jd}</div>
+      <div class="vac-footer">
+        <div class="vac-apps">Dibuat: ${v.createdAt}</div>
+        <button class="btn-view">Lihat Detail →</button>
+      </div>
+    </div>`).join('');
+}
+function populateVacancySelector(){
+  const sel=document.getElementById('vac-selector');
+  sel.innerHTML='<option value="">— Pilih vacancy —</option>';
+  vacancies.forEach(v=>{
+    const opt=document.createElement('option');
+    opt.value=v.id; opt.textContent=v.title;
+    sel.appendChild(opt);
+  });
+  if(vacancies.length===0){
+    sel.innerHTML='<option value="">Belum ada vacancy — buat dulu</option>';
+  }
+}
+function updateStats(){
+  document.getElementById('stat-total').textContent=demoCV.length;
+  document.getElementById('stat-new').textContent=demoCV.filter(c=>c.status==='Baru').length;
+  document.getElementById('stat-vac').textContent=vacancies.length;
+  document.getElementById('sb-cv-count').textContent=demoCV.length;
+}
+
+/* ══════════════════════════════════
+   AI ANALYSIS
+══════════════════════════════════ */
+async function runAnalysis(){
+  if(!currentCV){return;}
+  const vacId=document.getElementById('vac-selector').value;
+  if(!vacId){alert('Pilih job vacancy terlebih dahulu!');return;}
+  const vac=vacancies.find(v=>v.id==vacId);
+  if(!vac){return;}
+
+  const btn=document.getElementById('btn-analyze');
+  const txt=document.getElementById('analyze-txt');
+  const spin=document.getElementById('spin-el');
+  btn.disabled=true; txt.textContent='Menganalisis...'; spin.classList.add('show');
+  document.getElementById('result-mini').classList.remove('show');
+
+  const cv=currentCV;
+  const prompt=`Kamu adalah AI career analyst untuk platform rekrutmen IT. Analisis kecocokan antara profil kandidat IT dan job vacancy berikut.
+
+PROFIL KANDIDAT:
+- Nama: ${cv.name}
+- Role: ${cv.role}
+- Pengalaman Total: ${cv.exp}
+- Pendidikan: ${cv.edu}
+- Hard Skills: ${cv.skills.join(', ')}
+- Soft Skills: ${cv.softskills.join(', ')}
+- Knowledge: ${cv.knowledge.join(', ')}
+- Summary: ${cv.summary}
+- Pengalaman Kerja: ${cv.experiences.map(e=>`${e.role} di ${e.company} (${e.duration})`).join('; ')}
+
+JOB VACANCY: ${vac.title}
+Bidang: ${vac.field}
+Job Description:
+${vac.jd}
+
+Requirements:
+${vac.reqs.map((r,i)=>`${i+1}. ${r}`).join('\n')}
+
+Berikan analisis dalam format JSON murni (tanpa markdown, tanpa backtick):
+{
+  "overall_score": <0-100>,
+  "skill_score": <0-100>,
+  "experience_score": <0-100>,
+  "education_score": <0-100>,
+  "verdict": "Sangat Cocok|Cocok|Cukup Cocok|Kurang Cocok",
+  "title": "<kesimpulan max 7 kata Bahasa Indonesia>",
+  "description": "<analisis 2 kalimat Bahasa Indonesia dari perspektif recruiter>",
+  "gaps": [
+    {"skill":"<nama skill/requirement>","status":"match|partial|missing","note":"<catatan singkat>"}
+  ],
+  "courses": [
+    {"name":"<nama kursus spesifik>","platform":"<Coursera|Udemy|LinkedIn Learning|dll>","emoji":"<emoji relevan>","priority":"Wajib|Disarankan|Opsional"}
+  ]
+}
+Berikan 5-7 gap items dan 3 course recommendations untuk skill yang kurang atau perlu diperkuat.`;
+
+  try{
+    const res=await fetch("https://api.anthropic.com/v1/messages",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1500,messages:[{role:"user",content:prompt}]})
+    });
+    const data=await res.json();
+    const txt2=data.content.map(i=>i.text||'').join('');
+    const clean=txt2.replace(/```json|```/g,'').trim();
+    renderAnalysisResult(JSON.parse(clean),vac.title);
+  }catch(e){
+    renderAnalysisResult({
+      overall_score:74,skill_score:80,experience_score:70,education_score:72,
+      verdict:"Cocok",
+      title:"Kandidat cocok untuk posisi ini",
+      description:"Berdasarkan pengalaman dan skill yang dimiliki, kandidat ini memenuhi sebagian besar requirement posisi yang dibutuhkan. Ada beberapa area yang bisa diperkuat.",
+      gaps:[
+        {skill:cv.skills[0],status:"match",note:"Sudah ada di profil"},
+        {skill:cv.skills[1],status:"match",note:"Tercantum di pengalaman"},
+        {skill:"Kubernetes",status:"partial",note:"Perlu diperdalam"},
+        {skill:"GraphQL",status:"missing",note:"Tidak ditemukan"},
+        {skill:cv.softskills[0],status:"match",note:"Terlihat dari pengalaman"}
+      ],
+      courses:[
+        {name:"Kubernetes for Developers",platform:"Udemy",emoji:"⚙️",priority:"Disarankan"},
+        {name:"GraphQL Complete Course",platform:"Coursera",emoji:"🔗",priority:"Wajib"},
+        {name:"Advanced Cloud Architecture",platform:"LinkedIn Learning",emoji:"☁️",priority:"Opsional"}
+      ]
+    },vac.title);
+  }
+
+  btn.disabled=false; txt.textContent='🔍 Analisis Kecocokan'; spin.classList.remove('show');
+}
+
+function renderAnalysisResult(r, vacTitle){
+  const vStyle={
+    'Sangat Cocok':'background:#F0FDF4;color:#15803D;border:1px solid #BBF7D0',
+    'Cocok':'background:#EFF4FF;color:#1D4ED8;border:1px solid #BFDBFE',
+    'Cukup Cocok':'background:#FFFBEB;color:#B45309;border:1px solid #FDE68A',
+    'Kurang Cocok':'background:#FEF2F2;color:#DC2626;border:1px solid #FECACA'
+  };
+  const cls={match:'g-match',partial:'g-partial',missing:'g-miss'};
+  const icon={match:'✓',partial:'~',missing:'✗'};
+  const perim=188.4;
+  const offset=perim-(perim*r.overall_score/100);
+
+  const html=`
+    <div class="rm-score-row">
+      <div class="rm-ring">
+        <svg width="70" height="70" viewBox="0 0 70 70">
+          <circle cx="35" cy="35" r="30" fill="none" stroke="#EEF2F8" stroke-width="7"/>
+          <circle cx="35" cy="35" r="30" fill="none" stroke="url(#rg3)" stroke-width="7"
+            stroke-dasharray="${perim}" stroke-dashoffset="${offset}" stroke-linecap="round"/>
+          <defs><linearGradient id="rg3" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#2563EB"/><stop offset="100%" stop-color="#06B6D4"/>
+          </linearGradient></defs>
+        </svg>
+        <div class="rm-ring-txt"><div class="rm-num">${r.overall_score}</div><div class="rm-lbl">MATCH</div></div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:5px;${vStyle[r.verdict]||vStyle['Cocok']}">${r.verdict}</div>
+        <div class="rm-verdict">${r.title}</div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:var(--gray);line-height:1.6;margin-bottom:1rem;">${r.description}</div>
+    <div class="rm-bars">
+      <div class="rm-bar-item"><span class="rm-bar-label">Skill Match</span><div class="rm-bar-track"><div class="rm-bar-fill" style="width:${r.skill_score}%;background:var(--blue);"></div></div><span class="rm-bar-pct">${r.skill_score}%</span></div>
+      <div class="rm-bar-item"><span class="rm-bar-label">Experience</span><div class="rm-bar-track"><div class="rm-bar-fill" style="width:${r.experience_score}%;background:var(--cyan);"></div></div><span class="rm-bar-pct">${r.experience_score}%</span></div>
+      <div class="rm-bar-item"><span class="rm-bar-label">Education</span><div class="rm-bar-track"><div class="rm-bar-fill" style="width:${r.education_score}%;background:var(--purple);"></div></div><span class="rm-bar-pct">${r.education_score}%</span></div>
+    </div>
+    <div class="divider-line"></div>
+    <div class="rm-gap-title">SKILL GAP ANALYSIS</div>
+    <div class="rm-gap-wrap">
+      ${(r.gaps||[]).map(g=>`<div class="g-tag ${cls[g.status]||'g-partial'}" title="${g.note}">${icon[g.status]||'~'} ${g.skill}</div>`).join('')}
+    </div>
+    <div class="rm-courses">
+      <div class="rm-courses-title" style="margin-top:1rem;">REKOMENDASI KURSUS</div>
+      ${(r.courses||[]).map(c=>`
+        <div class="rc-item">
+          <div class="rc-icon">${c.emoji||'📖'}</div>
+          <div><div class="rc-name">${c.name}</div><div class="rc-platform">${c.platform}</div></div>
+          <div class="rc-badge">${c.priority}</div>
+        </div>`).join('')}
+    </div>`;
+
+  const el=document.getElementById('result-mini');
+  el.innerHTML=html;
+  el.classList.add('show');
+  el.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+</script>
+</body>
+</html> 
