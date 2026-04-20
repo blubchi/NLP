@@ -883,23 +883,26 @@ We are looking for a Frontend Developer to join our team. You will be responsibl
 //  Semua scoring, skill gap, dan rekomendasi dikerjakan oleh model.
 // ═══════════════════════════════════════════════════════════════════
 
-// ╔═══════════════════════════════════════════════════════════════════════╗
-// ║  KONFIGURASI PROXY                                                    ║
-// ╠═══════════════════════════════════════════════════════════════════════╣
-// ║                                                                       ║
-// ║  Frontend TIDAK lagi memanggil Hugging Face secara langsung.         ║
-// ║  Semua request dikirim ke proxy lokal (proxy.js) di Node.js.         ║
-// ║  Proxy itulah yang meneruskan ke Hugging Face — bebas CORS.          ║
-// ║                                                                       ║
-// ║  Kenapa ini solusi CORS?                                              ║
-// ║    Browser → proxy (localhost) = same origin, tidak diblokir         ║
-// ║    Proxy (Node.js) → HF API = server-to-server, bebas CORS           ║
-// ║                                                                       ║
-// ║  HF_TOKEN disimpan di proxy.js, TIDAK di file HTML ini.              ║
-// ║  PROXY_URL: sesuaikan port jika kamu ubah PORT di proxy.js           ║
-// ║                                                                       ║
-// ╚═══════════════════════════════════════════════════════════════════════╝
-const PROXY_URL = "http://localhost:5500/analyze";
+// ╔═══════════════════════════════════════════════════════════════╗
+// ║  KONFIGURASI MODEL — GANTI INI KETIKA MODEL SUDAH SIAP       ║
+// ╠═══════════════════════════════════════════════════════════════╣
+// ║                                                               ║
+// ║  HF_MODEL_URL  → URL endpoint model di Hugging Face          ║
+// ║                  Format:                                      ║
+// ║                  https://api-inference.huggingface.co/       ║
+// ║                  models/USERNAME/NAMA_MODEL                  ║
+// ║                                                               ║
+// ║  HF_TOKEN      → Token akses Hugging Face (Bearer token)     ║
+// ║                  Buat di: huggingface.co/settings/tokens     ║
+// ║                  Untuk production: pakai backend proxy        ║
+// ║                  agar token tidak terekspos di browser.      ║
+// ║                                                               ║
+// ╚═══════════════════════════════════════════════════════════════╝
+// ── Endpoint model NER BERT milik danielkrmy ──
+// Ganti HF_TOKEN dengan token Hugging Face kamu.
+// Untuk production: gunakan backend proxy agar token tidak terekspos di browser.
+const HF_MODEL_URL = "https://api-inference.huggingface.co/models/danielkrmy/NER-AI-resume";
+const HF_TOKEN     = "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";
 
 // ── STATE ──
 let currentUser    = null;
@@ -1100,90 +1103,93 @@ function updateDashboard() {
 }
 
 // ═══════════════════════════════════════════════════════════════════
-//  ANALISIS — HUGGING FACE INFERENCE API
-//  Tidak ada lagi generateResult() / setTimeout / random / keyword
-//  matching lokal. Semua diproses oleh model SBERT di Hugging Face.
+//  STEP 1 — buildProfileText()
+//
+//  Mengubah seluruh data form profil menjadi SATU teks naratif
+//  yang menyerupai CV / deskripsi kandidat.
+//
+//  Mengapa teks naratif?
+//  Model yang digunakan adalah NER (Named Entity Recognition) berbasis
+//  BERT (danielkrmy/NER-AI-resume). Model ini dilatih untuk memahami
+//  teks natural seperti kalimat dan paragraf — BUKAN struktur JSON,
+//  array, atau CSV. Memberikan data dalam bentuk teks memungkinkan
+//  model melakukan ekstraksi entitas (skill, jabatan, institusi, dll.)
+//  secara optimal.
+//
+//  Tidak ada array skill, tidak ada JSON terstruktur yang dikirim.
+//  Semua informasi dilebur ke dalam paragraf teks yang mengalir.
 // ═══════════════════════════════════════════════════════════════════
 
-// ═══════════════════════════════════════════════════════════════════
-//  STEP 1 — BANGUN PAYLOAD
-//  Kumpulkan semua data dari form dan profileData, susun jadi
-//  satu objek JSON yang siap dikirim ke model.
-//
-//  Struktur payload yang dikirim ke model:
-//  {
-//    "inputs": {
-//      "jd":           string   — job description dari textarea
-//      "req":          string   — requirements dari textarea
-//      "profile_text": string   — teks naratif profil (untuk SBERT)
-//      "profile":      object   — data terstruktur profil (untuk logika tambahan di model)
-//    }
-//  }
-//
-//  ⚠️  CATATAN UNTUK PEMBUAT MODEL:
-//  Jika model mengharapkan format input yang berbeda
-//  (misal: hanya "inputs" berupa string, atau field dengan nama lain),
-//  cukup ubah fungsi buildPayload() di bawah ini saja.
-//  Tidak perlu mengubah bagian lain dari script ini.
-// ═══════════════════════════════════════════════════════════════════
-
-function buildPayload(jd, req) {
+function buildProfileText() {
   const p   = profileData;
   const edu = p.education || {};
+  const lines = [];
 
-  // ── Teks naratif: versi "kalimat" dari profil, optimal untuk SBERT ──
-  const expText = (p.experiences || [])
-    .map(e => `${e.position} di ${e.company} (${e.start}–${e.end}): ${e.description}`)
-    .join('. ');
+  // ── Identitas & ringkasan ──────────────────────────────────────
+  if (p.name)    lines.push(`${p.name} adalah seorang profesional di bidang ${p.field || 'teknologi'}.`);
+  if (p.location) lines.push(`Berdomisili di ${p.location}.`);
+  if (p.years)    lines.push(`Memiliki pengalaman kerja selama ${p.years}.`);
+  if (p.summary)  lines.push(p.summary.trim());
 
-  const profile_text = [
-    p.name     ? `Nama: ${p.name}.`                                               : '',
-    p.location ? `Lokasi: ${p.location}.`                                         : '',
-    p.field    ? `Bidang: ${p.field}.`                                            : '',
-    p.years    ? `Total pengalaman: ${p.years}.`                                  : '',
-    p.summary  ? `Ringkasan: ${p.summary}.`                                       : '',
-    expText    ? `Riwayat kerja: ${expText}.`                                     : '',
-    p.techSkills?.length ? `Technical skills: ${p.techSkills.join(', ')}.`        : '',
-    p.tools?.length      ? `Tools & bahasa pemrograman: ${p.tools.join(', ')}.`   : '',
-    p.softSkills?.length ? `Soft skills: ${p.softSkills.join(', ')}.`             : '',
-    edu.school ? `Pendidikan: ${edu.degree} ${edu.major}, ${edu.school} (${edu.year}).` : '',
-  ].filter(Boolean).join(' ');
+  // ── Pengalaman kerja — setiap entri jadi kalimat penuh ─────────
+  const exps = (p.experiences || []).filter(e => e.company || e.position);
+  if (exps.length > 0) {
+    lines.push('Riwayat pengalaman kerja:');
+    exps.forEach(e => {
+      const period = (e.start && e.end) ? ` dari ${e.start} hingga ${e.end}` : '';
+      const desc   = e.description ? ` ${e.description.trim()}` : '';
+      lines.push(
+        `Bekerja sebagai ${e.position || 'staf'} di ${e.company || 'perusahaan'}${period}.${desc}`
+      );
+    });
+  }
 
-  // ── Data terstruktur: JSON tabular, bisa dikonversi ke DataFrame di model ──
-  const profile = {
-    name:        p.name        || '',
-    location:    p.location    || '',
-    field:       p.field       || '',
-    years_exp:   p.years       || '',
-    summary:     p.summary     || '',
-    tech_skills: p.techSkills  || [],
-    soft_skills: p.softSkills  || [],
-    tools:       p.tools       || [],
-    experiences: (p.experiences || []).map(e => ({
-      company:     e.company     || '',
-      position:    e.position    || '',
-      start:       e.start       || '',
-      end:         e.end         || '',
-      description: e.description || '',
-    })),
-    education: {
-      school: edu.school || '',
-      major:  edu.major  || '',
-      degree: edu.degree || '',
-      year:   edu.year   || '',
-    },
-  };
+  // ── Skill teknis — ditulis sebagai kalimat, bukan array ────────
+  if (p.techSkills?.length > 0) {
+    lines.push(
+      `Menguasai technical skills berikut: ${p.techSkills.join(', ')}.`
+    );
+  }
 
-  // ── Payload final yang dikirim ke model ──
-  return {
-    inputs: { jd, req, profile_text, profile }
-  };
+  // ── Tools & bahasa pemrograman ─────────────────────────────────
+  if (p.tools?.length > 0) {
+    lines.push(
+      `Berpengalaman menggunakan tools dan bahasa pemrograman: ${p.tools.join(', ')}.`
+    );
+  }
+
+  // ── Soft skills — ditulis sebagai kalimat ──────────────────────
+  if (p.softSkills?.length > 0) {
+    lines.push(
+      `Soft skills yang dimiliki antara lain: ${p.softSkills.join(', ')}.`
+    );
+  }
+
+  // ── Pendidikan ─────────────────────────────────────────────────
+  if (edu.school) {
+    const grad = edu.year ? ` lulus tahun ${edu.year}` : '';
+    lines.push(
+      `Latar belakang pendidikan: ${edu.degree || 'S1'} ${edu.major || ''} dari ${edu.school}${grad}.`
+    );
+  }
+
+  return lines.join(' ');
 }
 
 // ═══════════════════════════════════════════════════════════════════
-//  STEP 2 — KIRIM KE MODEL & TERIMA HASIL
-//  Satu-satunya tempat komunikasi dengan model terjadi.
-//  Tidak ada analisis apapun di fungsi ini.
+//  STEP 2 — runAnalysis()
+//
+//  Alur:
+//    1. Ambil JD + requirements dari textarea
+//    2. Bangun profile_text via buildProfileText()
+//    3. Kirim POST ke HF endpoint dengan payload:
+//       { "inputs": { "jd": "...", "req": "...", "profile_text": "..." } }
+//    4. Terima response JSON dari handler.py model
+//    5. Petakan ke format UI via mapModelToUI()
+//    6. Tampilkan hasil + simpan ke riwayat
+//
+//  TIDAK ADA scoring lokal, random, atau keyword matching manual.
+//  Semua analisis dilakukan oleh model di Hugging Face.
 // ═══════════════════════════════════════════════════════════════════
 
 async function runAnalysis() {
@@ -1200,49 +1206,69 @@ async function runAnalysis() {
     return;
   }
 
-  // Tampilkan loading, sembunyikan hasil lama
+  // Teks profil yang akan dikirim ke model NER
+  const profile_text = buildProfileText();
+
+  // Validasi — profil tidak boleh kosong
+  if (!profile_text.trim()) {
+    showToast('Profil kamu masih kosong. Lengkapi terlebih dahulu.');
+    goTo('profile');
+    return;
+  }
+
+  // ── Tampilkan loading, bersihkan state lama ──
   setLoading(true);
   document.getElementById('result-section').classList.remove('show');
   const prevBanner = document.getElementById('error-banner');
   if (prevBanner) prevBanner.remove();
 
+  // ── Susun payload — hanya teks, tidak ada JSON terstruktur ──
+  // Model NER BERT mengharapkan teks natural, bukan array atau object.
+  const payload = {
+    inputs: {
+      jd:           jd,
+      req:          req,
+      profile_text: profile_text
+    }
+  };
+
   try {
-    // ── Kirim request ke proxy lokal ───────────────────────────────
-    // Proxy (proxy.js) yang meneruskan ke Hugging Face dengan token.
-    // Token tidak pernah ada di browser — aman dari inspeksi.
-    const response = await fetch(PROXY_URL, {
+    const response = await fetch(HF_MODEL_URL, {
       method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(buildPayload(jd, req)),
+      headers: {
+        'Authorization': `Bearer ${HF_TOKEN}`,
+        'Content-Type':  'application/json',
+      },
+      body: JSON.stringify(payload),
     });
 
-    // Tangani HTTP error dengan pesan yang informatif
+    // ── Tangani HTTP error secara spesifik ──
     if (!response.ok) {
       const body = await response.text().catch(() => '');
       throw new Error(httpErrorMessage(response.status, body));
     }
 
-    // ── Terima hasil dari model ─────────────────────────────────────
+    // ── Terima response dari model ──
     const modelResponse = await response.json();
 
-    // ── Petakan ke format UI ────────────────────────────────────────
-    // mapModelToUI() hanya bertugas menerjemahkan field model → field UI.
-    // Tidak ada kalkulasi apapun di dalamnya.
+    // ── Petakan response model ke format UI ──
     const uiData = mapModelToUI(modelResponse);
 
-    // ── Tampilkan ke UI ─────────────────────────────────────────────
+    // ── Render ke halaman ──
     displayResult(uiData);
 
-    // ── Simpan ke riwayat ───────────────────────────────────────────
+    // ── Simpan ke riwayat dashboard ──
     analysisHistory.push({
       job:   uiData.jobTitle,
       score: uiData.score,
-      date:  new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
+      date:  new Date().toLocaleDateString('id-ID', {
+        day: 'numeric', month: 'long', year: 'numeric'
+      }),
     });
 
   } catch (err) {
-    console.error('[FitScore] Error:', err);
-    showErrorBanner(err.message || 'Terjadi kesalahan tidak diketahui.');
+    console.error('[FitScore] Error memanggil model:', err);
+    showErrorBanner(err.message || 'Terjadi kesalahan tidak diketahui saat menghubungi model AI.');
 
   } finally {
     setLoading(false);
@@ -1250,69 +1276,84 @@ async function runAnalysis() {
 }
 
 // ═══════════════════════════════════════════════════════════════════
-//  STEP 3 — PEMETAAN RESPONSE MODEL → FORMAT UI
+//  STEP 3 — mapModelToUI()
 //
-//  Fungsi ini hanya menerjemahkan nama field dari model ke nama field
-//  yang dibutuhkan oleh displayResult(). Tidak ada logika analisis.
+//  Menerjemahkan output dari handler.py (danielkrmy/NER-AI-resume)
+//  ke struktur yang dibutuhkan oleh displayResult().
 //
-//  ⚠️  SESUAIKAN BAGIAN INI ketika tahu persis format output model.
-//  Saat ini mendukung beberapa variasi nama field yang umum.
+//  Model NER BERT mengembalikan entitas yang diekstrak dari teks.
+//  handler.py kemudian mengolahnya menjadi skor dan analisis.
 //
-//  Output model yang diharapkan (nilai integer 0–100 atau float 0–1):
+//  Format output yang diharapkan dari model:
 //  {
-//    "overall_score":    number   — skor keseluruhan
-//    "skill_score":      number   — skor kecocokan skill
-//    "experience_score": number   — skor kecocokan pengalaman
-//    "education_score":  number   — skor kecocokan pendidikan
-//    "soft_score":       number   — skor soft skill
-//    "job_title":        string   — judul posisi yang dideteksi
-//    "summary":          string   — teks ringkasan hasil analisis
-//    "skill_gap": [               — daftar skill dari JD
+//    "overall_score":    number,        // 0–100 atau 0.0–1.0
+//    "skill_score":      number,
+//    "experience_score": number,
+//    "education_score":  number,
+//    "soft_score":       number,
+//    "job_title":        string,
+//    "summary":          string,
+//    "skill_gap": [
 //      { "name": string, "status": "match" | "miss" }
 //    ],
-//    "recommendations": [         — rekomendasi kursus
+//    "recommendations": [
 //      { "skill": string, "desc": string }
 //    ]
 //  }
+//
+//  Fungsi ini toleran terhadap:
+//    - Field yang tidak ada (diberi nilai default)
+//    - Variasi nama field (skill_score / skill / skill_similarity)
+//    - Skor float 0–1 (dikonversi otomatis ke 0–100)
+//    - Response berupa array (diambil elemen pertama)
 // ═══════════════════════════════════════════════════════════════════
 
 function mapModelToUI(raw) {
-  // Beberapa model HF mengembalikan array — ambil elemen pertama
+  // Beberapa endpoint HF mengembalikan array — ambil elemen pertama
   if (Array.isArray(raw)) raw = raw[0];
   raw = raw || {};
 
-  // ── Skor — toleran terhadap variasi nama field ──
-  // Juga menangani nilai float 0–1 (cosine similarity) → int 0–100
-  const score     = toScore(raw.overall_score    ?? raw.score    ?? raw.match_score);
-  const skillSim  = toScore(raw.skill_score      ?? raw.skill    ?? raw.skill_similarity);
-  const expMatch  = toScore(raw.experience_score ?? raw.exp      ?? raw.exp_score);
-  const eduMatch  = toScore(raw.education_score  ?? raw.edu      ?? raw.edu_score);
-  const softMatch = toScore(raw.soft_score       ?? raw.soft     ?? raw.soft_skill_score);
+  // ── Skor utama ──
+  const score     = toScore(raw.overall_score    ?? raw.score    ?? raw.match_score   ?? 0);
+  const skillSim  = toScore(raw.skill_score      ?? raw.skill    ?? raw.skill_sim     ?? 0);
+  const expMatch  = toScore(raw.experience_score ?? raw.exp      ?? raw.exp_score     ?? 0);
+  const eduMatch  = toScore(raw.education_score  ?? raw.edu      ?? raw.edu_score     ?? 0);
+  const softMatch = toScore(raw.soft_score       ?? raw.soft     ?? raw.soft_skills   ?? 0);
 
-  // ── Teks ──
-  const jobTitle = String(raw.job_title || raw.jobTitle || raw.position || 'Posisi yang Dilamar').slice(0, 60);
-  const summary  = String(raw.summary   || raw.description || raw.analysis || fallbackSummary(score));
+  // ── Teks metadata ──
+  const jobTitle = String(
+    raw.job_title ?? raw.jobTitle ?? raw.position ?? raw.role ?? 'Posisi yang Dilamar'
+  ).slice(0, 60);
 
-  // ── Skill gap — normalisasi ke [{name, status}] ──
-  const rawGap = raw.skill_gap ?? raw.skillGap ?? raw.gap ?? raw.skills ?? [];
+  const summary = String(
+    raw.summary ?? raw.description ?? raw.analysis ?? raw.result_summary ?? fallbackSummary(score)
+  );
+
+  // ── Skill gap ──
+  // Mendukung berbagai nama field yang mungkin digunakan handler.py
+  const rawGap = raw.skill_gap   ?? raw.skillGap  ?? raw.gap      ??
+                 raw.skills      ?? raw.ner_skills ?? raw.entities ?? [];
+
   const skillGapList = Array.isArray(rawGap) && rawGap.length > 0
     ? rawGap.map(g => ({
-        name:   String(g?.name ?? g?.skill ?? g?.label ?? '—'),
-        status: normalizeGapStatus(g?.status ?? g?.found ?? g?.match),
+        name:   String(g?.name ?? g?.skill ?? g?.entity ?? g?.label ?? g?.word ?? '—'),
+        status: normalizeGapStatus(g?.status ?? g?.found ?? g?.match ?? g?.in_profile),
       }))
-    : [{ name: 'Data skill gap tidak tersedia', status: 'match' }];
+    : [{ name: 'Data skill gap tidak tersedia dari model', status: 'miss' }];
 
-  // ── Rekomendasi kursus — normalisasi ke [{skill, desc}] ──
-  const rawRec = raw.recommendations ?? raw.courses ?? raw.rec ?? raw.course_list ?? [];
+  // ── Rekomendasi kursus ──
+  const rawRec = raw.recommendations ?? raw.courses ?? raw.rec ??
+                 raw.course_list     ?? raw.suggest ?? [];
+
   const recList = Array.isArray(rawRec) && rawRec.length > 0
     ? rawRec.map(r => ({
-        skill: String(r?.skill ?? r?.name  ?? r?.course ?? r?.title ?? '—'),
+        skill: String(r?.skill ?? r?.name    ?? r?.course ?? r?.title    ?? '—'),
         desc:  String(r?.desc  ?? r?.description ?? r?.detail ?? r?.platform
-                      ?? 'Pelajari skill ini untuk meningkatkan peluang kamu.'),
+                      ?? r?.reason ?? 'Tingkatkan skill ini untuk meningkatkan peluang kamu.'),
       }))
-    : [{ skill: 'Kembangkan Portofolio', desc: 'Buat proyek nyata dan upload ke GitHub untuk memperkuat profilmu.' }];
+    : [{ skill: 'Kembangkan Portofolio', desc: 'Buat proyek nyata dan upload ke GitHub untuk memperkuat profilmu di mata rekruter.' }];
 
-  // ── Verdict berdasarkan skor ──
+  // ── Verdict teks & kelas CSS ──
   const verdict     = score >= 75 ? 'great' : score >= 55 ? 'good' : 'low';
   const verdictText = score >= 75 ? 'Sangat Cocok ✓' : score >= 55 ? 'Cukup Cocok ~' : 'Perlu Ditingkatkan ✗';
 
@@ -1320,77 +1361,72 @@ function mapModelToUI(raw) {
 }
 
 // ═══════════════════════════════════════════════════════════════════
-//  HELPERS — Tidak ada logika analisis, hanya konversi & sanitasi
+//  HELPER FUNCTIONS
 // ═══════════════════════════════════════════════════════════════════
 
 /** Konversi nilai skor ke integer 0–100.
- *  Tangani: null/undefined → 0, float 0–1 → ×100, angka >1 → clamp */
+ *  null/undefined → 0 | float 0–1 → ×100 | integer > 1 → clamp 0–100 */
 function toScore(val) {
   if (val === null || val === undefined) return 0;
   const n = Number(val);
-  if (isNaN(n))       return 0;
-  if (n >= 0 && n <= 1) return Math.round(n * 100);   // cosine similarity
-  return Math.min(100, Math.max(0, Math.round(n)));    // integer 0–100
+  if (isNaN(n))             return 0;
+  if (n > 0 && n <= 1)      return Math.round(n * 100);  // float cosine sim
+  return Math.min(100, Math.max(0, Math.round(n)));       // integer
 }
 
-/** Normalisasi berbagai representasi status menjadi 'match' atau 'miss' */
+/** Normalisasi status ke 'match' atau 'miss' */
 function normalizeGapStatus(val) {
   const s = String(val ?? '').toLowerCase().trim();
-  if (['match','found','dimiliki','ada','yes','have','1','true','owned'].includes(s)) return 'match';
+  if (['match','found','dimiliki','ada','yes','have','1','true','owned','present'].includes(s))
+    return 'match';
   return 'miss';
 }
 
-/** Teks ringkasan fallback jika model tidak mengembalikan summary */
+/** Teks ringkasan fallback bila model tidak mengembalikan summary */
 function fallbackSummary(score) {
-  if (score >= 75) return 'Profilmu sangat cocok untuk posisi ini! Skill utama yang dibutuhkan sudah kamu miliki.';
-  if (score >= 55) return 'Profilmu cukup cocok. Ada beberapa skill teknis yang bisa ditingkatkan.';
-  return 'Ada beberapa gap yang perlu ditutup sebelum melamar posisi ini.';
+  if (score >= 75) return 'Profilmu sangat cocok untuk posisi ini! Skill utama yang dibutuhkan sudah kamu miliki. Pertahankan dan terus asah kemampuan tersebut.';
+  if (score >= 55) return 'Profilmu cukup relevan untuk posisi ini. Ada beberapa skill teknis yang bisa lebih diperdalam untuk meningkatkan peluangmu.';
+  return 'Ada beberapa gap yang perlu ditutup sebelum melamar posisi ini. Fokuslah pada skill yang belum dimiliki dan perkuat pengalaman yang relevan.';
 }
 
-/** Pesan error HTTP yang informatif */
+/** Pesan error per status HTTP */
 function httpErrorMessage(status, body) {
-  const excerpt = body ? ` — ${body.slice(0, 150)}` : '';
-  if (status === 401) return `Token tidak valid (401). Periksa nilai HF_TOKEN di dalam file proxy.js.`;
-  if (status === 403) return `Akses ditolak (403). Pastikan token punya permission "read".`;
-  if (status === 404) return `Model tidak ditemukan (404). Periksa HF_MODEL_URL di dalam file proxy.js.`;
-  if (status === 422) return `Format input ditolak model (422). Koordinasikan dengan pembuat model.${excerpt}`;
-  if (status === 503) return `Model sedang cold-start di Hugging Face (503). Tunggu 20–30 detik lalu coba lagi.`;
+  const excerpt = body ? ` — ${body.slice(0, 180)}` : '';
+  if (status === 401) return `Token tidak valid (401). Ganti HF_TOKEN dengan token yang aktif dari huggingface.co/settings/tokens.`;
+  if (status === 403) return `Akses ditolak (403). Pastikan token punya permission "read" dan model tidak bersifat private.`;
+  if (status === 404) return `Model tidak ditemukan (404). Pastikan endpoint danielkrmy/NER-AI-resume sudah benar dan model sudah di-deploy.`;
+  if (status === 422) return `Format input ditolak model (422). Koordinasikan struktur payload dengan pembuat model.${excerpt}`;
+  if (status === 503) return `Model sedang cold-start (503). Hugging Face perlu memuatnya — tunggu 30–60 detik lalu coba lagi.`;
   return `Request gagal dengan status HTTP ${status}.${excerpt}`;
 }
 
 // ═══════════════════════════════════════════════════════════════════
 //  STEP 4 — VISUALISASI HASIL
-//  displayResult() hanya mengisi elemen HTML dengan data dari model.
-//  Tidak ada kalkulasi apapun di sini.
+//  displayResult() hanya mengisi elemen HTML. Tidak ada kalkulasi.
 // ═══════════════════════════════════════════════════════════════════
 
 function displayResult(r) {
-  // Bersihkan banner error lama jika ada
+  // Bersihkan error banner lama
   const oldBanner = document.getElementById('error-banner');
   if (oldBanner) oldBanner.remove();
 
-  // ── Match Score ──
+  // ── Skor & verdict ──
   document.getElementById('res-score').textContent = r.score;
   const verdictEl = document.getElementById('res-verdict');
   verdictEl.textContent = r.verdictText;
   verdictEl.className   = 'score-verdict ' + r.verdict;
 
-  // ── Breakdown bars ──
-  const bars = [
-    ['skill', r.skillSim],
-    ['exp',   r.expMatch],
-    ['edu',   r.eduMatch],
-    ['soft',  r.softMatch],
-  ];
-  bars.forEach(([key, val]) => {
-    document.getElementById(`b-${key}`).textContent    = val + '%';
-    document.getElementById(`bf-${key}`).style.width   = val + '%';
-  });
+  // ── Progress bars ──
+  [['skill', r.skillSim], ['exp', r.expMatch], ['edu', r.eduMatch], ['soft', r.softMatch]]
+    .forEach(([key, val]) => {
+      document.getElementById(`b-${key}`).textContent  = val + '%';
+      document.getElementById(`bf-${key}`).style.width = val + '%';
+    });
 
   // ── Teks ringkasan ──
   document.getElementById('res-summary').textContent = r.summary;
 
-  // ── Skill gap ──
+  // ── Skill gap list ──
   document.getElementById('skill-gap-list').innerHTML = r.skillGapList.map(s => `
     <div class="skill-row">
       <span class="skill-name">${esc(s.name)}</span>
@@ -1411,19 +1447,19 @@ function displayResult(r) {
   showToast('Analisis selesai! 🎉');
 }
 
-// ── Tampilkan/sembunyikan loading overlay ──
+// ── Loading overlay ──
 function setLoading(on) {
   const el = document.getElementById('loading');
   if (on) {
-    el.querySelector('.loading-text').textContent = 'Mengirim data ke proxy → model AI...';
-    el.querySelector('.loading-sub').textContent  = 'Sedang memproses, harap tunggu';
+    el.querySelector('.loading-text').textContent = 'Mengirim data ke model NER AI...';
+    el.querySelector('.loading-sub').textContent  = 'Model sedang mengekstrak entitas dari profilmu';
     el.classList.add('show');
   } else {
     el.classList.remove('show');
   }
 }
 
-// ── Tampilkan banner error di halaman hasil ──
+// ── Error banner di area hasil ──
 function showErrorBanner(msg) {
   const section = document.getElementById('result-section');
   let banner = document.getElementById('error-banner');
@@ -1431,40 +1467,34 @@ function showErrorBanner(msg) {
     banner = document.createElement('div');
     banner.id = 'error-banner';
     banner.style.cssText = [
-      'background:#FEE2E2', 'border:1.5px solid #FECACA', 'border-radius:12px',
-      'padding:18px 22px',  'margin-bottom:24px',          'display:flex',
-      'align-items:flex-start', 'gap:14px',
+      'background:#FEF2F2', 'border:1.5px solid #FECACA', 'border-radius:14px',
+      'padding:20px 24px',  'margin-bottom:28px',          'display:flex',
+      'align-items:flex-start', 'gap:16px',
     ].join(';');
     section.insertBefore(banner, section.firstChild);
   }
   banner.innerHTML = `
-    <span style="font-size:22px;flex-shrink:0;line-height:1;">⚠️</span>
+    <span style="font-size:24px;flex-shrink:0;line-height:1.2;">⚠️</span>
     <div>
       <div style="font-size:14px;font-weight:700;color:#991B1B;margin-bottom:6px;">
         Gagal menghubungi model AI
       </div>
-      <div style="font-size:13px;color:#B91C1C;line-height:1.65;">${esc(msg)}</div>
-      <div style="font-size:12px;color:#DC2626;margin-top:10px;line-height:1.6;">
-        Langkah selanjutnya:<br>
-        1. Pastikan <code>proxy.js</code> sudah berjalan: buka terminal → <code>node proxy.js</code><br>
-        2. Pastikan <code>HF_TOKEN</code> di dalam <code>proxy.js</code> sudah diisi dengan token yang benar.<br>
-        3. Jika error 503: model HF sedang cold-start — tunggu 30–60 detik lalu coba lagi.
+      <div style="font-size:13px;color:#B91C1C;line-height:1.7;">${esc(msg)}</div>
+      <div style="font-size:12px;color:#DC2626;margin-top:12px;line-height:1.8;background:#FEE2E2;padding:10px 14px;border-radius:8px;">
+        <strong>Langkah selanjutnya:</strong><br>
+        1. Ganti <code>HF_TOKEN</code> (baris dekat atas script) dengan token aktif.<br>
+        2. Pastikan model <code>danielkrmy/NER-AI-resume</code> sudah di-deploy.<br>
+        3. Jika error 503 (cold-start): tunggu 30–60 detik lalu klik Analisis lagi.
       </div>
     </div>`;
   section.classList.add('show');
   section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  showToast('Analisis gagal. Lihat pesan error di bawah. ❌');
+  showToast('Analisis gagal — lihat pesan error di bawah. ❌');
 }
 
-// ── Sanitasi HTML ──
-function esc(str) {
-  return String(str)
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
-
+// ── Reset halaman analisis ──
 function resetAnalysis() {
-  document.getElementById('jd-input').value = '';
+  document.getElementById('jd-input').value  = '';
   document.getElementById('req-input').value = '';
   document.getElementById('result-section').classList.remove('show');
   const banner = document.getElementById('error-banner');
@@ -1472,10 +1502,17 @@ function resetAnalysis() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ── FAQ ──
+// ── Sanitasi HTML (cegah XSS) ──
+function esc(str) {
+  return String(str)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// ── FAQ toggle ──
 function toggleFaq(el) { el.classList.toggle('open'); }
 
-// ── TOAST ──
+// ── Toast notification ──
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -1483,7 +1520,7 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 3500);
 }
 
-// ── INIT ──
+// ── INIT — tambah satu slot pengalaman kerja default ──
 addExp();
 </script>
 </body>
