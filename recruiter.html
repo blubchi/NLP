@@ -14,13 +14,10 @@
   --font:'Plus Jakarta Sans',sans-serif;
 }
 html,body{height:100%;font-family:var(--font);background:var(--bg);color:var(--text);font-size:15px;}
-
-/* UTIL */
 .page{display:none;min-height:100vh;flex-direction:column;}
 .page.active{display:flex;}
 .hidden{display:none!important;}
 
-/* ── NAV ── */
 nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;flex-shrink:0;}
 .nav-logo{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:700;color:var(--navy);cursor:pointer;}
 .logo-icon{width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;}
@@ -34,7 +31,7 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
 .btn-primary{background:var(--blue);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);display:inline-flex;align-items:center;gap:6px;}
 .btn-primary:hover{background:#1D4ED8;}
 
-/* ── LOGIN ── */
+/* LOGIN */
 .login-page{background:var(--bg);}
 .login-body{flex:1;display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 60px);}
 .login-left{background:var(--navy);padding:4rem 3.5rem;display:flex;flex-direction:column;justify-content:center;}
@@ -61,7 +58,7 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
 .divider::before,.divider::after{content:'';position:absolute;top:50%;width:40%;height:1px;background:var(--gray-light);}
 .divider::before{left:0;}.divider::after{right:0;}
 
-/* ── SHELL (sidebar layout) ── */
+/* SHELL */
 .shell{flex:1;display:flex;overflow:hidden;}
 .sidebar{width:220px;background:var(--white);border-right:1px solid #E2E8F0;padding:1.5rem 0;flex-shrink:0;display:flex;flex-direction:column;}
 .sb-section{font-size:10px;font-weight:700;color:#94A3B8;letter-spacing:0.8px;padding:0 1.25rem;margin-bottom:6px;margin-top:18px;}
@@ -73,7 +70,15 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
 .sb-badge{margin-left:auto;background:var(--blue);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;}
 .main-area{flex:1;overflow-y:auto;padding:2rem 2.5rem;}
 
-/* ── DASHBOARD ── */
+/* TOKEN COUNTER in nav */
+.token-bar{display:flex;align-items:center;gap:8px;background:var(--blue-pale);border:1px solid #BFDBFE;border-radius:8px;padding:6px 12px;}
+.token-bar .tk-label{font-size:11px;font-weight:700;color:var(--navy);}
+.token-bar .tk-val{font-size:13px;font-weight:800;color:var(--blue);}
+.token-bar .tk-total{font-size:11px;color:var(--gray);}
+.token-bar.low .tk-val{color:var(--red);}
+.token-bar.low{background:#FEF2F2;border-color:#FECACA;}
+
+/* DASHBOARD */
 .dash-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;}
 .dash-header h2{font-size:22px;font-weight:800;color:var(--navy);}
 .dash-header p{font-size:13px;color:var(--gray);margin-top:3px;}
@@ -112,7 +117,7 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
 .btn-view{background:var(--blue-pale);color:var(--blue);border:1px solid #BFDBFE;padding:6px 14px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font);}
 .btn-view:hover{background:var(--blue);color:#fff;}
 
-/* ── CV DETAIL PAGE ── */
+/* CV DETAIL */
 .cv-detail-body{flex:1;padding:2rem 2.5rem;max-width:1100px;width:100%;}
 .back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--blue);font-size:13px;font-weight:600;cursor:pointer;margin-bottom:1.5rem;background:none;border:none;font-family:var(--font);}
 .back-btn:hover{text-decoration:underline;}
@@ -152,8 +157,6 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
 .spin{width:18px;height:18px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:sp 0.7s linear infinite;display:none;}
 .spin.show{display:block;}
 @keyframes sp{to{transform:rotate(360deg);}}
-
-/* RESULT MINI */
 .result-mini{display:none;margin-top:1.25rem;}
 .result-mini.show{display:block;}
 .rm-score-row{display:flex;align-items:center;gap:12px;margin-bottom:1rem;}
@@ -163,7 +166,6 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
 .rm-num{font-size:20px;font-weight:800;color:var(--navy);line-height:1;}
 .rm-lbl{font-size:8px;font-weight:700;color:var(--gray);letter-spacing:0.5px;}
 .rm-verdict{font-size:15px;font-weight:700;color:var(--navy);}
-.rm-desc{font-size:12px;color:var(--gray);margin-top:3px;line-height:1.6;}
 .rm-bars{display:flex;flex-direction:column;gap:8px;margin-bottom:1rem;}
 .rm-bar-item{display:flex;align-items:center;gap:8px;}
 .rm-bar-label{font-size:11px;color:var(--gray);width:100px;flex-shrink:0;}
@@ -185,7 +187,16 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
 .rc-badge{margin-left:auto;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:var(--blue-pale);color:var(--blue);white-space:nowrap;flex-shrink:0;}
 .divider-line{height:1px;background:#F1F5F9;margin:1rem 0;}
 
-/* ── VACANCIES PAGE ── */
+/* TOKEN INFO IN ANALYSIS PANEL */
+.token-info-box{background:#F8FAFF;border:1px solid #BFDBFE;border-radius:10px;padding:10px 12px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;}
+.tib-left .tib-label{font-size:10px;font-weight:700;color:var(--gray);letter-spacing:0.5px;text-transform:uppercase;}
+.tib-left .tib-val{font-size:15px;font-weight:800;color:var(--blue);margin-top:1px;}
+.tib-left .tib-reset{font-size:10px;color:var(--gray);}
+.tib-right button{background:var(--blue);color:#fff;border:none;padding:6px 12px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--font);}
+.tib-empty .tib-val{color:var(--red)!important;}
+.tib-empty{background:#FEF2F2;border-color:#FECACA;}
+
+/* VACANCIES */
 .vac-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.75rem;}
 .vac-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
 .vac-card{background:var(--white);border-radius:16px;border:1px solid #E8EEFA;padding:1.5rem;cursor:pointer;transition:box-shadow 0.15s;}
@@ -198,9 +209,8 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
 .vac-desc{font-size:12px;color:var(--gray);line-height:1.6;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
 .vac-footer{display:flex;align-items:center;justify-content:space-between;}
 .vac-apps{font-size:12px;color:var(--gray);}
-.vac-apps span{font-weight:700;color:var(--navy);}
 
-/* ADD VACANCY PAGE */
+/* ADD VACANCY */
 .addvac-body{flex:1;padding:2rem 2.5rem;max-width:800px;width:100%;}
 .addvac-body h2{font-size:22px;font-weight:800;color:var(--navy);margin-bottom:4px;}
 .addvac-body .sub{font-size:13px;color:var(--gray);margin-bottom:2rem;}
@@ -216,7 +226,7 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
 .form-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:8px;}
 .btn-cancel{background:transparent;border:1.5px solid var(--gray-light);color:var(--gray);padding:10px 22px;border-radius:9px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font);}
 
-/* MODAL */
+/* MODAL BACKDROP */
 .modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,0.5);z-index:500;display:none;align-items:center;justify-content:center;}
 .modal-backdrop.show{display:flex;}
 .modal{background:var(--white);border-radius:20px;padding:2rem;width:480px;max-width:90vw;box-shadow:0 20px 60px rgba(0,0,0,0.15);}
@@ -224,15 +234,236 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
 .modal .msub{font-size:13px;color:var(--gray);margin-bottom:1.5rem;}
 .modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:1.25rem;}
 
+/* ═══ VIDEO AD OVERLAY ═══ */
+#ad-overlay{
+  position:fixed;inset:0;
+  background:rgba(5,10,30,0.92);
+  z-index:900;display:none;
+  align-items:center;justify-content:center;
+  backdrop-filter:blur(6px);
+}
+#ad-overlay.show{display:flex;}
+
+.ad-container{
+  width:640px;max-width:95vw;
+  background:#000;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,0.6);
+  position:relative;
+  display:flex;flex-direction:column;
+}
+
+/* Video wrapper — 16:9 */
+.ad-video-wrap{
+  position:relative;
+  width:100%;
+  padding-top:56.25%;/* 16:9 */
+  background:#000;
+  flex-shrink:0;
+}
+.ad-video-wrap video{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* Top HUD – sits over the video */
+.ad-hud{
+  position:absolute;top:0;left:0;right:0;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px;
+  background:linear-gradient(to bottom,rgba(0,0,0,0.7) 0%,transparent 100%);
+  pointer-events:none;
+  z-index:5;
+}
+.ad-hud-label{
+  display:flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:700;
+  color:rgba(255,255,255,0.85);
+  letter-spacing:0.8px;text-transform:uppercase;
+}
+.ad-hud-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:#EF4444;
+  animation:blink 1.2s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+/* Countdown timer badge – bottom-right over video */
+.ad-countdown-badge{
+  position:absolute;bottom:52px;right:14px;
+  background:rgba(0,0,0,0.75);
+  border:1.5px solid rgba(255,255,255,0.25);
+  color:#fff;
+  font-size:13px;font-weight:700;font-family:var(--font);
+  padding:6px 14px;border-radius:8px;
+  z-index:6;
+  pointer-events:none;
+  display:flex;align-items:center;gap:6px;
+  transition:opacity 0.3s;
+}
+.ad-countdown-badge.fade{opacity:0;}
+
+/* Skip button – bottom-right over video, hidden until 5s */
+.ad-skip-btn{
+  position:absolute;bottom:52px;right:14px;
+  background:rgba(0,0,0,0.75);
+  border:1.5px solid rgba(255,255,255,0.5);
+  color:#fff;
+  font-size:13px;font-weight:700;font-family:var(--font);
+  padding:7px 16px;border-radius:8px;
+  cursor:pointer;
+  z-index:7;
+  display:none;
+  align-items:center;gap:6px;
+  transition:background 0.15s;
+}
+.ad-skip-btn:hover{background:rgba(255,255,255,0.2);}
+.ad-skip-btn.show{display:flex;}
+
+/* Close (X) button – top-right corner of entire container */
+.ad-close-btn{
+  position:absolute;top:10px;right:12px;
+  width:30px;height:30px;
+  background:rgba(0,0,0,0.7);
+  border:1.5px solid rgba(255,255,255,0.4);
+  color:#fff;border-radius:50%;
+  font-size:15px;font-weight:700;
+  cursor:pointer;
+  display:none;align-items:center;justify-content:center;
+  font-family:var(--font);
+  z-index:10;
+  transition:background 0.15s;
+}
+.ad-close-btn:hover{background:rgba(255,255,255,0.25);}
+.ad-close-btn.show{display:flex;}
+
+/* Progress bar at very bottom of video */
+.ad-video-progress{
+  position:absolute;bottom:0;left:0;right:0;
+  height:4px;background:rgba(255,255,255,0.2);
+  z-index:6;
+}
+.ad-video-progress-fill{
+  height:100%;background:#2563EB;
+  width:0%;transition:width 0.1s linear;
+}
+
+/* Bottom info bar below video */
+.ad-info-bar{
+  background:#0D1B4B;
+  padding:12px 18px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;flex-shrink:0;
+}
+.ad-brand-row{display:flex;align-items:center;gap:10px;}
+.ad-brand-icon{
+  width:36px;height:36px;border-radius:8px;
+  background:var(--blue);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;font-weight:800;color:#fff;flex-shrink:0;
+}
+.ad-brand-name{font-size:13px;font-weight:700;color:#fff;}
+.ad-brand-tagline{font-size:11px;color:#93C5FD;margin-top:1px;}
+.ad-cta-btn{
+  background:var(--blue);color:#fff;border:none;
+  padding:8px 18px;border-radius:8px;
+  font-size:12px;font-weight:700;cursor:pointer;
+  font-family:var(--font);white-space:nowrap;flex-shrink:0;
+}
+.ad-cta-btn:hover{background:#1D4ED8;}
+
+/* Closing countdown bar (appears after skip) */
+.ad-closing-bar{
+  display:none;
+  background:rgba(0,0,0,0.82);
+  padding:10px 18px;
+  align-items:center;justify-content:space-between;
+  border-top:1px solid rgba(255,255,255,0.1);
+  flex-shrink:0;
+}
+.ad-closing-bar.show{display:flex;}
+.ad-closing-txt{font-size:12px;color:rgba(255,255,255,0.7);}
+.ad-closing-count{
+  font-size:22px;font-weight:800;color:#fff;
+  min-width:32px;text-align:center;line-height:1;
+}
+
+/* ═══ SUBSCRIPTION POPUP ═══ */
+#sub-popup{position:fixed;bottom:24px;right:24px;z-index:800;width:340px;transform:translateY(120%);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);pointer-events:none;}
+#sub-popup.show{transform:translateY(0);pointer-events:all;}
+.sp-card{background:var(--white);border-radius:18px;box-shadow:0 20px 60px rgba(13,27,75,0.18);border:1px solid #E8EEFA;overflow:hidden;}
+.sp-top{background:linear-gradient(135deg,#0D1B4B 0%,#2563EB 100%);padding:16px 18px 14px;}
+.sp-close{position:absolute;top:10px;right:10px;background:rgba(255,255,255,0.15);border:none;color:#fff;width:24px;height:24px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.sp-top-inner{position:relative;}
+.sp-crown{font-size:22px;margin-bottom:6px;}
+.sp-title{font-size:15px;font-weight:800;color:#fff;margin-bottom:3px;}
+.sp-subtitle{font-size:11px;color:#93C5FD;}
+.sp-body{padding:14px 18px;}
+.sp-plans{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.sp-plan{border:1.5px solid var(--gray-light);border-radius:12px;padding:12px 14px;cursor:pointer;transition:all 0.15s;position:relative;}
+.sp-plan:hover{border-color:var(--blue);}
+.sp-plan.featured{border-color:var(--blue);background:var(--blue-pale);}
+.sp-plan-badge{position:absolute;top:-8px;left:12px;background:var(--blue);color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:0.5px;}
+.sp-plan-name{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px;}
+.sp-plan-price{font-size:18px;font-weight:800;color:var(--blue);}
+.sp-plan-price span{font-size:11px;font-weight:500;color:var(--gray);}
+.sp-plan-perks{margin-top:6px;display:flex;flex-direction:column;gap:3px;}
+.sp-plan-perk{font-size:11px;color:var(--gray);display:flex;align-items:center;gap:5px;}
+.sp-plan-perk::before{content:'✓';color:var(--green);font-weight:700;font-size:11px;}
+.sp-btn{width:100%;background:var(--blue);color:#fff;border:none;padding:11px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);}
+.sp-btn:hover{background:#1D4ED8;}
+.sp-dismiss{width:100%;background:none;border:none;color:var(--gray);font-size:12px;cursor:pointer;font-family:var(--font);margin-top:8px;padding:4px;}
+.sp-dismiss:hover{color:var(--navy);}
+
+/* ═══ PRICING MODAL ═══ */
+#pricing-modal{position:fixed;inset:0;background:rgba(15,23,42,0.6);z-index:950;display:none;align-items:center;justify-content:center;}
+#pricing-modal.show{display:flex;}
+.pm-card{background:var(--white);border-radius:24px;width:780px;max-width:95vw;max-height:90vh;overflow-y:auto;padding:2.5rem;box-shadow:0 30px 80px rgba(0,0,0,0.2);}
+.pm-header{text-align:center;margin-bottom:2rem;}
+.pm-header h2{font-size:28px;font-weight:800;color:var(--navy);margin-bottom:8px;}
+.pm-header p{font-size:14px;color:var(--gray);}
+.pm-plans{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:2rem;}
+.pm-plan{border:1.5px solid var(--gray-light);border-radius:16px;padding:1.5rem;text-align:center;position:relative;transition:all 0.2s;}
+.pm-plan:hover{box-shadow:0 8px 30px rgba(37,99,235,0.12);}
+.pm-plan.recommended{border-color:var(--blue);border-width:2px;}
+.pm-plan .rec-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:10px;font-weight:700;padding:3px 14px;border-radius:20px;white-space:nowrap;letter-spacing:0.5px;}
+.pm-plan-icon{font-size:28px;margin-bottom:8px;}
+.pm-plan-name{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:4px;}
+.pm-plan-price{font-size:26px;font-weight:800;color:var(--blue);margin-bottom:4px;}
+.pm-plan-price .period{font-size:12px;font-weight:500;color:var(--gray);}
+.pm-plan-desc{font-size:12px;color:var(--gray);margin-bottom:16px;line-height:1.6;}
+.pm-perks{text-align:left;display:flex;flex-direction:column;gap:7px;margin-bottom:20px;}
+.pm-perk{font-size:12px;color:var(--text);display:flex;align-items:flex-start;gap:7px;line-height:1.4;}
+.pm-perk .ck{color:var(--green);font-weight:700;flex-shrink:0;font-size:13px;}
+.pm-perk .cx{color:#CBD5E1;font-weight:700;flex-shrink:0;font-size:13px;}
+.pm-plan-btn{width:100%;padding:10px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);border:none;}
+.pm-plan-btn.primary{background:var(--blue);color:#fff;}
+.pm-plan-btn.primary:hover{background:#1D4ED8;}
+.pm-plan-btn.ghost{background:var(--blue-pale);color:var(--blue);border:1.5px solid #BFDBFE;}
+.pm-plan-btn.ghost:hover{background:var(--blue);color:#fff;}
+.pm-close-row{text-align:center;}
+.pm-close-row button{background:none;border:none;color:var(--gray);font-size:13px;cursor:pointer;font-family:var(--font);}
+
+/* ═══ NO TOKEN MODAL ═══ */
+#no-token-modal{position:fixed;inset:0;background:rgba(15,23,42,0.6);z-index:960;display:none;align-items:center;justify-content:center;}
+#no-token-modal.show{display:flex;}
+.ntm-card{background:var(--white);border-radius:20px;padding:2rem;width:420px;max-width:90vw;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.2);}
+.ntm-icon{font-size:44px;margin-bottom:14px;}
+.ntm-title{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:8px;}
+.ntm-desc{font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:20px;}
+.ntm-reset{font-size:11px;color:var(--gray);margin-bottom:20px;}
+.ntm-reset span{font-weight:700;color:var(--navy);}
+
 /* COLOR HELPERS */
 .c-blue{background:#DBEAFE;}.c-teal{background:#CCFBF1;}.c-purple{background:#EDE9FE;}.c-orange{background:#FFEDD5;}
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════
-     LANDING PAGE
-═══════════════════════════════════════ -->
+<!-- LANDING -->
 <div id="pg-land" class="page active" style="background:var(--bg);">
   <nav>
     <div class="nav-logo">
@@ -254,10 +485,9 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
       <p style="font-size:16px;color:var(--gray);line-height:1.8;max-width:460px;margin-bottom:2rem;">FitScore membantu recruiter IT menganalisis CV kandidat, mencocokkan dengan job vacancy, dan menemukan talenta terbaik secara otomatis dengan teknologi AI.</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
         <button class="btn-primary" style="padding:14px 28px;font-size:15px;border-radius:10px;" onclick="go('pg-login')">🚀 Mulai Rekrut Gratis</button>
-        <button class="btn-ghost" style="padding:14px 28px;font-size:15px;border-radius:10px;">Lihat Demo ↓</button>
+        <button class="btn-ghost" style="padding:14px 28px;font-size:15px;border-radius:10px;" onclick="openPricingModal()">💎 Lihat Paket Pro →</button>
       </div>
     </div>
-    <!-- preview card -->
     <div style="background:var(--white);border-radius:20px;box-shadow:0 20px 60px rgba(37,99,235,0.12);padding:1.75rem;position:relative;overflow:hidden;">
       <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--cyan));"></div>
       <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:14px;">Dashboard Recruiter — CV Masuk</div>
@@ -274,20 +504,12 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
           <div style="display:flex;gap:5px;"><span class="skill-pill">React</span><span class="skill-pill">Vue</span></div>
           <div class="badge badge-hot">⚡ Hot</div>
         </div>
-        <div style="display:flex;align-items:center;gap:12px;padding:10px;background:#FAFBFF;border-radius:10px;border:1px solid #E8EEFA;">
-          <div class="cv-avatar c-purple" style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--purple);">DW</div>
-          <div style="flex:1;"><div style="font-size:13px;font-weight:700;color:var(--navy);">Dwi Wulandari</div><div style="font-size:11px;color:var(--gray);">Data Scientist · 3 thn</div></div>
-          <div style="display:flex;gap:5px;"><span class="skill-pill">ML</span><span class="skill-pill">TensorFlow</span></div>
-          <div class="badge badge-open">Review</div>
-        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     LOGIN / REGISTER
-═══════════════════════════════════════ -->
+<!-- LOGIN / REGISTER -->
 <div id="pg-login" class="page login-page">
   <nav>
     <div class="nav-logo" onclick="go('pg-land')">
@@ -310,7 +532,6 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
       </div>
     </div>
     <div class="login-right">
-      <!-- LOGIN FORM -->
       <div class="login-card" id="lc-login">
         <h2>Masuk sebagai Recruiter</h2>
         <p class="sub">Kelola rekrutmen IT kamu dengan lebih efisien</p>
@@ -320,7 +541,6 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
         <div class="divider">atau</div>
         <div class="toggle-txt">Belum punya akun? <a onclick="showReg()">Daftar sekarang</a></div>
       </div>
-      <!-- REGISTER FORM -->
       <div class="login-card" id="lc-reg" style="display:none;">
         <h2>Daftar sebagai Recruiter</h2>
         <p class="sub">Buat akun untuk mulai merekrut kandidat IT terbaik</p>
@@ -347,9 +567,7 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     MAIN APP (sidebar shell)
-═══════════════════════════════════════ -->
+<!-- MAIN APP -->
 <div id="pg-app" class="page">
   <nav>
     <div class="nav-logo">
@@ -358,6 +576,14 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
       <div class="logo-sub">FOR RECRUITERS</div>
     </div>
     <div class="nav-right">
+      <div id="nav-token-bar" class="token-bar">
+        <div>
+          <div class="tk-label">Token Cek Hari Ini</div>
+          <div class="tk-total">Reset setiap hari</div>
+        </div>
+        <div class="tk-val" id="nav-token-val">3/3</div>
+      </div>
+      <button class="btn-primary" style="background:linear-gradient(135deg,#7C3AED,#2563EB);font-size:12px;padding:7px 14px;" onclick="openPricingModal()">💎 Upgrade Pro</button>
       <div style="text-align:right;">
         <div class="nav-name" id="nav-nm">—</div>
         <div class="nav-company" id="nav-co">—</div>
@@ -367,7 +593,6 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
     </div>
   </nav>
   <div class="shell">
-    <!-- SIDEBAR -->
     <div class="sidebar">
       <div class="sb-section">MENU UTAMA</div>
       <div class="sb-item active" id="sb-dashboard" onclick="showSection('dashboard')">
@@ -377,16 +602,18 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
       <div class="sb-item" id="sb-vacancies" onclick="showSection('vacancies')">
         <span class="sb-icon">💼</span> Job Vacancies
       </div>
+      <div class="sb-section">LANGGANAN</div>
+      <div class="sb-item" onclick="openPricingModal()">
+        <span class="sb-icon">💎</span> Upgrade Plan
+      </div>
       <div class="sb-section">AKUN</div>
       <div class="sb-item" onclick="doLogout()">
         <span class="sb-icon">🚪</span> Keluar
       </div>
     </div>
 
-    <!-- MAIN CONTENT -->
     <div class="main-area" id="main-area">
-
-      <!-- ── DASHBOARD SECTION ── -->
+      <!-- DASHBOARD -->
       <div id="sec-dashboard">
         <div class="dash-header">
           <div>
@@ -399,9 +626,8 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
           <div class="stat-card"><div class="sc-label">Total CV Masuk</div><div class="sc-val" id="stat-total">12</div><div class="sc-sub">↑ 3 baru minggu ini</div></div>
           <div class="stat-card"><div class="sc-label">Belum Direview</div><div class="sc-val" id="stat-new">5</div><div class="sc-sub" style="color:var(--amber);">Perlu ditinjau</div></div>
           <div class="stat-card"><div class="sc-label">Job Vacancy Aktif</div><div class="sc-val" id="stat-vac">0</div><div class="sc-sub" style="color:var(--blue);">Posisi terbuka</div></div>
-          <div class="stat-card"><div class="sc-label">Analisis Dilakukan</div><div class="sc-val">8</div><div class="sc-sub">Total match checks</div></div>
+          <div class="stat-card"><div class="sc-label">Token Tersisa Hari Ini</div><div class="sc-val" id="stat-token">3</div><div class="sc-sub" style="color:var(--blue);" id="stat-token-sub">dari 3 cek/hari</div></div>
         </div>
-        <!-- Filters -->
         <div class="filters-row">
           <div class="search-box">
             <span class="search-icon">🔍</span>
@@ -420,53 +646,52 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
             <option>3–5 tahun</option><option>5+ tahun</option>
           </select>
         </div>
-        <!-- CV Table -->
         <div class="cv-table-wrap">
           <table class="cv-table" id="cv-table">
             <thead>
-              <tr>
-                <th>Kandidat</th><th>Bidang</th><th>Pengalaman</th>
-                <th>Top Skills</th><th>Status</th><th>Aksi</th>
-              </tr>
+              <tr><th>Kandidat</th><th>Bidang</th><th>Pengalaman</th><th>Top Skills</th><th>Status</th><th>Aksi</th></tr>
             </thead>
             <tbody id="cv-tbody"></tbody>
           </table>
         </div>
       </div>
 
-      <!-- ── CV DETAIL SECTION ── -->
+      <!-- CV DETAIL -->
       <div id="sec-cv-detail" style="display:none;">
         <div class="cv-detail-body">
           <button class="back-btn" onclick="showSection('dashboard')">← Kembali ke Dashboard</button>
           <div class="cv-detail-grid">
-            <!-- LEFT: CV Data -->
             <div id="cv-detail-left"></div>
-            <!-- RIGHT: Analysis Panel -->
             <div class="analysis-panel">
               <div class="ap-card">
                 <div class="ap-title">⚡ Cek Kecocokan</div>
                 <div class="ap-sub">Pilih job vacancy lalu analisis kecocokan CV ini</div>
+                <div id="token-info-box" class="token-info-box">
+                  <div class="tib-left">
+                    <div class="tib-label">Token Tersisa</div>
+                    <div class="tib-val" id="tib-val">3 cek tersisa</div>
+                    <div class="tib-reset">Reset setiap hari pukul 00:00</div>
+                  </div>
+                  <div class="tib-right">
+                    <button onclick="openPricingModal()">Upgrade ✨</button>
+                  </div>
+                </div>
                 <div class="vacancy-select-wrap">
                   <label>Pilih Job Vacancy</label>
-                  <select id="vac-selector">
-                    <option value="">— Pilih vacancy —</option>
-                  </select>
+                  <select id="vac-selector"><option value="">— Pilih vacancy —</option></select>
                 </div>
                 <button class="btn-analyze" id="btn-analyze" onclick="runAnalysis()">
                   <span id="analyze-txt">🔍 Analisis Kecocokan</span>
                   <div class="spin" id="spin-el"></div>
                 </button>
-                <div class="result-mini" id="result-mini">
-                  <div class="divider-line"></div>
-                  <!-- filled by JS -->
-                </div>
+                <div class="result-mini" id="result-mini"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ── VACANCIES SECTION ── -->
+      <!-- VACANCIES -->
       <div id="sec-vacancies" style="display:none;">
         <div class="vac-header">
           <div>
@@ -485,7 +710,7 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
         </div>
       </div>
 
-      <!-- ── ADD VACANCY SECTION ── -->
+      <!-- ADD VACANCY -->
       <div id="sec-add-vacancy" style="display:none;">
         <div class="addvac-body">
           <button class="back-btn" onclick="showSection('vacancies')">← Kembali ke Vacancies</button>
@@ -506,19 +731,14 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
             </div>
             <div class="form-row">
               <div class="fg"><label>Tipe Pekerjaan</label>
-                <select id="vac-type">
-                  <option>Full-time</option><option>Part-time</option><option>Contract</option><option>Internship</option>
-                </select>
+                <select id="vac-type"><option>Full-time</option><option>Part-time</option><option>Contract</option><option>Internship</option></select>
               </div>
               <div class="fg"><label>Lokasi</label><input type="text" id="vac-location" placeholder="Contoh: Jakarta / Remote"/></div>
             </div>
             <div class="form-row">
               <div class="fg"><label>Rentang Gaji (Opsional)</label><input type="text" id="vac-salary" placeholder="Contoh: Rp 15–25 juta / bulan"/></div>
               <div class="fg"><label>Pengalaman Minimum</label>
-                <select id="vac-min-exp">
-                  <option>Fresh Graduate</option><option>1 tahun</option><option>2 tahun</option>
-                  <option>3 tahun</option><option>5 tahun</option>
-                </select>
+                <select id="vac-min-exp"><option>Fresh Graduate</option><option>1 tahun</option><option>2 tahun</option><option>3 tahun</option><option>5 tahun</option></select>
               </div>
             </div>
           </div>
@@ -542,10 +762,203 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
 
-    </div><!-- /main-area -->
-  </div><!-- /shell -->
-</div><!-- /pg-app -->
+<!-- ═══════════════════════════════════════
+     VIDEO AD OVERLAY
+     ════════════════════════════════════════
+     GANTI "YOUR_VIDEO_URL_HERE.mp4" dengan link MP4 iklan Anda.
+     Contoh: src="https://cdn.example.com/iklan-dicoding.mp4"
+     ════════════════════════════════════════ -->
+<div id="ad-overlay">
+  <div class="ad-container">
+
+    <!-- Tombol X (muncul setelah 5s skip + 3s countdown) -->
+    <button class="ad-close-btn" id="ad-close-btn" onclick="closeAd()">✕</button>
+
+    <!-- VIDEO WRAPPER -->
+    <div class="ad-video-wrap">
+
+      <!-- HUD atas: label IKLAN + dot merah -->
+      <div class="ad-hud">
+        <div class="ad-hud-label">
+          <span class="ad-hud-dot"></span>
+          Iklan Sponsor
+        </div>
+      </div>
+
+      <!-- Elemen video — ganti src dengan URL MP4 Anda -->
+      <video
+        id="ad-video"
+        src="src/iklan_fitrecruiters.mp4"
+        playsinline
+        preload="auto"
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      </video>
+
+      <!-- Countdown badge (tampil 0-5 detik) -->
+      <div class="ad-countdown-badge" id="ad-countdown-badge">
+        <span>⏱</span>
+        <span id="ad-countdown-txt">Skip dalam 5 detik</span>
+      </div>
+
+      <!-- Skip button (tampil setelah 5 detik) -->
+      <button class="ad-skip-btn" id="ad-skip-btn" onclick="skipAd()">
+        Lewati Iklan ›
+      </button>
+
+      <!-- Progress bar bawah video -->
+      <div class="ad-video-progress">
+        <div class="ad-video-progress-fill" id="ad-prog-fill"></div>
+      </div>
+
+    </div>
+    <!-- /VIDEO WRAPPER -->
+
+    <!-- Bar bawah: info brand + tombol CTA -->
+    <div class="ad-info-bar">
+      <div class="ad-brand-row">
+        <div class="ad-brand-icon">🎓</div>
+        <div>
+          <div class="ad-brand-name">Dicoding Academy</div>
+          <div class="ad-brand-tagline">Platform belajar coding #1 di Indonesia</div>
+        </div>
+      </div>
+      <button class="ad-cta-btn" onclick="window.open('https://dicoding.com/enterprise','_blank')">
+        Coba Gratis →
+      </button>
+    </div>
+
+    <!-- Closing countdown bar (muncul setelah klik Skip) -->
+    <div class="ad-closing-bar" id="ad-closing-bar">
+      <div class="ad-closing-txt">Iklan akan ditutup dalam</div>
+      <div class="ad-closing-count" id="ad-closing-count">3</div>
+      <div class="ad-closing-txt">detik...</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════ SUBSCRIPTION POPUP ═══════════ -->
+<div id="sub-popup">
+  <div class="sp-card">
+    <div class="sp-top">
+      <div class="sp-top-inner">
+        <button class="sp-close" onclick="dismissSubPopup()">✕</button>
+        <div class="sp-crown">👑</div>
+        <div class="sp-title">Upgrade ke FitScore Pro</div>
+        <div class="sp-subtitle">Rekrut tanpa batas, tanpa iklan</div>
+      </div>
+    </div>
+    <div class="sp-body">
+      <div class="sp-plans">
+        <div class="sp-plan featured">
+          <div class="sp-plan-badge">POPULER</div>
+          <div class="sp-plan-name">Recruiter Pro</div>
+          <div class="sp-plan-price">Rp 149.999 <span>/bulan</span></div>
+          <div class="sp-plan-perks">
+            <div class="sp-plan-perk">30 cek CV per hari</div>
+            <div class="sp-plan-perk">Analisis lebih detail</div>
+            <div class="sp-plan-perk">Tanpa iklan</div>
+          </div>
+        </div>
+        <div class="sp-plan">
+          <div class="sp-plan-name">Recruiter Ultra</div>
+          <div class="sp-plan-price">Rp 499.999 <span>/bulan</span></div>
+          <div class="sp-plan-perks">
+            <div class="sp-plan-perk">Unlimited cek CV</div>
+            <div class="sp-plan-perk">Akses FitScore Pro website</div>
+            <div class="sp-plan-perk">Tanpa iklan selamanya</div>
+          </div>
+        </div>
+      </div>
+      <button class="sp-btn" onclick="openPricingModal()">Lihat Semua Paket →</button>
+      <button class="sp-dismiss" onclick="dismissSubPopup()">Nanti saja, terima kasih</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PRICING MODAL ═══════════ -->
+<div id="pricing-modal">
+  <div class="pm-card">
+    <div class="pm-header">
+      <div style="font-size:11px;font-weight:700;color:var(--blue);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">✦ Paket Langganan FitScore</div>
+      <h2>Pilih Plan yang Tepat untuk Kamu</h2>
+      <p>Tingkatkan efisiensi rekrutmen IT kamu dengan fitur AI premium</p>
+    </div>
+    <div class="pm-plans">
+      <div class="pm-plan">
+        <div class="pm-plan-icon">🆓</div>
+        <div class="pm-plan-name">Gratis</div>
+        <div class="pm-plan-price">Rp 0 <span class="period">/ bulan</span></div>
+        <div class="pm-plan-desc">Cocok untuk recruiter yang baru mulai</div>
+        <div class="pm-perks">
+          <div class="pm-perk"><span class="ck">✓</span> 3 cek CV per hari</div>
+          <div class="pm-perk"><span class="ck">✓</span> Analisis dasar kecocokan</div>
+          <div class="pm-perk"><span class="ck">✓</span> Dashboard kandidat</div>
+          <div class="pm-perk"><span class="ck">✓</span> Job vacancy management</div>
+          <div class="pm-perk"><span class="cx">✗</span> <span style="color:#CBD5E1;">Analisis detail</span></div>
+          <div class="pm-perk"><span class="cx">✗</span> <span style="color:#CBD5E1;">Tanpa iklan</span></div>
+          <div class="pm-perk"><span class="cx">✗</span> <span style="color:#CBD5E1;">FitScore Pro website</span></div>
+        </div>
+        <button class="pm-plan-btn ghost" onclick="closePricingModal()">Gunakan Gratis</button>
+      </div>
+      <div class="pm-plan recommended">
+        <div class="rec-badge">⭐ PALING POPULER</div>
+        <div class="pm-plan-icon">💎</div>
+        <div class="pm-plan-name">Recruiter Pro</div>
+        <div class="pm-plan-price">Rp 149.999 <span class="period">/ bulan</span></div>
+        <div class="pm-plan-desc">Untuk recruiter aktif yang butuh lebih banyak analisis</div>
+        <div class="pm-perks">
+          <div class="pm-perk"><span class="ck">✓</span> <strong>30 cek CV per hari</strong></div>
+          <div class="pm-perk"><span class="ck">✓</span> Analisis kecocokan lebih detail</div>
+          <div class="pm-perk"><span class="ck">✓</span> Rekomendasi kursus premium</div>
+          <div class="pm-perk"><span class="ck">✓</span> <strong>Tanpa iklan sama sekali</strong></div>
+          <div class="pm-perk"><span class="ck">✓</span> Dashboard kandidat lengkap</div>
+          <div class="pm-perk"><span class="ck">✓</span> Job vacancy management</div>
+          <div class="pm-perk"><span class="cx">✗</span> <span style="color:#CBD5E1;">FitScore Pro website</span></div>
+        </div>
+        <button class="pm-plan-btn primary" onclick="subscribePro()">🚀 Mulai Berlangganan Pro</button>
+      </div>
+      <div class="pm-plan">
+        <div class="pm-plan-icon">🏆</div>
+        <div class="pm-plan-name">Recruiter Ultra</div>
+        <div class="pm-plan-price">Rp 499.999 <span class="period">/ bulan</span></div>
+        <div class="pm-plan-desc">Untuk tim rekrutmen yang membutuhkan akses penuh</div>
+        <div class="pm-perks">
+          <div class="pm-perk"><span class="ck">✓</span> <strong>Unlimited cek CV</strong></div>
+          <div class="pm-perk"><span class="ck">✓</span> Analisis kecocokan ultra-detail</div>
+          <div class="pm-perk"><span class="ck">✓</span> Semua fitur Recruiter Pro</div>
+          <div class="pm-perk"><span class="ck">✓</span> <strong>Tanpa iklan selamanya</strong></div>
+          <div class="pm-perk"><span class="ck">✓</span> <strong>Akses FitScore Pro website</strong></div>
+          <div class="pm-perk"><span class="ck">✓</span> Priority customer support</div>
+          <div class="pm-perk"><span class="ck">✓</span> Early access fitur baru</div>
+        </div>
+        <button class="pm-plan-btn ghost" onclick="subscribeUltra()">⚡ Mulai Berlangganan Ultra</button>
+      </div>
+    </div>
+    <div style="background:#F8FAFF;border:1px solid #BFDBFE;border-radius:12px;padding:14px 18px;margin-bottom:1.5rem;text-align:center;">
+      <span style="font-size:12px;color:var(--gray);">🔒 Pembayaran aman · Batalkan kapan saja · Tanpa biaya tersembunyi · Garansi uang kembali 7 hari</span>
+    </div>
+    <div class="pm-close-row">
+      <button onclick="closePricingModal()">← Kembali ke Dashboard</button>
+    </div>
+  </div>
+</div>
+
+<!-- NO TOKEN MODAL -->
+<div id="no-token-modal">
+  <div class="ntm-card">
+    <div class="ntm-icon">🔒</div>
+    <div class="ntm-title">Token Harian Habis!</div>
+    <div class="ntm-desc">Kamu sudah menggunakan 3 token cek CV gratis hari ini. Upgrade ke <strong>Recruiter Pro</strong> untuk mendapatkan 30 cek/hari atau ke <strong>Recruiter Ultra</strong> untuk cek tanpa batas!</div>
+    <div class="ntm-reset">Token gratis reset pada: <span id="ntm-reset-time">00:00 besok</span></div>
+    <button class="btn-primary" style="width:100%;padding:12px;border-radius:9px;font-size:14px;margin-bottom:10px;" onclick="closeNoTokenModal();openPricingModal()">💎 Lihat Paket Pro & Ultra</button>
+    <button class="btn-ghost" style="width:100%;padding:11px;" onclick="closeNoTokenModal()">Kembali ke Dashboard</button>
+  </div>
+</div>
 
 <!-- SUCCESS MODAL -->
 <div class="modal-backdrop" id="modal-success">
@@ -560,232 +973,97 @@ nav{background:var(--white);border-bottom:1px solid #E2E8F0;padding:0 2.5rem;hei
 </div>
 
 <script>
-/* ══════════════════════════════════
-   STATE
-══════════════════════════════════ */
+/* ══ STATE ══ */
 let user = null;
 let vacancies = [];
 let currentCV = null;
+let pendingAnalysisCallback = null;
+let subPopupTimer = null;
+let subPopupDismissed = false;
 
-/* ══════════════════════════════════
-   DEMO CV DATA (12 kandidat IT)
-══════════════════════════════════ */
-const demoCV = [
-  {
-    id:1, name:"Rizky Hidayat", initials:"RH", colorClass:"c-blue", textColor:"var(--blue)",
-    role:"Backend Engineer", exp:"4 tahun", expBand:"3–5 tahun",
-    location:"Jakarta", edu:"S1 Teknik Informatika — Universitas Indonesia",
-    email:"rizky.h@email.com", linkedin:"linkedin.com/in/rizkyhidayat",
-    summary:"Backend engineer berpengalaman 4 tahun dengan fokus di Python, FastAPI, dan infrastruktur cloud. Pernah handle sistem dengan 100rb+ daily active users.",
-    skills:["Python","FastAPI","PostgreSQL","Redis","Docker","AWS"],
-    softskills:["Problem Solving","Leadership","Komunikasi","Mentoring"],
-    knowledge:["Microservices","REST API","CI/CD","Agile"],
-    status:"Baru",
-    experiences:[
-      {company:"Tokopedia",role:"Senior Backend Engineer",period:"Mar 2022 – Sekarang",duration:"2 thn 1 bln",desc:"Membangun dan maintain microservices untuk fitur pembayaran. Menangani 50rb+ transaksi/hari."},
-      {company:"Bukalapak",role:"Backend Developer",period:"Jan 2020 – Feb 2022",duration:"2 thn 1 bln",desc:"Mengembangkan API untuk platform marketplace. Stack: Python, Django, MySQL."}
-    ]
-  },
-  {
-    id:2, name:"Sarah Aulia", initials:"SA", colorClass:"c-teal", textColor:"var(--green)",
-    role:"Frontend Developer", exp:"2 tahun", expBand:"1–3 tahun",
-    location:"Bandung", edu:"S1 Sistem Informasi — ITB",
-    email:"sarah.aulia@email.com", linkedin:"linkedin.com/in/sarahaulia",
-    summary:"Frontend developer passionate tentang UI/UX dengan keahlian di React dan Vue.js. Suka membuat antarmuka yang clean dan user-friendly.",
-    skills:["React","Vue.js","TypeScript","Tailwind CSS","Next.js","Figma"],
-    softskills:["Kreativitas","Kolaborasi","Detail-oriented","Komunikasi"],
-    knowledge:["UI/UX Principles","Responsive Design","Web Performance","Accessibility"],
-    status:"Hot",
-    experiences:[
-      {company:"Gojek",role:"Frontend Developer",period:"Jun 2022 – Sekarang",duration:"1 thn 10 bln",desc:"Mengembangkan fitur-fitur baru di dashboard merchant Gojek menggunakan React dan TypeScript."},
-      {company:"Freelance",role:"Frontend Developer",period:"Jan 2022 – Mei 2022",duration:"5 bln",desc:"Membangun website dan landing page untuk berbagai klien UMKM."}
-    ]
-  },
-  {
-    id:3, name:"Dwi Wulandari", initials:"DW", colorClass:"c-purple", textColor:"var(--purple)",
-    role:"Data Scientist", exp:"3 tahun", expBand:"3–5 tahun",
-    location:"Jakarta", edu:"S1 Statistika — Universitas Gadjah Mada",
-    email:"dwi.w@email.com", linkedin:"linkedin.com/in/dwiwulandari",
-    summary:"Data scientist dengan keahlian di machine learning, NLP, dan data visualization. Berpengalaman di industri fintech dan e-commerce.",
-    skills:["Python","TensorFlow","PyTorch","SQL","Pandas","Scikit-learn"],
-    softskills:["Analytical Thinking","Presentasi","Storytelling Data","Teamwork"],
-    knowledge:["Machine Learning","Deep Learning","NLP","Data Pipeline","BI Tools"],
-    status:"Review",
-    experiences:[
-      {company:"OVO",role:"Data Scientist",period:"Apr 2021 – Sekarang",duration:"3 thn",desc:"Membangun model prediksi fraud detection dengan akurasi 94%. Membuat dashboard analitik untuk tim bisnis."},
-      {company:"Shopee",role:"Data Analyst",period:"Jul 2020 – Mar 2021",duration:"9 bln",desc:"Analisis perilaku pengguna dan membuat laporan insight untuk product team."}
-    ]
-  },
-  {
-    id:4, name:"Budi Santoso", initials:"BS", colorClass:"c-orange", textColor:"var(--amber)",
-    role:"DevOps Engineer", exp:"5 tahun", expBand:"5+ tahun",
-    location:"Surabaya", edu:"S1 Ilmu Komputer — Universitas Airlangga",
-    email:"budi.s@email.com", linkedin:"linkedin.com/in/budisantoso",
-    summary:"DevOps engineer senior dengan 5 tahun pengalaman membangun dan mengelola infrastruktur cloud skala besar. Expert di Kubernetes dan CI/CD.",
-    skills:["Kubernetes","Docker","Terraform","AWS","GCP","Jenkins","Ansible"],
-    softskills:["Problem Solving","Dokumentasi","On-call Management","Mentoring"],
-    knowledge:["Cloud Architecture","IaC","Site Reliability","Security"],
-    status:"Baru",
-    experiences:[
-      {company:"Traveloka",role:"Senior DevOps Engineer",period:"Feb 2020 – Sekarang",duration:"4 thn 2 bln",desc:"Mengelola infrastruktur Kubernetes dengan 500+ pods. Implementasi GitOps workflow yang mempersingkat deployment 60%."},
-      {company:"DANA",role:"DevOps Engineer",period:"Mar 2019 – Jan 2020",duration:"11 bln",desc:"Setup dan maintain CI/CD pipeline menggunakan Jenkins dan GitLab CI."}
-    ]
-  },
-  {
-    id:5, name:"Citra Permata", initials:"CP", colorClass:"c-blue", textColor:"var(--blue)",
-    role:"Mobile Developer", exp:"2 tahun", expBand:"1–3 tahun",
-    location:"Yogyakarta", edu:"S1 Teknik Informatika — Universitas Atma Jaya",
-    email:"citra.p@email.com", linkedin:"linkedin.com/in/citrapermata",
-    summary:"Mobile developer spesialis Flutter dan React Native. Telah merilis 4 aplikasi di App Store dan Play Store dengan total 100k+ downloads.",
-    skills:["Flutter","Dart","React Native","Firebase","Swift","Kotlin"],
-    softskills:["Kreatif","Self-motivated","Cepat Belajar","Time Management"],
-    knowledge:["Mobile UI Patterns","App Performance","Push Notifications","App Store Optimization"],
-    status:"Baru",
-    experiences:[
-      {company:"Kita Bisa",role:"Flutter Developer",period:"Jul 2022 – Sekarang",duration:"1 thn 9 bln",desc:"Membangun aplikasi donasi mobile cross-platform menggunakan Flutter. 50k+ downloads di Play Store."},
-      {company:"Startup Lokal",role:"Mobile Intern",period:"Jan 2022 – Jun 2022",duration:"6 bln",desc:"Membantu pengembangan fitur aplikasi e-commerce mobile."}
-    ]
-  },
-  {
-    id:6, name:"Ahmad Fauzi", initials:"AF", colorClass:"c-teal", textColor:"var(--green)",
-    role:"Full Stack Developer", exp:"3 tahun", expBand:"3–5 tahun",
-    location:"Jakarta", edu:"D3 Manajemen Informatika — Politeknik Negeri Jakarta",
-    email:"ahmad.f@email.com", linkedin:"linkedin.com/in/ahmadfauzi",
-    summary:"Full stack developer dengan keahlian di Node.js untuk backend dan React untuk frontend. Berpengalaman di startup e-commerce dan SaaS.",
-    skills:["Node.js","React","MongoDB","Express","GraphQL","TypeScript"],
-    softskills:["Adaptif","Fast Learner","Kolaborasi","Ownership"],
-    knowledge:["REST API","GraphQL","Database Design","Agile/Scrum"],
-    status:"Review",
-    experiences:[
-      {company:"Ralali.com",role:"Full Stack Developer",period:"Mar 2021 – Sekarang",duration:"3 thn",desc:"Mengembangkan platform B2B procurement dari frontend hingga backend. Reduce API latency 40%."},
-      {company:"Freelance",role:"Web Developer",period:"Jun 2020 – Feb 2021",duration:"9 bln",desc:"Membuat website dan web app untuk berbagai klien."}
-    ]
-  },
-  {
-    id:7, name:"Indah Pratiwi", initials:"IP", colorClass:"c-purple", textColor:"var(--purple)",
-    role:"UI/UX Designer", exp:"4 tahun", expBand:"3–5 tahun",
-    location:"Bali", edu:"S1 Desain Komunikasi Visual — ISI Yogyakarta",
-    email:"indah.p@email.com", linkedin:"linkedin.com/in/indahpratiwi",
-    summary:"UI/UX designer berpengalaman dengan track record merancang produk digital yang digunakan jutaan user. Expert di Figma dan design system.",
-    skills:["Figma","Adobe XD","Principle","Zeplin","HTML/CSS","Framer"],
-    softskills:["Empati User","Presentasi","Storytelling","Kolaborasi"],
-    knowledge:["Design Thinking","User Research","Usability Testing","Design System"],
-    status:"Hot",
-    experiences:[
-      {company:"Tiket.com",role:"Senior UI/UX Designer",period:"Jan 2021 – Sekarang",duration:"3 thn 3 bln",desc:"Lead designer untuk aplikasi mobile Tiket.com. Redesign onboarding flow meningkatkan konversi 23%."},
-      {company:"Agency Digital",role:"UI Designer",period:"Mar 2020 – Des 2020",duration:"10 bln",desc:"Mendesain antarmuka web dan mobile untuk berbagai klien brand."}
-    ]
-  },
-  {
-    id:8, name:"Fajar Nugroho", initials:"FN", colorClass:"c-orange", textColor:"var(--amber)",
-    role:"Backend Engineer", exp:"1 tahun", expBand:"0–1 tahun",
-    location:"Semarang", edu:"S1 Teknik Informatika — UNDIP",
-    email:"fajar.n@email.com", linkedin:"linkedin.com/in/fajarnugroho",
-    summary:"Junior backend engineer fresh graduate dengan semangat belajar tinggi. Aktif berkontribusi di open source dan memiliki beberapa personal project.",
-    skills:["Go","Python","MySQL","Redis","Docker","Linux"],
-    softskills:["Eagerness to Learn","Problem Solving","Kerja Keras","Inisiatif"],
-    knowledge:["REST API","Database","Version Control","Basic Cloud"],
-    status:"Baru",
-    experiences:[
-      {company:"Startup Fintech",role:"Backend Intern",period:"Sep 2023 – Feb 2024",duration:"6 bln",desc:"Membantu pengembangan API payment gateway menggunakan Go. Fixing bugs dan menulis unit tests."}
-    ]
-  },
-  {
-    id:9, name:"Lia Rahayu", initials:"LR", colorClass:"c-blue", textColor:"var(--blue)",
-    role:"Data Analyst", exp:"2 tahun", expBand:"1–3 tahun",
-    location:"Jakarta", edu:"S1 Matematika — Universitas Padjadjaran",
-    email:"lia.r@email.com", linkedin:"linkedin.com/in/liarahayu",
-    summary:"Data analyst dengan keahlian di SQL, Python, dan business intelligence tools. Berpengalaman mengubah data mentah menjadi insight actionable.",
-    skills:["SQL","Python","Tableau","Looker","Excel","dbt"],
-    softskills:["Analytical","Komunikasi","Presentasi","Detail-oriented"],
-    knowledge:["Business Intelligence","Data Warehouse","ELT Pipeline","Statistical Analysis"],
-    status:"Review",
-    experiences:[
-      {company:"Shopee",role:"Data Analyst",period:"Aug 2022 – Sekarang",duration:"1 thn 8 bln",desc:"Menganalisis data transaksi untuk mengidentifikasi trend dan peluang bisnis. Membuat dashboard eksekutif mingguan."},
-      {company:"Startup EdTech",role:"Business Analyst Intern",period:"Feb 2022 – Jul 2022",duration:"6 bln",desc:"Analisis data pengguna dan membuat laporan performa produk."}
-    ]
-  },
-  {
-    id:10, name:"Kevin Pratama", initials:"KP", colorClass:"c-teal", textColor:"var(--green)",
-    role:"Backend Engineer", exp:"6 tahun", expBand:"5+ tahun",
-    location:"Jakarta", edu:"S1 Ilmu Komputer — Universitas Bina Nusantara",
-    email:"kevin.p@email.com", linkedin:"linkedin.com/in/kevinpratama",
-    summary:"Senior backend engineer dengan 6 tahun pengalaman di sistem berskala besar. Expert di Java, Spring Boot, dan arsitektur distributed systems.",
-    skills:["Java","Spring Boot","Kafka","Elasticsearch","PostgreSQL","Kubernetes"],
-    softskills:["Technical Leadership","Arsitektur Design","Mentoring","Problem Solving"],
-    knowledge:["Distributed Systems","Event-driven Architecture","High Availability","Performance Tuning"],
-    status:"Hot",
-    experiences:[
-      {company:"Bank BCA Digital",role:"Lead Backend Engineer",period:"Jan 2021 – Sekarang",duration:"3 thn 3 bln",desc:"Memimpin tim 5 engineer untuk membangun core banking API. Sistem handle 2jt+ transaksi/hari."},
-      {company:"Fintech Startup",role:"Backend Engineer",period:"Mar 2018 – Des 2020",duration:"2 thn 9 bln",desc:"Pengembangan sistem payment dan wallet digital menggunakan Spring Boot."}
-    ]
-  },
-  {
-    id:11, name:"Nanda Kusuma", initials:"NK", colorClass:"c-purple", textColor:"var(--purple)",
-    role:"Mobile Developer", exp:"3 tahun", expBand:"3–5 tahun",
-    location:"Bandung", edu:"S1 Teknik Informatika — Universitas Telkom",
-    email:"nanda.k@email.com", linkedin:"linkedin.com/in/nandakusuma",
-    summary:"Mobile developer Android/iOS dengan pengalaman 3 tahun. Spesialis di React Native dan telah deliver 6+ aplikasi mobile production.",
-    skills:["React Native","Swift","Kotlin","Firebase","Redux","Jest"],
-    softskills:["Detail-oriented","Ownership","Kolaborasi","Komunikasi"],
-    knowledge:["Native Mobile Dev","Cross-platform","App Performance","CI/CD Mobile"],
-    status:"Baru",
-    experiences:[
-      {company:"Grab",role:"Mobile Developer",period:"Nov 2021 – Sekarang",duration:"2 thn 5 bln",desc:"Mengembangkan fitur driver app Grab menggunakan React Native. Improve app performance 30%."},
-      {company:"Startup Lokal",role:"Android Developer",period:"Mar 2021 – Okt 2021",duration:"8 bln",desc:"Membangun aplikasi delivery food native Android."}
-    ]
-  },
-  {
-    id:12, name:"Reza Firmansyah", initials:"RF", colorClass:"c-orange", textColor:"var(--amber)",
-    role:"Cybersecurity Engineer", exp:"4 tahun", expBand:"3–5 tahun",
-    location:"Jakarta", edu:"S1 Teknik Informatika — UI",
-    email:"reza.f@email.com", linkedin:"linkedin.com/in/rezafirmansyah",
-    summary:"Cybersecurity engineer dengan sertifikasi OSCP dan CEH. Spesialis penetration testing, vulnerability assessment, dan security audit.",
-    skills:["Penetration Testing","Kali Linux","Burp Suite","Python","Metasploit","SIEM"],
-    softskills:["Analytical","Ketelitian","Reporting","Etika Kerja"],
-    knowledge:["Network Security","Web Security","Cloud Security","Compliance","OWASP"],
-    status:"Review",
-    experiences:[
-      {company:"Mandiri Sekuritas",role:"Cybersecurity Engineer",period:"Feb 2021 – Sekarang",duration:"3 thn 2 bln",desc:"Melakukan penetration testing rutin dan security audit. Berhasil identify dan mitigate 50+ critical vulnerabilities."},
-      {company:"Konsultan IT",role:"Security Analyst",period:"Apr 2020 – Jan 2021",duration:"10 bln",desc:"Security assessment untuk berbagai klien perbankan dan fintech."}
-    ]
+/* ══ AD STATE ══ */
+let adSkipInterval = null;
+let adCloseInterval = null;
+let adSkippable = false;
+
+/* ══ TOKEN SYSTEM ══ */
+const FREE_DAILY_LIMIT = 3;
+const PRO_DAILY_LIMIT = 30;
+function getTodayKey(){return 'fitscoreTokens_'+new Date().toDateString();}
+function getTokensLeft(){
+  if(user && user.plan==='ultra') return Infinity;
+  if(user && user.plan==='pro'){
+    const stored = localStorage.getItem('fitscoreTokensPro_'+new Date().toDateString());
+    return stored===null ? PRO_DAILY_LIMIT : parseInt(stored);
   }
+  const stored = localStorage.getItem(getTodayKey());
+  return stored===null ? FREE_DAILY_LIMIT : parseInt(stored);
+}
+function useToken(){
+  if(user && user.plan==='ultra') return;
+  if(user && user.plan==='pro'){
+    const key='fitscoreTokensPro_'+new Date().toDateString();
+    const cur=parseInt(localStorage.getItem(key)??PRO_DAILY_LIMIT);
+    localStorage.setItem(key, Math.max(0,cur-1)); return;
+  }
+  const key=getTodayKey();
+  localStorage.setItem(key, Math.max(0,getTokensLeft()-1));
+}
+function updateTokenUI(){
+  const left=getTokensLeft();
+  const limit=user?.plan==='ultra'?'∞':(user?.plan==='pro'?PRO_DAILY_LIMIT:FREE_DAILY_LIMIT);
+  const display=user?.plan==='ultra'?'∞':left;
+  const navBar=document.getElementById('nav-token-bar');
+  const navVal=document.getElementById('nav-token-val');
+  if(navVal) navVal.textContent=display+'/'+limit;
+  if(navBar) navBar.classList.toggle('low',left<=1&&user?.plan!=='ultra');
+  const tibVal=document.getElementById('tib-val');
+  if(tibVal) tibVal.textContent=user?.plan==='ultra'?'Unlimited':(left+' cek tersisa');
+  const tibBox=document.getElementById('token-info-box');
+  if(tibBox) tibBox.classList.toggle('tib-empty',left===0&&user?.plan!=='ultra');
+  const statToken=document.getElementById('stat-token');
+  if(statToken) statToken.textContent=user?.plan==='ultra'?'∞':left;
+  const statSub=document.getElementById('stat-token-sub');
+  if(statSub) statSub.textContent=user?.plan==='ultra'?'Unlimited':('dari '+limit+' cek/hari');
+}
+
+/* ══ DEMO CV DATA ══ */
+const demoCV=[
+  {id:1,name:"Rizky Hidayat",initials:"RH",colorClass:"c-blue",textColor:"var(--blue)",role:"Backend Engineer",exp:"4 tahun",expBand:"3–5 tahun",location:"Jakarta",edu:"S1 Teknik Informatika — Universitas Indonesia",email:"rizky.h@email.com",linkedin:"linkedin.com/in/rizkyhidayat",summary:"Backend engineer berpengalaman 4 tahun dengan fokus di Python, FastAPI, dan infrastruktur cloud. Pernah handle sistem dengan 100rb+ daily active users.",skills:["Python","FastAPI","PostgreSQL","Redis","Docker","AWS"],softskills:["Problem Solving","Leadership","Komunikasi","Mentoring"],knowledge:["Microservices","REST API","CI/CD","Agile"],status:"Baru",experiences:[{company:"Tokopedia",role:"Senior Backend Engineer",period:"Mar 2022 – Sekarang",duration:"2 thn 1 bln",desc:"Membangun dan maintain microservices untuk fitur pembayaran. Menangani 50rb+ transaksi/hari."},{company:"Bukalapak",role:"Backend Developer",period:"Jan 2020 – Feb 2022",duration:"2 thn 1 bln",desc:"Mengembangkan API untuk platform marketplace. Stack: Python, Django, MySQL."}]},
+  {id:2,name:"Sarah Aulia",initials:"SA",colorClass:"c-teal",textColor:"var(--green)",role:"Frontend Developer",exp:"2 tahun",expBand:"1–3 tahun",location:"Bandung",edu:"S1 Sistem Informasi — ITB",email:"sarah.aulia@email.com",linkedin:"linkedin.com/in/sarahaulia",summary:"Frontend developer passionate tentang UI/UX dengan keahlian di React dan Vue.js.",skills:["React","Vue.js","TypeScript","Tailwind CSS","Next.js","Figma"],softskills:["Kreativitas","Kolaborasi","Detail-oriented","Komunikasi"],knowledge:["UI/UX Principles","Responsive Design","Web Performance","Accessibility"],status:"Hot",experiences:[{company:"Gojek",role:"Frontend Developer",period:"Jun 2022 – Sekarang",duration:"1 thn 10 bln",desc:"Mengembangkan fitur-fitur baru di dashboard merchant Gojek menggunakan React dan TypeScript."},{company:"Freelance",role:"Frontend Developer",period:"Jan 2022 – Mei 2022",duration:"5 bln",desc:"Membangun website dan landing page untuk berbagai klien UMKM."}]},
+  {id:3,name:"Dwi Wulandari",initials:"DW",colorClass:"c-purple",textColor:"var(--purple)",role:"Data Scientist",exp:"3 tahun",expBand:"3–5 tahun",location:"Jakarta",edu:"S1 Statistika — Universitas Gadjah Mada",email:"dwi.w@email.com",linkedin:"linkedin.com/in/dwiwulandari",summary:"Data scientist dengan keahlian di machine learning, NLP, dan data visualization.",skills:["Python","TensorFlow","PyTorch","SQL","Pandas","Scikit-learn"],softskills:["Analytical Thinking","Presentasi","Storytelling Data","Teamwork"],knowledge:["Machine Learning","Deep Learning","NLP","Data Pipeline","BI Tools"],status:"Review",experiences:[{company:"OVO",role:"Data Scientist",period:"Apr 2021 – Sekarang",duration:"3 thn",desc:"Membangun model prediksi fraud detection dengan akurasi 94%."},{company:"Shopee",role:"Data Analyst",period:"Jul 2020 – Mar 2021",duration:"9 bln",desc:"Analisis perilaku pengguna untuk product team."}]},
+  {id:4,name:"Budi Santoso",initials:"BS",colorClass:"c-orange",textColor:"var(--amber)",role:"DevOps Engineer",exp:"5 tahun",expBand:"5+ tahun",location:"Surabaya",edu:"S1 Ilmu Komputer — Universitas Airlangga",email:"budi.s@email.com",linkedin:"linkedin.com/in/budisantoso",summary:"DevOps engineer senior dengan 5 tahun pengalaman membangun infrastruktur cloud skala besar.",skills:["Kubernetes","Docker","Terraform","AWS","GCP","Jenkins","Ansible"],softskills:["Problem Solving","Dokumentasi","On-call Management","Mentoring"],knowledge:["Cloud Architecture","IaC","Site Reliability","Security"],status:"Baru",experiences:[{company:"Traveloka",role:"Senior DevOps Engineer",period:"Feb 2020 – Sekarang",duration:"4 thn 2 bln",desc:"Mengelola infrastruktur Kubernetes dengan 500+ pods."},{company:"DANA",role:"DevOps Engineer",period:"Mar 2019 – Jan 2020",duration:"11 bln",desc:"Setup CI/CD pipeline menggunakan Jenkins dan GitLab CI."}]},
+  {id:5,name:"Citra Permata",initials:"CP",colorClass:"c-blue",textColor:"var(--blue)",role:"Mobile Developer",exp:"2 tahun",expBand:"1–3 tahun",location:"Yogyakarta",edu:"S1 Teknik Informatika — Universitas Atma Jaya",email:"citra.p@email.com",linkedin:"linkedin.com/in/citrapermata",summary:"Mobile developer spesialis Flutter dan React Native. 4 aplikasi di App Store & Play Store.",skills:["Flutter","Dart","React Native","Firebase","Swift","Kotlin"],softskills:["Kreatif","Self-motivated","Cepat Belajar","Time Management"],knowledge:["Mobile UI Patterns","App Performance","Push Notifications","ASO"],status:"Baru",experiences:[{company:"Kita Bisa",role:"Flutter Developer",period:"Jul 2022 – Sekarang",duration:"1 thn 9 bln",desc:"Membangun aplikasi donasi mobile cross-platform. 50k+ downloads."},{company:"Startup Lokal",role:"Mobile Intern",period:"Jan 2022 – Jun 2022",duration:"6 bln",desc:"Pengembangan fitur aplikasi e-commerce mobile."}]},
+  {id:6,name:"Ahmad Fauzi",initials:"AF",colorClass:"c-teal",textColor:"var(--green)",role:"Full Stack Developer",exp:"3 tahun",expBand:"3–5 tahun",location:"Jakarta",edu:"D3 Manajemen Informatika — Politeknik Negeri Jakarta",email:"ahmad.f@email.com",linkedin:"linkedin.com/in/ahmadfauzi",summary:"Full stack developer dengan keahlian di Node.js dan React. Berpengalaman di startup e-commerce.",skills:["Node.js","React","MongoDB","Express","GraphQL","TypeScript"],softskills:["Adaptif","Fast Learner","Kolaborasi","Ownership"],knowledge:["REST API","GraphQL","Database Design","Agile/Scrum"],status:"Review",experiences:[{company:"Ralali.com",role:"Full Stack Developer",period:"Mar 2021 – Sekarang",duration:"3 thn",desc:"Platform B2B procurement frontend hingga backend. Reduce API latency 40%."},{company:"Freelance",role:"Web Developer",period:"Jun 2020 – Feb 2021",duration:"9 bln",desc:"Website dan web app untuk berbagai klien."}]},
+  {id:7,name:"Indah Pratiwi",initials:"IP",colorClass:"c-purple",textColor:"var(--purple)",role:"UI/UX Designer",exp:"4 tahun",expBand:"3–5 tahun",location:"Bali",edu:"S1 Desain Komunikasi Visual — ISI Yogyakarta",email:"indah.p@email.com",linkedin:"linkedin.com/in/indahpratiwi",summary:"UI/UX designer berpengalaman dengan track record produk digital jutaan user.",skills:["Figma","Adobe XD","Principle","Zeplin","HTML/CSS","Framer"],softskills:["Empati User","Presentasi","Storytelling","Kolaborasi"],knowledge:["Design Thinking","User Research","Usability Testing","Design System"],status:"Hot",experiences:[{company:"Tiket.com",role:"Senior UI/UX Designer",period:"Jan 2021 – Sekarang",duration:"3 thn 3 bln",desc:"Lead designer aplikasi mobile Tiket.com. Redesign onboarding meningkatkan konversi 23%."},{company:"Agency Digital",role:"UI Designer",period:"Mar 2020 – Des 2020",duration:"10 bln",desc:"Antarmuka web dan mobile untuk berbagai klien brand."}]},
+  {id:8,name:"Fajar Nugroho",initials:"FN",colorClass:"c-orange",textColor:"var(--amber)",role:"Backend Engineer",exp:"1 tahun",expBand:"0–1 tahun",location:"Semarang",edu:"S1 Teknik Informatika — UNDIP",email:"fajar.n@email.com",linkedin:"linkedin.com/in/fajarnugroho",summary:"Junior backend engineer fresh graduate aktif di open source dengan beberapa personal project.",skills:["Go","Python","MySQL","Redis","Docker","Linux"],softskills:["Eagerness to Learn","Problem Solving","Kerja Keras","Inisiatif"],knowledge:["REST API","Database","Version Control","Basic Cloud"],status:"Baru",experiences:[{company:"Startup Fintech",role:"Backend Intern",period:"Sep 2023 – Feb 2024",duration:"6 bln",desc:"API payment gateway menggunakan Go. Fixing bugs dan unit tests."}]},
+  {id:9,name:"Lia Rahayu",initials:"LR",colorClass:"c-blue",textColor:"var(--blue)",role:"Data Analyst",exp:"2 tahun",expBand:"1–3 tahun",location:"Jakarta",edu:"S1 Matematika — Universitas Padjadjaran",email:"lia.r@email.com",linkedin:"linkedin.com/in/liarahayu",summary:"Data analyst dengan keahlian di SQL, Python, dan BI tools. Mengubah data menjadi insight actionable.",skills:["SQL","Python","Tableau","Looker","Excel","dbt"],softskills:["Analytical","Komunikasi","Presentasi","Detail-oriented"],knowledge:["Business Intelligence","Data Warehouse","ELT Pipeline","Statistical Analysis"],status:"Review",experiences:[{company:"Shopee",role:"Data Analyst",period:"Aug 2022 – Sekarang",duration:"1 thn 8 bln",desc:"Analisis data transaksi, trend, dan dashboard eksekutif mingguan."},{company:"Startup EdTech",role:"Business Analyst Intern",period:"Feb 2022 – Jul 2022",duration:"6 bln",desc:"Analisis data pengguna dan laporan performa produk."}]},
+  {id:10,name:"Kevin Pratama",initials:"KP",colorClass:"c-teal",textColor:"var(--green)",role:"Backend Engineer",exp:"6 tahun",expBand:"5+ tahun",location:"Jakarta",edu:"S1 Ilmu Komputer — Universitas Bina Nusantara",email:"kevin.p@email.com",linkedin:"linkedin.com/in/kevinpratama",summary:"Senior backend engineer 6 tahun di sistem berskala besar. Expert Java, Spring Boot, distributed systems.",skills:["Java","Spring Boot","Kafka","Elasticsearch","PostgreSQL","Kubernetes"],softskills:["Technical Leadership","Arsitektur Design","Mentoring","Problem Solving"],knowledge:["Distributed Systems","Event-driven Architecture","High Availability","Performance Tuning"],status:"Hot",experiences:[{company:"Bank BCA Digital",role:"Lead Backend Engineer",period:"Jan 2021 – Sekarang",duration:"3 thn 3 bln",desc:"Tim 5 engineer, core banking API, 2jt+ transaksi/hari."},{company:"Fintech Startup",role:"Backend Engineer",period:"Mar 2018 – Des 2020",duration:"2 thn 9 bln",desc:"Sistem payment dan wallet digital menggunakan Spring Boot."}]},
+  {id:11,name:"Nanda Kusuma",initials:"NK",colorClass:"c-purple",textColor:"var(--purple)",role:"Mobile Developer",exp:"3 tahun",expBand:"3–5 tahun",location:"Bandung",edu:"S1 Teknik Informatika — Universitas Telkom",email:"nanda.k@email.com",linkedin:"linkedin.com/in/nandakusuma",summary:"Mobile developer Android/iOS 3 tahun. Spesialis React Native, 6+ aplikasi production.",skills:["React Native","Swift","Kotlin","Firebase","Redux","Jest"],softskills:["Detail-oriented","Ownership","Kolaborasi","Komunikasi"],knowledge:["Native Mobile Dev","Cross-platform","App Performance","CI/CD Mobile"],status:"Baru",experiences:[{company:"Grab",role:"Mobile Developer",period:"Nov 2021 – Sekarang",duration:"2 thn 5 bln",desc:"Fitur driver app Grab, React Native. Improve app performance 30%."},{company:"Startup Lokal",role:"Android Developer",period:"Mar 2021 – Okt 2021",duration:"8 bln",desc:"Aplikasi delivery food native Android."}]},
+  {id:12,name:"Reza Firmansyah",initials:"RF",colorClass:"c-orange",textColor:"var(--amber)",role:"Cybersecurity Engineer",exp:"4 tahun",expBand:"3–5 tahun",location:"Jakarta",edu:"S1 Teknik Informatika — UI",email:"reza.f@email.com",linkedin:"linkedin.com/in/rezafirmansyah",summary:"Cybersecurity engineer sertifikasi OSCP dan CEH. Spesialis penetration testing dan security audit.",skills:["Penetration Testing","Kali Linux","Burp Suite","Python","Metasploit","SIEM"],softskills:["Analytical","Ketelitian","Reporting","Etika Kerja"],knowledge:["Network Security","Web Security","Cloud Security","Compliance","OWASP"],status:"Review",experiences:[{company:"Mandiri Sekuritas",role:"Cybersecurity Engineer",period:"Feb 2021 – Sekarang",duration:"3 thn 2 bln",desc:"Penetration testing rutin, 50+ critical vulnerabilities mitigated."},{company:"Konsultan IT",role:"Security Analyst",period:"Apr 2020 – Jan 2021",duration:"10 bln",desc:"Security assessment klien perbankan dan fintech."}]}
 ];
 
-/* ══════════════════════════════════
-   NAVIGATION
-══════════════════════════════════ */
-function go(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
+/* ══ NAVIGATION ══ */
+function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
 function showSection(name){
   ['dashboard','cv-detail','vacancies','add-vacancy'].forEach(s=>{
-    document.getElementById('sec-'+s).style.display = s===name?'block':'none';
+    document.getElementById('sec-'+s).style.display=s===name?'block':'none';
   });
   ['dashboard','vacancies'].forEach(id=>{
     const el=document.getElementById('sb-'+id);
-    if(el) el.classList.toggle('active', id===name);
+    if(el) el.classList.toggle('active',id===name);
   });
   if(name==='add-vacancy') document.getElementById('sb-vacancies').classList.add('active');
 }
 
-/* ══════════════════════════════════
-   AUTH
-══════════════════════════════════ */
-function showReg(){
-  document.getElementById('lc-login').style.display='none';
-  document.getElementById('lc-reg').style.display='block';
-}
-function showLogin(){
-  document.getElementById('lc-reg').style.display='none';
-  document.getElementById('lc-login').style.display='block';
-}
+/* ══ AUTH ══ */
+function showReg(){document.getElementById('lc-login').style.display='none';document.getElementById('lc-reg').style.display='block';}
+function showLogin(){document.getElementById('lc-reg').style.display='none';document.getElementById('lc-login').style.display='block';}
 function doLogin(){
   const e=document.getElementById('li-email').value;
   const p=document.getElementById('li-pass').value;
   if(!e||!p){alert('Isi email dan password!');return;}
-  user={name:e.split('@')[0],company:e.split('@')[1]||'Perusahaan Anda',email:e};
+  user={name:e.split('@')[0],company:e.split('@')[1]||'Perusahaan Anda',email:e,plan:'free'};
   enterApp();
 }
 function doReg(){
@@ -796,10 +1074,15 @@ function doReg(){
   const e=document.getElementById('rg-email').value;
   const p=document.getElementById('rg-pass').value;
   if(!fn||!co||!e||!p){alert('Lengkapi form pendaftaran!');return;}
-  user={name:fn+(ln?' '+ln:''),company:co,jobTitle:jt,email:e};
+  user={name:fn+(ln?' '+ln:''),company:co,jobTitle:jt,email:e,plan:'free'};
   enterApp();
 }
-function doLogout(){user=null;go('pg-land');}
+function doLogout(){
+  user=null;subPopupDismissed=false;
+  if(subPopupTimer) clearTimeout(subPopupTimer);
+  document.getElementById('sub-popup').classList.remove('show');
+  go('pg-land');
+}
 function enterApp(){
   const initials=user.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
   document.getElementById('nav-av').textContent=initials;
@@ -808,12 +1091,14 @@ function enterApp(){
   go('pg-app');
   renderCVTable(demoCV);
   updateStats();
+  updateTokenUI();
   showSection('dashboard');
+  if(!subPopupDismissed){
+    subPopupTimer=setTimeout(()=>{if(user&&user.plan==='free')showSubPopup();},8000);
+  }
 }
 
-/* ══════════════════════════════════
-   CV TABLE
-══════════════════════════════════ */
+/* ══ CV TABLE ══ */
 const statusBadge={
   'Baru':'<span class="badge badge-new">● Baru</span>',
   'Hot':'<span class="badge badge-hot">⚡ Hot</span>',
@@ -847,22 +1132,20 @@ function filterCVs(){
   renderCVTable(filtered);
 }
 
-/* ══════════════════════════════════
-   CV DETAIL
-══════════════════════════════════ */
+/* ══ CV DETAIL ══ */
 function openCV(id){
   currentCV=demoCV.find(c=>c.id===id);
-  if(!currentCV)return;
+  if(!currentCV) return;
   document.getElementById('result-mini').classList.remove('show');
   document.getElementById('result-mini').innerHTML='';
   populateVacancySelector();
   renderCVDetail(currentCV);
+  updateTokenUI();
   showSection('cv-detail');
 }
 function renderCVDetail(cv){
   const left=document.getElementById('cv-detail-left');
   left.innerHTML=`
-    <!-- Profile header -->
     <div class="detail-card">
       <div class="profile-header">
         <div class="ph-avatar ${cv.colorClass}" style="color:${cv.textColor};width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;">${cv.initials}</div>
@@ -876,11 +1159,8 @@ function renderCVDetail(cv){
           </div>
         </div>
       </div>
-      <div style="background:#FAFBFF;border-radius:10px;padding:12px;font-size:13px;color:var(--gray);line-height:1.7;border:1px solid #E8EEFA;">
-        ${cv.summary}
-      </div>
+      <div style="background:#FAFBFF;border-radius:10px;padding:12px;font-size:13px;color:var(--gray);line-height:1.7;border:1px solid #E8EEFA;">${cv.summary}</div>
     </div>
-    <!-- Experience -->
     <div class="detail-card">
       <h3><span class="dc-icon">💼</span> Pengalaman Kerja</h3>
       ${cv.experiences.map(e=>`
@@ -891,7 +1171,6 @@ function renderCVDetail(cv){
           <div class="exp-desc">${e.desc}</div>
         </div>`).join('')}
     </div>
-    <!-- Skills -->
     <div class="detail-card">
       <h3><span class="dc-icon">⚙️</span> Hard Skills / Technical Skills</h3>
       <div class="tags-wrap">${cv.skills.map(s=>`<span class="stag">${s}</span>`).join('')}</div>
@@ -906,12 +1185,9 @@ function renderCVDetail(cv){
     </div>`;
 }
 
-/* ══════════════════════════════════
-   VACANCIES
-══════════════════════════════════ */
+/* ══ VACANCIES ══ */
 function addReq(){
-  const el=document.createElement('div');
-  el.className='req-row';
+  const el=document.createElement('div');el.className='req-row';
   el.innerHTML=`<input type="text" placeholder="Tulis requirement..."/><button class="req-del" onclick="delReq(this)">×</button>`;
   document.getElementById('req-list').appendChild(el);
 }
@@ -931,27 +1207,16 @@ function saveVacancy(){
   if(!title||!jd){alert('Isi nama posisi dan job description!');return;}
   const vac={id:Date.now(),title,field,type,location,salary,minExp,jd,reqs,createdAt:new Date().toLocaleDateString('id-ID'),apps:0};
   vacancies.push(vac);
-  updateStats();
-  renderVacancies();
+  updateStats();renderVacancies();
   document.getElementById('modal-success').classList.add('show');
-  // reset form
   ['vac-title','vac-location','vac-salary','vac-jd'].forEach(id=>{document.getElementById(id).value='';});
-  document.getElementById('req-list').innerHTML=`
-    <div class="req-row"><input type="text" placeholder="Contoh: Minimal 3 tahun pengalaman dengan Python"/><button class="req-del" onclick="delReq(this)">×</button></div>`;
+  document.getElementById('req-list').innerHTML=`<div class="req-row"><input type="text" placeholder="Contoh: Minimal 3 tahun pengalaman dengan Python"/><button class="req-del" onclick="delReq(this)">×</button></div>`;
 }
-function closeModal(){
-  document.getElementById('modal-success').classList.remove('show');
-  showSection('vacancies');
-}
+function closeModal(){document.getElementById('modal-success').classList.remove('show');showSection('vacancies');}
 function renderVacancies(){
   const grid=document.getElementById('vac-grid');
   if(vacancies.length===0){
-    grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--gray);">
-      <div style="font-size:32px;margin-bottom:12px;">💼</div>
-      <div style="font-size:15px;font-weight:600;color:var(--navy);margin-bottom:6px;">Belum ada vacancy</div>
-      <div style="font-size:13px;margin-bottom:16px;">Buat job vacancy pertama kamu</div>
-      <button class="btn-primary" onclick="showSection('add-vacancy')">+ Buat Vacancy</button>
-    </div>`;
+    grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--gray);"><div style="font-size:32px;margin-bottom:12px;">💼</div><div style="font-size:15px;font-weight:600;color:var(--navy);margin-bottom:6px;">Belum ada vacancy</div><div style="font-size:13px;margin-bottom:16px;">Buat job vacancy pertama kamu</div><button class="btn-primary" onclick="showSection('add-vacancy')">+ Buat Vacancy</button></div>`;
     return;
   }
   grid.innerHTML=vacancies.map(v=>`
@@ -968,49 +1233,170 @@ function renderVacancies(){
         ${v.salary?`<span class="vac-meta-chip">💰 ${v.salary}</span>`:''}
       </div>
       <div class="vac-desc">${v.jd}</div>
-      <div class="vac-footer">
-        <div class="vac-apps">Dibuat: ${v.createdAt}</div>
-        <button class="btn-view">Lihat Detail →</button>
-      </div>
+      <div class="vac-footer"><div class="vac-apps">Dibuat: ${v.createdAt}</div><button class="btn-view">Lihat Detail →</button></div>
     </div>`).join('');
 }
 function populateVacancySelector(){
   const sel=document.getElementById('vac-selector');
   sel.innerHTML='<option value="">— Pilih vacancy —</option>';
-  vacancies.forEach(v=>{
-    const opt=document.createElement('option');
-    opt.value=v.id; opt.textContent=v.title;
-    sel.appendChild(opt);
-  });
-  if(vacancies.length===0){
-    sel.innerHTML='<option value="">Belum ada vacancy — buat dulu</option>';
-  }
+  vacancies.forEach(v=>{const opt=document.createElement('option');opt.value=v.id;opt.textContent=v.title;sel.appendChild(opt);});
+  if(vacancies.length===0) sel.innerHTML='<option value="">Belum ada vacancy — buat dulu</option>';
 }
 function updateStats(){
   document.getElementById('stat-total').textContent=demoCV.length;
   document.getElementById('stat-new').textContent=demoCV.filter(c=>c.status==='Baru').length;
   document.getElementById('stat-vac').textContent=vacancies.length;
   document.getElementById('sb-cv-count').textContent=demoCV.length;
+  updateTokenUI();
 }
 
-/* ══════════════════════════════════
-   AI ANALYSIS
-══════════════════════════════════ */
+/* ══════════════════════════════════════════
+   VIDEO AD SYSTEM
+   ══════════════════════════════════════════ */
+function showAd(onComplete){
+  if(user && user.plan!=='free'){onComplete();return;}
+  pendingAnalysisCallback=onComplete;
+  resetAdUI();
+  document.getElementById('ad-overlay').classList.add('show');
+  const video=document.getElementById('ad-video');
+  video.currentTime=0;
+  video.play().catch(()=>{/* autoplay blocked — tetap jalankan timer */});
+  startAdCountdown(video);
+}
+
+function resetAdUI(){
+  /* Reset semua elemen ke kondisi awal */
+  adSkippable=false;
+  clearInterval(adSkipInterval);
+  clearInterval(adCloseInterval);
+
+  const countdown=document.getElementById('ad-countdown-badge');
+  const skipBtn=document.getElementById('ad-skip-btn');
+  const closeBtn=document.getElementById('ad-close-btn');
+  const closingBar=document.getElementById('ad-closing-bar');
+  const prog=document.getElementById('ad-prog-fill');
+
+  countdown.classList.remove('fade');
+  countdown.style.display='flex';
+  document.getElementById('ad-countdown-txt').textContent='Skip dalam 5 detik';
+  skipBtn.classList.remove('show');
+  closeBtn.classList.remove('show');
+  closingBar.classList.remove('show');
+  document.getElementById('ad-closing-count').textContent='3';
+  prog.style.width='0%';
+}
+
+function startAdCountdown(video){
+  /* === FASE 1: Hitung mundur 5 detik → tampilkan tombol Skip === */
+  let elapsed=0;
+  const SKIP_DELAY=5000; /* ms */
+
+  adSkipInterval=setInterval(()=>{
+    elapsed+=100;
+
+    /* Update progress bar berdasarkan durasi video (jika tersedia) atau flat 5 detik */
+    const duration=video.duration&&!isNaN(video.duration)?video.duration*1000:SKIP_DELAY;
+    const pct=Math.min((video.currentTime/(duration/1000))*100,100)||Math.min((elapsed/duration)*100,100);
+    document.getElementById('ad-prog-fill').style.width=pct+'%';
+
+    /* Hitung mundur teks */
+    const remaining=Math.ceil((SKIP_DELAY-elapsed)/1000);
+    if(elapsed<SKIP_DELAY){
+      document.getElementById('ad-countdown-txt').textContent='Skip dalam '+remaining+' detik';
+    } else {
+      /* 5 detik tercapai → tampilkan tombol Skip, sembunyikan badge */
+      clearInterval(adSkipInterval);
+      adSkippable=true;
+      document.getElementById('ad-countdown-badge').classList.add('fade');
+      setTimeout(()=>{document.getElementById('ad-countdown-badge').style.display='none';},300);
+      document.getElementById('ad-skip-btn').classList.add('show');
+    }
+  },100);
+
+  /* Update progress bar dari timeupdate video juga */
+  video.addEventListener('timeupdate',onVideoProgress);
+}
+
+function onVideoProgress(){
+  const video=document.getElementById('ad-video');
+  if(!video.duration||isNaN(video.duration)) return;
+  const pct=(video.currentTime/video.duration)*100;
+  document.getElementById('ad-prog-fill').style.width=pct+'%';
+}
+
+function skipAd(){
+  if(!adSkippable) return;
+
+  /* Sembunyikan tombol Skip */
+  document.getElementById('ad-skip-btn').classList.remove('show');
+
+  /* === FASE 2: Hitung mundur 3 detik → tampilkan tombol X === */
+  const closingBar=document.getElementById('ad-closing-bar');
+  const closingCount=document.getElementById('ad-closing-count');
+  closingBar.classList.add('show');
+
+  let c=3;
+  closingCount.textContent=c;
+
+  adCloseInterval=setInterval(()=>{
+    c--;
+    if(c>0){
+      closingCount.textContent=c;
+    } else {
+      /* 3 detik selesai → tampilkan tombol X */
+      clearInterval(adCloseInterval);
+      closingBar.classList.remove('show');
+      document.getElementById('ad-close-btn').classList.add('show');
+    }
+  },1000);
+}
+
+function closeAd(){
+  /* Hentikan video & bersihkan */
+  clearInterval(adSkipInterval);
+  clearInterval(adCloseInterval);
+  const video=document.getElementById('ad-video');
+  video.pause();
+  video.removeEventListener('timeupdate',onVideoProgress);
+  document.getElementById('ad-overlay').classList.remove('show');
+
+  /* Jalankan callback analisis */
+  if(pendingAnalysisCallback){
+    const cb=pendingAnalysisCallback;
+    pendingAnalysisCallback=null;
+    cb();
+  }
+}
+
+/* ══ AI ANALYSIS ══ */
 async function runAnalysis(){
-  if(!currentCV){return;}
+  if(!currentCV) return;
   const vacId=document.getElementById('vac-selector').value;
   if(!vacId){alert('Pilih job vacancy terlebih dahulu!');return;}
   const vac=vacancies.find(v=>v.id==vacId);
-  if(!vac){return;}
+  if(!vac) return;
+  const left=getTokensLeft();
+  if(left<=0&&user?.plan!=='ultra'){
+    const now=new Date();
+    const tomorrow=new Date(now);tomorrow.setDate(tomorrow.getDate()+1);tomorrow.setHours(0,0,0,0);
+    const diff=tomorrow-now;const h=Math.floor(diff/3600000);const m=Math.floor((diff%3600000)/60000);
+    document.getElementById('ntm-reset-time').textContent=h+'j '+m+'m lagi';
+    document.getElementById('no-token-modal').classList.add('show');
+    return;
+  }
+  showAd(()=>doActualAnalysis(vac));
+}
 
+async function doActualAnalysis(vac){
+  useToken();updateTokenUI();
   const btn=document.getElementById('btn-analyze');
   const txt=document.getElementById('analyze-txt');
   const spin=document.getElementById('spin-el');
-  btn.disabled=true; txt.textContent='Menganalisis...'; spin.classList.add('show');
+  btn.disabled=true;txt.textContent='Menganalisis...';spin.classList.add('show');
   document.getElementById('result-mini').classList.remove('show');
-
   const cv=currentCV;
-  const prompt=`Kamu adalah AI career analyst untuk platform rekrutmen IT. Analisis kecocokan antara profil kandidat IT dan job vacancy berikut.
+  const isDetail=(user?.plan==='pro'||user?.plan==='ultra');
+  const prompt=`Kamu adalah AI career analyst untuk platform rekrutmen IT. Analisis kecocokan antara profil kandidat IT dan job vacancy berikut.${isDetail?' Berikan analisis SANGAT DETAIL dan mendalam.':''}
 
 PROFIL KANDIDAT:
 - Nama: ${cv.name}
@@ -1025,11 +1411,8 @@ PROFIL KANDIDAT:
 
 JOB VACANCY: ${vac.title}
 Bidang: ${vac.field}
-Job Description:
-${vac.jd}
-
-Requirements:
-${vac.reqs.map((r,i)=>`${i+1}. ${r}`).join('\n')}
+Job Description: ${vac.jd}
+Requirements: ${vac.reqs.map((r,i)=>`${i+1}. ${r}`).join('; ')}
 
 Berikan analisis dalam format JSON murni (tanpa markdown, tanpa backtick):
 {
@@ -1039,50 +1422,29 @@ Berikan analisis dalam format JSON murni (tanpa markdown, tanpa backtick):
   "education_score": <0-100>,
   "verdict": "Sangat Cocok|Cocok|Cukup Cocok|Kurang Cocok",
   "title": "<kesimpulan max 7 kata Bahasa Indonesia>",
-  "description": "<analisis 2 kalimat Bahasa Indonesia dari perspektif recruiter>",
-  "gaps": [
-    {"skill":"<nama skill/requirement>","status":"match|partial|missing","note":"<catatan singkat>"}
-  ],
-  "courses": [
-    {"name":"<nama kursus spesifik>","platform":"<Coursera|Udemy|LinkedIn Learning|dll>","emoji":"<emoji relevan>","priority":"Wajib|Disarankan|Opsional"}
-  ]
+  "description": "<analisis ${isDetail?'3-4':'2'} kalimat Bahasa Indonesia dari perspektif recruiter${isDetail?' yang sangat detail dan mendalam':''}>"  ,
+  "gaps": [{"skill":"<nama>","status":"match|partial|missing","note":"<catatan${isDetail?' detail':''}>"} ],
+  "courses": [{"name":"<kursus spesifik>","platform":"<platform>","emoji":"<emoji>","priority":"Wajib|Disarankan|Opsional"}]${isDetail?`,
+  "strengths": ["<kekuatan utama 1>","<kekuatan utama 2>","<kekuatan utama 3>"],
+  "interview_tips": ["<tips interview 1>","<tips interview 2>","<tips interview 3>"]`:''}
 }
-Berikan 5-7 gap items dan 3 course recommendations untuk skill yang kurang atau perlu diperkuat.`;
-
+Berikan ${isDetail?'7-9':'5-7'} gap items dan ${isDetail?'4-5':'3'} course recommendations.`;
   try{
-    const res=await fetch("https://api.anthropic.com/v1/messages",{
-      method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1500,messages:[{role:"user",content:prompt}]})
-    });
+    const res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1800,messages:[{role:"user",content:prompt}]})});
     const data=await res.json();
     const txt2=data.content.map(i=>i.text||'').join('');
     const clean=txt2.replace(/```json|```/g,'').trim();
     renderAnalysisResult(JSON.parse(clean),vac.title);
   }catch(e){
-    renderAnalysisResult({
-      overall_score:74,skill_score:80,experience_score:70,education_score:72,
-      verdict:"Cocok",
-      title:"Kandidat cocok untuk posisi ini",
-      description:"Berdasarkan pengalaman dan skill yang dimiliki, kandidat ini memenuhi sebagian besar requirement posisi yang dibutuhkan. Ada beberapa area yang bisa diperkuat.",
-      gaps:[
-        {skill:cv.skills[0],status:"match",note:"Sudah ada di profil"},
-        {skill:cv.skills[1],status:"match",note:"Tercantum di pengalaman"},
-        {skill:"Kubernetes",status:"partial",note:"Perlu diperdalam"},
-        {skill:"GraphQL",status:"missing",note:"Tidak ditemukan"},
-        {skill:cv.softskills[0],status:"match",note:"Terlihat dari pengalaman"}
-      ],
-      courses:[
-        {name:"Kubernetes for Developers",platform:"Udemy",emoji:"⚙️",priority:"Disarankan"},
-        {name:"GraphQL Complete Course",platform:"Coursera",emoji:"🔗",priority:"Wajib"},
-        {name:"Advanced Cloud Architecture",platform:"LinkedIn Learning",emoji:"☁️",priority:"Opsional"}
-      ]
-    },vac.title);
+    renderAnalysisResult({overall_score:74,skill_score:80,experience_score:70,education_score:72,verdict:"Cocok",title:"Kandidat cocok untuk posisi ini",description:"Berdasarkan pengalaman dan skill yang dimiliki, kandidat ini memenuhi sebagian besar requirement posisi yang dibutuhkan.",gaps:[{skill:cv.skills[0],status:"match",note:"Sudah ada di profil"},{skill:cv.skills[1],status:"match",note:"Tercantum di pengalaman"},{skill:"Kubernetes",status:"partial",note:"Perlu diperdalam"},{skill:"GraphQL",status:"missing",note:"Tidak ditemukan"},{skill:cv.softskills[0],status:"match",note:"Terlihat dari pengalaman"}],courses:[{name:"Advanced Cloud Architecture",platform:"Udemy",emoji:"☁️",priority:"Disarankan"},{name:"GraphQL Complete Course",platform:"Coursera",emoji:"🔗",priority:"Wajib"},{name:"Kubernetes for Developers",platform:"LinkedIn Learning",emoji:"⚙️",priority:"Opsional"}]},vac.title);
   }
-
-  btn.disabled=false; txt.textContent='🔍 Analisis Kecocokan'; spin.classList.remove('show');
+  btn.disabled=false;txt.textContent='🔍 Analisis Kecocokan';spin.classList.remove('show');
+  if(user?.plan==='free'&&getTokensLeft()<=1&&!subPopupDismissed){
+    setTimeout(showSubPopup,2000);
+  }
 }
 
-function renderAnalysisResult(r, vacTitle){
+function renderAnalysisResult(r,vacTitle){
   const vStyle={
     'Sangat Cocok':'background:#F0FDF4;color:#15803D;border:1px solid #BBF7D0',
     'Cocok':'background:#EFF4FF;color:#1D4ED8;border:1px solid #BFDBFE',
@@ -1091,20 +1453,17 @@ function renderAnalysisResult(r, vacTitle){
   };
   const cls={match:'g-match',partial:'g-partial',missing:'g-miss'};
   const icon={match:'✓',partial:'~',missing:'✗'};
-  const perim=188.4;
-  const offset=perim-(perim*r.overall_score/100);
-
+  const perim=188.4;const offset=perim-(perim*r.overall_score/100);
+  const isDetail=(user?.plan==='pro'||user?.plan==='ultra');
+  let extraHtml='';
+  if(isDetail&&r.strengths){extraHtml+=`<div class="divider-line"></div><div class="rm-gap-title">KEKUATAN UTAMA KANDIDAT</div><div style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px;">${r.strengths.map(s=>`<div style="display:flex;align-items:flex-start;gap:7px;font-size:12px;color:var(--text);"><span style="color:var(--green);font-weight:700;flex-shrink:0;">★</span>${s}</div>`).join('')}</div>`;}
+  if(isDetail&&r.interview_tips){extraHtml+=`<div class="divider-line"></div><div class="rm-gap-title">TIPS INTERVIEW</div><div style="display:flex;flex-direction:column;gap:6px;">${r.interview_tips.map((t,i)=>`<div style="display:flex;align-items:flex-start;gap:7px;font-size:12px;color:var(--text);"><span style="color:var(--blue);font-weight:700;flex-shrink:0;">${i+1}.</span>${t}</div>`).join('')}</div>`;}
+  const planBadge=isDetail?`<div style="display:inline-flex;align-items:center;gap:4px;background:linear-gradient(135deg,#7C3AED,#2563EB);color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:10px;letter-spacing:0.5px;">${user?.plan==='ultra'?'⚡ ULTRA':'💎 PRO'} DETAIL ANALYSIS</div>`:'';
   const html=`
+    ${planBadge}
     <div class="rm-score-row">
       <div class="rm-ring">
-        <svg width="70" height="70" viewBox="0 0 70 70">
-          <circle cx="35" cy="35" r="30" fill="none" stroke="#EEF2F8" stroke-width="7"/>
-          <circle cx="35" cy="35" r="30" fill="none" stroke="url(#rg3)" stroke-width="7"
-            stroke-dasharray="${perim}" stroke-dashoffset="${offset}" stroke-linecap="round"/>
-          <defs><linearGradient id="rg3" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#2563EB"/><stop offset="100%" stop-color="#06B6D4"/>
-          </linearGradient></defs>
-        </svg>
+        <svg width="70" height="70" viewBox="0 0 70 70"><circle cx="35" cy="35" r="30" fill="none" stroke="#EEF2F8" stroke-width="7"/><circle cx="35" cy="35" r="30" fill="none" stroke="url(#rg3)" stroke-width="7" stroke-dasharray="${perim}" stroke-dashoffset="${offset}" stroke-linecap="round"/><defs><linearGradient id="rg3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#2563EB"/><stop offset="100%" stop-color="#06B6D4"/></linearGradient></defs></svg>
         <div class="rm-ring-txt"><div class="rm-num">${r.overall_score}</div><div class="rm-lbl">MATCH</div></div>
       </div>
       <div>
@@ -1120,24 +1479,47 @@ function renderAnalysisResult(r, vacTitle){
     </div>
     <div class="divider-line"></div>
     <div class="rm-gap-title">SKILL GAP ANALYSIS</div>
-    <div class="rm-gap-wrap">
-      ${(r.gaps||[]).map(g=>`<div class="g-tag ${cls[g.status]||'g-partial'}" title="${g.note}">${icon[g.status]||'~'} ${g.skill}</div>`).join('')}
-    </div>
+    <div class="rm-gap-wrap">${(r.gaps||[]).map(g=>`<div class="g-tag ${cls[g.status]||'g-partial'}" title="${g.note}">${icon[g.status]||'~'} ${g.skill}</div>`).join('')}</div>
+    ${extraHtml}
     <div class="rm-courses">
       <div class="rm-courses-title" style="margin-top:1rem;">REKOMENDASI KURSUS</div>
-      ${(r.courses||[]).map(c=>`
-        <div class="rc-item">
-          <div class="rc-icon">${c.emoji||'📖'}</div>
-          <div><div class="rc-name">${c.name}</div><div class="rc-platform">${c.platform}</div></div>
-          <div class="rc-badge">${c.priority}</div>
-        </div>`).join('')}
+      ${(r.courses||[]).map(c=>`<div class="rc-item"><div class="rc-icon">${c.emoji||'📖'}</div><div><div class="rc-name">${c.name}</div><div class="rc-platform">${c.platform}</div></div><div class="rc-badge">${c.priority}</div></div>`).join('')}
     </div>`;
-
   const el=document.getElementById('result-mini');
-  el.innerHTML=html;
-  el.classList.add('show');
+  el.innerHTML=html;el.classList.add('show');
   el.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
+
+/* ══ SUBSCRIPTION POPUP ══ */
+function showSubPopup(){
+  if(subPopupDismissed||user?.plan!=='free') return;
+  document.getElementById('sub-popup').classList.add('show');
+}
+function dismissSubPopup(){
+  subPopupDismissed=true;
+  document.getElementById('sub-popup').classList.remove('show');
+}
+
+/* ══ PRICING MODAL ══ */
+function openPricingModal(){document.getElementById('pricing-modal').classList.add('show');}
+function closePricingModal(){document.getElementById('pricing-modal').classList.remove('show');}
+function subscribePro(){
+  alert('🎉 Terima kasih! Fitur pembayaran akan segera tersedia.\n\nPaket Recruiter Pro: Rp 149.999/bulan\n✓ 30 cek CV per hari\n✓ Analisis detail\n✓ Tanpa iklan');
+  if(user){user.plan='pro';updateTokenUI();}
+  closePricingModal();dismissSubPopup();
+}
+function subscribeUltra(){
+  alert('⚡ Terima kasih! Fitur pembayaran akan segera tersedia.\n\nPaket Recruiter Ultra: Rp 499.999/bulan\n✓ Unlimited cek CV\n✓ Akses FitScore Pro website\n✓ Tanpa iklan selamanya');
+  if(user){user.plan='ultra';updateTokenUI();}
+  closePricingModal();dismissSubPopup();
+}
+
+/* ══ NO TOKEN MODAL ══ */
+function closeNoTokenModal(){document.getElementById('no-token-modal').classList.remove('show');}
+
+/* Close modals on backdrop click */
+document.getElementById('pricing-modal').addEventListener('click',function(e){if(e.target===this)closePricingModal();});
+document.getElementById('no-token-modal').addEventListener('click',function(e){if(e.target===this)closeNoTokenModal();});
 </script>
 </body>
-</html> 
+</html>
