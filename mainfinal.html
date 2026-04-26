@@ -309,37 +309,103 @@
 
   .result-top { display: grid; grid-template-columns: 1fr 2fr; gap: 24px; margin-bottom: 24px; }
 
+  /* Score Card with Donut */
   .score-card {
-    background: var(--white); border-radius: 16px; padding: 28px;
-    border: 1px solid var(--border); box-shadow: var(--shadow);
+    background: var(--white); border-radius: 20px; padding: 32px;
+    border: 1px solid var(--border); box-shadow: var(--shadow-lg);
     display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+    position: relative; overflow: hidden;
   }
-  .big-score { font-size: 72px; font-weight: 800; color: var(--blue); line-height: 1; }
-  .score-label { font-size: 13px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; margin-top: 4px; }
-  .score-verdict { margin-top: 12px; padding: 6px 16px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+  .score-card::before {
+    content: ''; position: absolute; top: -40px; right: -40px;
+    width: 140px; height: 140px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(37,99,235,0.07), transparent 70%);
+  }
+  .donut-wrapper {
+    position: relative; width: 160px; height: 160px; margin-bottom: 16px;
+  }
+  .donut-svg { transform: rotate(-90deg); }
+  .donut-track { fill: none; stroke: #EFF6FF; stroke-width: 14; }
+  .donut-fill {
+    fill: none; stroke-width: 14; stroke-linecap: round;
+    stroke-dasharray: 440; stroke-dashoffset: 440;
+    transition: stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1);
+  }
+  .donut-fill.great { stroke: #2563EB; }
+  .donut-fill.good  { stroke: #3B82F6; }
+  .donut-fill.low   { stroke: #EF4444; }
+  .donut-center {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+  .big-score { font-size: 52px; font-weight: 800; color: var(--blue); line-height: 1; }
+  .score-label { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: .1em; margin-top: 2px; }
+  .score-verdict { margin-top: 4px; padding: 6px 18px; border-radius: 999px; font-size: 13px; font-weight: 700; }
   .score-verdict.great { background: #D1FAE5; color: #065F46; }
-  .score-verdict.good { background: #DBEAFE; color: #1E3A8A; }
-  .score-verdict.low { background: #FEE2E2; color: #991B1B; }
+  .score-verdict.good  { background: #DBEAFE; color: #1E3A8A; }
+  .score-verdict.low   { background: #FEE2E2; color: #991B1B; }
 
-  .breakdown-card { background: var(--white); border-radius: 16px; padding: 28px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+  /* Breakdown Card */
+  .breakdown-card { background: var(--white); border-radius: 20px; padding: 28px; border: 1px solid var(--border); box-shadow: var(--shadow); }
   .breakdown-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 20px; color: var(--text-dark); }
 
+  .bar-row { margin-bottom: 14px; }
+  .bar-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .bar-meta-label { font-size: 13px; color: var(--text-mid); font-weight: 500; display: flex; align-items: center; gap: 6px; }
+  .bar-icon { font-size: 14px; }
+  .bar-pct { font-size: 13px; font-weight: 700; color: var(--text-dark); }
+  .bar-track { height: 10px; background: var(--bg); border-radius: 999px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 999px; width: 0%; transition: width 1.2s cubic-bezier(.4,0,.2,1); }
+  .bar-blue   { background: linear-gradient(90deg, #2563EB, #60A5FA); }
+  .bar-cyan   { background: linear-gradient(90deg, #06B6D4, #67E8F9); }
+  .bar-purple { background: linear-gradient(90deg, #8B5CF6, #C4B5FD); }
+  .bar-green  { background: linear-gradient(90deg, #10B981, #6EE7B7); }
+
+  .summary-box {
+    margin-top: 20px; padding: 16px 18px;
+    background: linear-gradient(135deg, #EFF6FF, #F0FDF4);
+    border-radius: 12px; border-left: 4px solid var(--blue);
+  }
+  .summary-box p { font-size: 13px; color: var(--text-mid); line-height: 1.75; }
+
+  /* Result Bottom */
   .result-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 
-  .gap-card { background: var(--white); border-radius: 16px; padding: 28px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+  .gap-card { background: var(--white); border-radius: 20px; padding: 28px; border: 1px solid var(--border); box-shadow: var(--shadow); }
   .gap-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--text-dark); }
 
-  .skill-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); }
-  .skill-row:last-child { border-bottom: none; }
-  .skill-name { font-size: 14px; font-weight: 600; color: var(--text-dark); }
-  .skill-badge { font-size: 12px; font-weight: 700; padding: 3px 12px; border-radius: 999px; }
-  .skill-match { background: #D1FAE5; color: #065F46; }
-  .skill-miss { background: #FEE2E2; color: #991B1B; }
+  /* Skill tags style for gap */
+  .skill-gap-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 600;
+    transition: transform .15s;
+  }
+  .skill-chip:hover { transform: translateY(-1px); }
+  .chip-match { background: #D1FAE5; color: #065F46; border: 1px solid #A7F3D0; }
+  .chip-miss  { background: #FEF2F2; color: #991B1B; border: 1px solid #FECACA; }
+  .chip-dot   { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .chip-match .chip-dot { background: #10B981; }
+  .chip-miss  .chip-dot { background: #EF4444; }
 
-  .rec-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
-  .rec-item:last-child { border-bottom: none; }
-  .rec-skill { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
-  .rec-desc { font-size: 13px; color: var(--text-muted); }
+  .gap-legend { display: flex; gap: 16px; margin-bottom: 14px; }
+  .gap-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted); font-weight: 500; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  .rec-card {
+    display: block; text-decoration: none; color: inherit;
+    background: var(--bg); border-radius: 12px; padding: 14px 16px;
+    margin-bottom: 10px; border: 1px solid var(--border);
+    transition: box-shadow .2s, transform .2s, border-color .2s;
+    cursor: pointer;
+  }
+  .rec-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); border-color: var(--blue); }
+  .rec-card:last-child { margin-bottom: 0; }
+  .rec-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+  .rec-card-icon { width: 28px; height: 28px; border-radius: 8px; background: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+  .rec-skill { font-size: 14px; font-weight: 700; color: var(--text-dark); }
+  .rec-card:hover .rec-skill { color: var(--blue); }
+  .rec-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
 
   /* ── LOADING ── */
   .loading-overlay {
@@ -822,21 +888,53 @@ We are looking for a Frontend Developer to join our team. You will be responsibl
       <h2 style="font-size:22px;font-weight:800;margin-bottom:24px;color:var(--text-dark);">Hasil Analisis</h2>
 
       <div class="result-top">
+        <!-- Donut Score Card -->
         <div class="score-card">
-          <div style="font-size:13px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">Match Score</div>
-          <div class="big-score" id="res-score">78</div>
-          <div class="score-label">dari 100</div>
+          <div style="font-size:11px;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px;">Match Score</div>
+          <div class="donut-wrapper">
+            <svg class="donut-svg" width="160" height="160" viewBox="0 0 160 160">
+              <circle class="donut-track" cx="80" cy="80" r="70"/>
+              <circle class="donut-fill great" id="donut-fill" cx="80" cy="80" r="70"/>
+            </svg>
+            <div class="donut-center">
+              <div class="big-score" id="res-score">0</div>
+              <div class="score-label">/ 100</div>
+            </div>
+          </div>
           <div class="score-verdict great" id="res-verdict">Sangat Cocok ✓</div>
+          <div style="margin-top:12px;font-size:13px;color:var(--text-muted);" id="res-jobtitle">Posisi yang Dilamar</div>
         </div>
 
+        <!-- Breakdown Bars -->
         <div class="breakdown-card">
-          <h3>Breakdown Analisis</h3>
-          <div class="bar-row"><div class="bar-label"><span>Skill Similarity</span><span id="b-skill">82%</span></div><div class="bar-track"><div class="bar-fill bar-blue" id="bf-skill" style="width:82%"></div></div></div>
-          <div class="bar-row" style="margin-top:12px;"><div class="bar-label"><span>Experience Match</span><span id="b-exp">75%</span></div><div class="bar-track"><div class="bar-fill bar-cyan" id="bf-exp" style="width:75%"></div></div></div>
-          <div class="bar-row" style="margin-top:12px;"><div class="bar-label"><span>Education Match</span><span id="b-edu">70%</span></div><div class="bar-track"><div class="bar-fill bar-purple" id="bf-edu" style="width:70%"></div></div></div>
-          <div class="bar-row" style="margin-top:12px;"><div class="bar-label"><span>Soft Skills</span><span id="b-soft">80%</span></div><div class="bar-track"><div class="bar-fill" id="bf-soft" style="width:80%;background:#10B981;"></div></div></div>
-          <div style="margin-top:16px;padding:14px;background:var(--bg);border-radius:10px;">
-            <p style="font-size:13px;color:var(--text-mid);line-height:1.7;" id="res-summary">Profilmu sangat cocok untuk posisi ini. Pengalaman dan skill utama yang dibutuhkan sudah kamu miliki.</p>
+          <h3>📊 Breakdown Analisis</h3>
+
+          <div class="bar-row">
+            <div class="bar-meta">
+              <span class="bar-meta-label"><span class="bar-icon">🧠</span> Skill Similarity</span>
+              <span class="bar-pct" id="b-skill">0%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill bar-blue" id="bf-skill"></div></div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-meta">
+              <span class="bar-meta-label"><span class="bar-icon">💼</span> Experience Match</span>
+              <span class="bar-pct" id="b-exp">0%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill bar-cyan" id="bf-exp"></div></div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-meta">
+              <span class="bar-meta-label"><span class="bar-icon">🎓</span> Education Match</span>
+              <span class="bar-pct" id="b-edu">0%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill bar-purple" id="bf-edu"></div></div>
+          </div>
+
+          <div class="summary-box">
+            <p id="res-summary">Profilmu sangat cocok untuk posisi ini. Pengalaman dan skill utama yang dibutuhkan sudah kamu miliki.</p>
           </div>
         </div>
       </div>
@@ -844,7 +942,11 @@ We are looking for a Frontend Developer to join our team. You will be responsibl
       <div class="result-bottom">
         <div class="gap-card">
           <h3>🎯 Skill Gap Analysis</h3>
-          <div id="skill-gap-list"></div>
+          <div class="gap-legend">
+            <div class="gap-legend-item"><div class="legend-dot" style="background:#10B981"></div> Dimiliki</div>
+            <div class="gap-legend-item"><div class="legend-dot" style="background:#EF4444"></div> Belum Dimiliki</div>
+          </div>
+          <div class="skill-gap-chips" id="skill-gap-list"></div>
         </div>
         <div class="gap-card">
           <h3>📚 Rekomendasi Kursus</h3>
@@ -1305,18 +1407,24 @@ function mapModelToUI(raw) {
   // ── Rekomendasi kursus — normalisasi ke [{skill, desc}] ──
   const rawRec = raw.recommendations ?? raw.courses ?? raw.rec ?? raw.course_list ?? [];
   const recList = Array.isArray(rawRec) && rawRec.length > 0
-    ? rawRec.map(r => ({
-        skill: String(r?.skill ?? r?.name  ?? r?.course ?? r?.title ?? '—'),
-        desc:  String(r?.desc  ?? r?.description ?? r?.detail ?? r?.platform
-                      ?? 'Pelajari skill ini untuk meningkatkan peluang kamu.'),
-      }))
-    : [{ skill: 'Kembangkan Portofolio', desc: 'Buat proyek nyata dan upload ke GitHub untuk memperkuat profilmu.' }];
+    ? rawRec.map(r => {
+        const skill = String(r?.skill ?? r?.name ?? r?.course ?? r?.title ?? '—');
+        const desc  = String(r?.desc  ?? r?.description ?? r?.detail ?? r?.platform
+                             ?? 'Pelajari skill ini untuk meningkatkan peluang kamu.');
+        const rawUrl = String(r?.url ?? r?.link ?? r?.course_url ?? '').trim();
+        // Jika backend tidak kirim url, generate otomatis dari nama skill
+        const url = (rawUrl && rawUrl !== 'undefined')
+          ? rawUrl
+          : 'https://www.coursera.org/search?query=' + encodeURIComponent(skill);
+        return { skill, desc, url };
+      })
+    : [{ skill: 'Kembangkan Portofolio', desc: 'Buat proyek nyata dan upload ke GitHub untuk memperkuat profilmu.', url: 'https://github.com' }];
 
   // ── Verdict berdasarkan skor ──
   const verdict     = score >= 75 ? 'great' : score >= 55 ? 'good' : 'low';
   const verdictText = score >= 75 ? 'Sangat Cocok ✓' : score >= 55 ? 'Cukup Cocok ~' : 'Perlu Ditingkatkan ✗';
 
-  return { jobTitle, score, skillSim, expMatch, eduMatch, softMatch, summary, skillGapList, recList, verdict, verdictText };
+  return { jobTitle, score, skillSim, expMatch, eduMatch, summary, skillGapList, recList, verdict, verdictText };
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -1369,42 +1477,84 @@ function displayResult(r) {
   const oldBanner = document.getElementById('error-banner');
   if (oldBanner) oldBanner.remove();
 
-  // ── Match Score ──
-  document.getElementById('res-score').textContent = r.score;
+  // ── Match Score + Donut Chart ──
+  document.getElementById('res-score').textContent   = r.score;
+  document.getElementById('res-jobtitle').textContent = r.jobTitle;
   const verdictEl = document.getElementById('res-verdict');
   verdictEl.textContent = r.verdictText;
   verdictEl.className   = 'score-verdict ' + r.verdict;
 
-  // ── Breakdown bars ──
+  // Animate donut: circumference = 2π × 70 ≈ 440
+  const donut = document.getElementById('donut-fill');
+  donut.className = 'donut-fill ' + r.verdict;
+  const offset = 440 - (440 * r.score / 100);
+  // Trigger animation after paint
+  requestAnimationFrame(() => {
+    donut.style.strokeDashoffset = '440';
+    setTimeout(() => { donut.style.strokeDashoffset = offset; }, 80);
+  });
+
+  // ── Breakdown bars (animated) ──
   const bars = [
     ['skill', r.skillSim],
     ['exp',   r.expMatch],
     ['edu',   r.eduMatch],
-    ['soft',  r.softMatch],
   ];
   bars.forEach(([key, val]) => {
-    document.getElementById(`b-${key}`).textContent    = val + '%';
-    document.getElementById(`bf-${key}`).style.width   = val + '%';
+    document.getElementById(`b-${key}`).textContent  = val + '%';
+    const fill = document.getElementById(`bf-${key}`);
+    fill.style.width = '0%';
+    setTimeout(() => { fill.style.width = val + '%'; }, 100);
   });
 
   // ── Teks ringkasan ──
   document.getElementById('res-summary').textContent = r.summary;
 
-  // ── Skill gap ──
+  // ── Skill gap — chip pills ──
   document.getElementById('skill-gap-list').innerHTML = r.skillGapList.map(s => `
-    <div class="skill-row">
-      <span class="skill-name">${esc(s.name)}</span>
-      <span class="skill-badge ${s.status === 'match' ? 'skill-match' : 'skill-miss'}">
-        ${s.status === 'match' ? '✓ Dimiliki' : '✗ Belum Dimiliki'}
-      </span>
-    </div>`).join('');
+    <span class="skill-chip ${s.status === 'match' ? 'chip-match' : 'chip-miss'}">
+      <span class="chip-dot"></span>${esc(s.name)}
+    </span>`).join('');
 
-  // ── Rekomendasi kursus ──
-  document.getElementById('rec-list').innerHTML = r.recList.map(rec => `
-    <div class="rec-item">
-      <div class="rec-skill">📖 ${esc(rec.skill)}</div>
-      <div class="rec-desc">${esc(rec.desc)}</div>
-    </div>`).join('');
+  // ── Rekomendasi kursus — card style dengan hyperlink ──
+  const icons = ['📖','🎯','💡','🚀','⚡'];
+  const recContainer = document.getElementById('rec-list');
+  recContainer.innerHTML = '';
+  console.log('[FitScore] recList:', r.recList); // debug — cek URL di console browser
+  r.recList.forEach((rec, i) => {
+    const url    = (rec.url || '').trim();
+    const hasUrl = url !== '';
+
+    // Buat elemen card — pakai <a> jika ada URL agar seluruh card bisa diklik
+    const card = document.createElement(hasUrl ? 'a' : 'div');
+    card.className = 'rec-card';
+    if (hasUrl) {
+      card.href   = url;
+      card.target = '_blank';
+      card.rel    = 'noopener noreferrer';
+    }
+
+    const header = document.createElement('div');
+    header.className = 'rec-card-header';
+
+    const icon = document.createElement('div');
+    icon.className   = 'rec-card-icon';
+    icon.textContent = icons[i % icons.length];
+
+    const skill = document.createElement('div');
+    skill.className   = 'rec-skill';
+    skill.textContent = rec.skill + (hasUrl ? ' ↗' : '');
+
+    const desc = document.createElement('div');
+    desc.className   = 'rec-desc';
+    desc.textContent = rec.desc;
+
+    header.appendChild(icon);
+    header.appendChild(skill);
+    card.appendChild(header);
+    card.appendChild(desc);
+    recContainer.appendChild(card);
+  });
 
   document.getElementById('result-section').classList.add('show');
   document.getElementById('result-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
