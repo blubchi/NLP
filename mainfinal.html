@@ -37,11 +37,9 @@
     min-height: 100vh;
   }
 
-  /* ── PAGES ── */
   .page { display: none; min-height: 100vh; }
   .page.active { display: flex; flex-direction: column; }
 
-  /* ── NAVBAR ── */
   nav {
     background: var(--white);
     border-bottom: 1px solid var(--border);
@@ -85,7 +83,6 @@
   .btn-ghost:hover { background: var(--bg); color: var(--text-dark); }
   .btn-danger { background: #FEE2E2; color: var(--red); border: none; }
 
-  /* ── HERO ── */
   .hero {
     flex: 1;
     padding: 80px 40px;
@@ -114,7 +111,6 @@
 
   .hero-btns { display: flex; gap: 12px; align-items: center; }
 
-  /* ── RESULT CARD ── */
   .result-card {
     background: var(--white);
     border-radius: 20px;
@@ -169,7 +165,6 @@
   .tag-green { background: #D1FAE5; color: #065F46; }
   .tag-red { background: #FEE2E2; color: #991B1B; }
 
-  /* ── FEATURES ── */
   .features {
     background: var(--white);
     padding: 80px 40px;
@@ -194,7 +189,6 @@
   .feature-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--text-dark); }
   .feature-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
 
-  /* ── FAQ ── */
   .faq { padding: 80px 40px; }
   .faq-inner { max-width: 700px; margin: 0 auto; }
   .faq-item { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; background: var(--white); }
@@ -204,7 +198,6 @@
   .faq-item.open .faq-arrow { transform: rotate(180deg); }
   .faq-arrow { transition: transform .2s; }
 
-  /* ── AUTH PAGES ── */
   .auth-page {
     flex: 1;
     display: flex;
@@ -241,7 +234,6 @@
   .link { color: var(--blue); font-weight: 600; cursor: pointer; text-decoration: none; }
   .link:hover { text-decoration: underline; }
 
-  /* ── PROFILE SETUP ── */
   .profile-page {
     flex: 1;
     padding: 40px;
@@ -289,7 +281,6 @@
   .progress-bar-wrapper { height: 6px; background: var(--border); border-radius: 999px; margin-bottom: 32px; overflow: hidden; }
   .progress-bar-fill { height: 100%; background: var(--blue); border-radius: 999px; transition: width .4s ease; }
 
-  /* ── ANALYSIS PAGE ── */
   .analysis-page { flex: 1; padding: 40px; max-width: 1100px; margin: 0 auto; width: 100%; }
   .analysis-header { margin-bottom: 32px; }
   .analysis-header h1 { font-size: 28px; font-weight: 800; color: var(--text-dark); }
@@ -303,13 +294,11 @@
 
   .analyze-btn-wrapper { text-align: center; margin-bottom: 40px; }
 
-  /* ── RESULT ── */
   .result-section { display: none; }
   .result-section.show { display: block; }
 
   .result-top { display: grid; grid-template-columns: 1fr 2fr; gap: 24px; margin-bottom: 24px; }
 
-  /* Score Card with Donut */
   .score-card {
     background: var(--white); border-radius: 20px; padding: 32px;
     border: 1px solid var(--border); box-shadow: var(--shadow-lg);
@@ -345,7 +334,6 @@
   .score-verdict.good  { background: #DBEAFE; color: #1E3A8A; }
   .score-verdict.low   { background: #FEE2E2; color: #991B1B; }
 
-  /* Breakdown Card */
   .breakdown-card { background: var(--white); border-radius: 20px; padding: 28px; border: 1px solid var(--border); box-shadow: var(--shadow); }
   .breakdown-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 20px; color: var(--text-dark); }
 
@@ -368,13 +356,11 @@
   }
   .summary-box p { font-size: 13px; color: var(--text-mid); line-height: 1.75; }
 
-  /* Result Bottom */
   .result-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 
   .gap-card { background: var(--white); border-radius: 20px; padding: 28px; border: 1px solid var(--border); box-shadow: var(--shadow); }
   .gap-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--text-dark); }
 
-  /* Skill tags style for gap */
   .skill-gap-chips { display: flex; flex-wrap: wrap; gap: 8px; }
   .skill-chip {
     display: inline-flex; align-items: center; gap: 6px;
@@ -407,7 +393,6 @@
   .rec-card:hover .rec-skill { color: var(--blue); }
   .rec-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
 
-  /* ── LOADING ── */
   .loading-overlay {
     display: none;
     position: fixed; inset: 0; background: rgba(255,255,255,.9);
@@ -419,7 +404,6 @@
   .loading-text { font-size: 16px; font-weight: 600; color: var(--text-dark); }
   .loading-sub { font-size: 13px; color: var(--text-muted); }
 
-  /* ── DASHBOARD ── */
   .dashboard-page { flex: 1; padding: 40px; max-width: 1100px; margin: 0 auto; width: 100%; }
   .dashboard-greet { font-size: 26px; font-weight: 800; color: var(--text-dark); margin-bottom: 6px; }
   .dashboard-sub { font-size: 15px; color: var(--text-muted); margin-bottom: 32px; }
@@ -445,6 +429,40 @@
   }
   .toast.show { transform: translateY(0); opacity: 1; }
 
+  .upgrade-page { flex: 1; padding: 40px; max-width: 800px; margin: 0 auto; width: 100%; text-align: center; }
+  .upgrade-card { background: var(--white); border-radius: 20px; padding: 40px; box-shadow: var(--shadow-lg); border: 2px solid var(--blue); position: relative; overflow: hidden; }
+  .upgrade-badge { position: absolute; top: 16px; right: -32px; background: var(--blue); color: white; padding: 6px 40px; font-size: 12px; font-weight: 700; transform: rotate(45deg); }
+  .upgrade-price { font-size: 48px; font-weight: 800; color: var(--text-dark); margin: 20px 0; }
+  .upgrade-price span { font-size: 16px; color: var(--text-muted); font-weight: 500; }
+  .upgrade-list { text-align: left; margin: 30px auto; max-width: 400px; font-size: 15px; color: var(--text-mid); }
+  .upgrade-list li { margin-bottom: 12px; display: flex; gap: 10px; align-items: center; }
+  .upgrade-list li::before { content: '✓'; color: var(--green); font-weight: bold; }
+
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+  .modal-overlay.show { display: flex; }
+  .modal-card { background: var(--white); border-radius: 16px; width: 100%; max-width: 600px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg); }
+  .modal-header { padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .modal-header h3 { font-size: 18px; font-weight: 700; }
+  .btn-close { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-muted); }
+  .modal-body { padding: 24px; overflow-y: auto; flex: 1; }
+  .modal-section { margin-bottom: 20px; }
+  .modal-section h4 { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
+  .modal-section p { font-size: 13px; color: var(--text-muted); white-space: pre-wrap; line-height: 1.6; background: var(--bg); padding: 12px; border-radius: 8px; border: 1px solid var(--border); }
+
+  .ad-container { margin-top: 24px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); display: none; }
+  .ad-container.show { display: block; }
+  .ad-container video { width: 100%; display: block; }
+  .ad-label { background: var(--bg); color: var(--text-muted); font-size: 11px; text-align: center; padding: 4px; border-bottom: 1px solid var(--border); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 600; }
+
+  .ad-popup-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 10000; align-items: center; justify-content: center; }
+  .ad-popup-overlay.show { display: flex; }
+  .ad-popup-content { position: relative; width: 100%; max-width: 800px; background: #000; }
+  .ad-popup-video { width: 100%; display: block; }
+  .ad-popup-close { display: none; position: absolute; top: -40px; right: 0; background: none; border: none; color: white; font-size: 32px; cursor: pointer; z-index: 10001; }
+  .ad-popup-skip { display: none; position: absolute; bottom: 20px; right: 20px; background: rgba(255,255,255,0.2); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.5); color: white; padding: 10px 24px; border-radius: 999px; font-weight: 600; cursor: pointer; z-index: 10001; transition: background 0.2s; }
+  .ad-popup-skip:hover { background: rgba(255,255,255,0.3); }
+  .ad-popup-countdown { position: absolute; bottom: 20px; right: 20px; background: rgba(0,0,0,0.6); color: white; padding: 10px 20px; border-radius: 999px; font-size: 14px; z-index: 10001; pointer-events: none; }
+
   @media (max-width: 768px) {
     .hero { grid-template-columns: 1fr; padding: 40px 20px; }
     .result-card { display: none; }
@@ -460,11 +478,7 @@
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════
-     PAGE: LANDING
-══════════════════════════════════════════ -->
 <div id="page-landing" class="page active">
-  <!-- Nav -->
   <nav>
     <a class="logo" href="#" onclick="goTo('landing')">
       <div class="logo-icon">F</div>
@@ -480,7 +494,6 @@
     </div>
   </nav>
 
-  <!-- Hero -->
   <div class="hero">
     <div>
       <div class="hero-badge"><span class="hero-badge-dot"></span> AI-POWERED CAREER MATCH</div>
@@ -531,7 +544,6 @@
     </div>
   </div>
 
-  <!-- Features -->
   <section id="features" class="features">
     <div class="features-inner">
       <div class="section-badge">✦ Fitur Unggulan</div>
@@ -557,7 +569,6 @@
     </div>
   </section>
 
-  <!-- FAQ -->
   <section id="faq" class="faq">
     <div class="faq-inner" style="text-align:center; margin-bottom:40px;">
       <div class="section-badge" style="margin:0 auto 16px;">FAQ</div>
@@ -584,9 +595,6 @@
   </section>
 </div>
 
-<!-- ══════════════════════════════════════════
-     PAGE: LOGIN
-══════════════════════════════════════════ -->
 <div id="page-login" class="page">
   <nav>
     <a class="logo" href="#" onclick="goTo('landing')">
@@ -615,9 +623,6 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     PAGE: REGISTER
-══════════════════════════════════════════ -->
 <div id="page-register" class="page">
   <nav>
     <a class="logo" href="#" onclick="goTo('landing')">
@@ -656,9 +661,6 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     PAGE: PROFILE SETUP
-══════════════════════════════════════════ -->
 <div id="page-profile" class="page">
   <nav>
     <a class="logo" href="#" onclick="goTo('landing')">
@@ -681,7 +683,6 @@
       <div class="step-item"><div class="step-circle pending" id="s3">3</div><span class="step-label" id="sl3">Skill &amp; Pendidikan</span></div>
     </div>
 
-    <!-- Step 1: Info Dasar -->
     <div id="profile-step-1">
       <div class="profile-card">
         <div class="profile-card-title">Informasi Dasar</div>
@@ -721,7 +722,6 @@
       </div>
     </div>
 
-    <!-- Step 2: Pengalaman Kerja -->
     <div id="profile-step-2" style="display:none;">
       <div class="profile-card">
         <div class="profile-card-title">Pengalaman Kerja</div>
@@ -735,7 +735,6 @@
       </div>
     </div>
 
-    <!-- Step 3: Skill & Pendidikan -->
     <div id="profile-step-3" style="display:none;">
       <div class="profile-card">
         <div class="profile-card-title">Skill &amp; Pendidikan</div>
@@ -792,9 +791,6 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     PAGE: DASHBOARD
-══════════════════════════════════════════ -->
 <div id="page-dashboard" class="page">
   <nav>
     <a class="logo" href="#" onclick="goTo('landing')">
@@ -823,17 +819,26 @@
 
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
       <h3 style="font-size:18px;font-weight:700;">Riwayat Analisis</h3>
-      <button class="btn btn-primary" onclick="goTo('analysis')">+ Analisis Baru</button>
+      <div style="display:flex;gap:12px;">
+        <button class="btn btn-outline" onclick="goToEditProfile()">Edit Profil</button>
+        <button class="btn btn-primary" onclick="goTo('analysis')">+ Analisis Baru</button>
+        <button class="btn btn-outline" style="color:var(--purple);border-color:var(--purple);" id="btn-upgrade-dash" onclick="goTo('upgrade')">⭐ Upgrade Pro</button>
+      </div>
     </div>
     <div class="history-card">
       <div id="history-list"><p style="color:var(--text-muted);font-size:14px;">Belum ada analisis. <a class="link" onclick="goTo('analysis')">Mulai analisis pertamamu →</a></p></div>
     </div>
+
+    <div class="ad-container" id="dash-ad">
+      <div class="ad-label">Advertisement</div>
+      <video controls muted>
+        <source src="src/iklan_fitrecruiters.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     PAGE: ANALYSIS
-══════════════════════════════════════════ -->
 <div id="page-analysis" class="page">
   <nav>
     <a class="logo" href="#" onclick="goTo('landing')">
@@ -882,13 +887,11 @@ We are looking for a Frontend Developer to join our team. You will be responsibl
       <p style="font-size:13px;color:var(--text-muted);margin-top:10px;">Analisis menggunakan AI berdasarkan profilmu yang tersimpan</p>
     </div>
 
-    <!-- RESULT -->
     <div class="result-section" id="result-section">
       <hr style="border:none;border-top:1px solid var(--border);margin-bottom:32px;">
       <h2 style="font-size:22px;font-weight:800;margin-bottom:24px;color:var(--text-dark);">Hasil Analisis</h2>
 
       <div class="result-top">
-        <!-- Donut Score Card -->
         <div class="score-card">
           <div style="font-size:11px;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px;">Match Score</div>
           <div class="donut-wrapper">
@@ -905,7 +908,6 @@ We are looking for a Frontend Developer to join our team. You will be responsibl
           <div style="margin-top:12px;font-size:13px;color:var(--text-muted);" id="res-jobtitle">Posisi yang Dilamar</div>
         </div>
 
-        <!-- Breakdown Bars -->
         <div class="breakdown-card">
           <h3>📊 Breakdown Analisis</h3>
 
@@ -958,52 +960,93 @@ We are looking for a Frontend Developer to join our team. You will be responsibl
         <button class="btn btn-outline btn-lg" onclick="goTo('dashboard')">← Kembali ke Dashboard</button>
         <button class="btn btn-primary btn-lg" style="margin-left:12px;" onclick="resetAnalysis()">Analisis Lowongan Lain</button>
       </div>
+
+      <div class="ad-container" id="analysis-ad" style="margin-top:24px;">
+        <div class="ad-label">Advertisement</div>
+        <video controls muted>
+          <source src="src/iklan_fitrecruiters.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- Loading -->
 <div class="loading-overlay" id="loading">
   <div class="spinner"></div>
   <div class="loading-text">Menganalisis kecocokan profilmu...</div>
   <div class="loading-sub">Ini membutuhkan beberapa detik</div>
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast"></div>
 
-<script>
-// ═══════════════════════════════════════════════════════════════════
-//  FITSCORE — Frontend Integration Layer
-//  Tugas frontend hanya:
-//    1. Kumpulkan data profil + JD + req dari form
-//    2. Kirim ke model (POST)
-//    3. Terima hasil dari model
-//    4. Visualisasikan hasil ke UI
-//
-//  TIDAK ADA analisis lokal di sini.
-//  Semua scoring, skill gap, dan rekomendasi dikerjakan oleh model.
-// ═══════════════════════════════════════════════════════════════════
+<div id="page-upgrade" class="page">
+  <nav>
+    <a class="logo" href="#" onclick="goTo('landing')">
+      <div class="logo-icon">F</div>
+      Fit <span>Score</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" onclick="goTo('dashboard')">Dashboard</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="btn btn-ghost" onclick="goTo('dashboard')">Kembali</button>
+    </div>
+  </nav>
 
-// ╔═══════════════════════════════════════════════════════════════════════╗
-// ║  KONFIGURASI PROXY                                                    ║
-// ╠═══════════════════════════════════════════════════════════════════════╣
-// ║                                                                       ║
-// ║  Frontend TIDAK lagi memanggil Hugging Face secara langsung.         ║
-// ║  Semua request dikirim ke proxy lokal (proxy.js) di Node.js.         ║
-// ║  Proxy itulah yang meneruskan ke Hugging Face — bebas CORS.          ║
-// ║                                                                       ║
-// ║  Kenapa ini solusi CORS?                                              ║
-// ║    Browser → proxy (localhost) = same origin, tidak diblokir         ║
-// ║    Proxy (Node.js) → HF API = server-to-server, bebas CORS           ║
-// ║                                                                       ║
-// ║  HF_TOKEN disimpan di proxy.js, TIDAK di file HTML ini.              ║
-// ║  PROXY_URL: sesuaikan port jika kamu ubah PORT di proxy.js           ║
-// ║                                                                       ║
-// ╚═══════════════════════════════════════════════════════════════════════╝
+  <div class="upgrade-page">
+    <h1 style="font-size:32px;font-weight:800;color:var(--text-dark);margin-bottom:12px;">Tingkatkan Karirmu dengan PRO</h1>
+    <p style="font-size:16px;color:var(--text-muted);margin-bottom:40px;">Buka semua batasan dan tingkatkan peluangmu mendapatkan pekerjaan impian.</p>
+
+    <div class="upgrade-card">
+      <div class="upgrade-badge">PRO</div>
+      <h2 style="font-size:24px;font-weight:700;">FitScore Pro</h2>
+      <div class="upgrade-price">Rp 99.000<span>/bulan</span></div>
+      <ul class="upgrade-list">
+        <li>Token 30x analisis kecocokan per hari</li>
+        <li>Simpan riwayat analisis tanpa batas (unlimited)</li>
+        <li>Bebas iklan sepenuhnya</li>
+        <li>Akses prioritas ke fitur AI terbaru</li>
+      </ul>
+      <button class="btn btn-primary btn-lg" style="width:100%;max-width:300px;" onclick="processUpgrade()">Upgrade Sekarang 🚀</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="history-modal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3 id="modal-job-title">Detail Analisis</h3>
+      <button class="btn-close" onclick="closeHistoryModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <h4>Job Description</h4>
+        <p id="modal-jd-content"></p>
+      </div>
+      <div class="modal-section">
+        <h4>Requirements</h4>
+        <p id="modal-req-content"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-popup-overlay" id="ad-popup">
+  <div class="ad-popup-content">
+    <button class="ad-popup-close" id="ad-popup-close" onclick="closeAdPopup()">&times;</button>
+    <video class="ad-popup-video" id="ad-popup-video" playsinline muted>
+      <source src="src/iklan_fitrecruiters.mp4" type="video/mp4">
+    </video>
+    <button class="ad-popup-skip" id="ad-popup-skip" onclick="closeAdPopup()">Skip Ad ⏭</button>
+    <div class="ad-popup-countdown" id="ad-popup-countdown">Video dapat di-skip dalam 5...</div>
+  </div>
+</div>
+
+<script>
+
 const PROXY_URL = "http://localhost:5500/analyze";
 
-// ── STATE ──
 let currentUser    = null;
 let profileData    = {};
 let analysisHistory = [];
@@ -1012,7 +1055,6 @@ let softTagsData   = [];
 let toolsTagsData  = [];
 let expCount       = 0;
 
-// ── NAVIGATION ──
 function goTo(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
@@ -1023,12 +1065,11 @@ function goTo(page) {
   }
 }
 
-// ── AUTH ──
 function doLogin() {
   const email = document.getElementById('login-email').value.trim();
   const pass  = document.getElementById('login-pass').value;
   if (!email || !pass) { showToast('Isi email dan password terlebih dahulu.'); return; }
-  currentUser = { name: email.split('@')[0], email };
+  currentUser = { name: email.split('@')[0], email, isPro: false, checksToday: 0, lastCheckDate: new Date().toISOString().split('T')[0] };
   document.getElementById('nav-user').textContent = currentUser.name;
   showToast('Login berhasil! 👋');
   profileData.done ? goTo('dashboard') : (goTo('profile'), document.getElementById('p-name').value = currentUser.name);
@@ -1041,7 +1082,7 @@ function doRegister() {
   const pass  = document.getElementById('reg-pass').value;
   if (!fname || !email || !pass) { showToast('Lengkapi semua field terlebih dahulu.'); return; }
   if (pass.length < 8) { showToast('Password minimal 8 karakter.'); return; }
-  currentUser = { name: fname + (lname ? ' ' + lname : ''), email };
+  currentUser = { name: fname + (lname ? ' ' + lname : ''), email, isPro: false, checksToday: 0, lastCheckDate: new Date().toISOString().split('T')[0] };
   document.getElementById('nav-user').textContent = currentUser.name;
   document.getElementById('p-name').value = currentUser.name;
   showToast('Akun berhasil dibuat! Lengkapi profilmu. 🎉');
@@ -1052,8 +1093,6 @@ function doLogout() {
   currentUser = null; profileData = {}; analysisHistory = [];
   goTo('landing'); showToast('Berhasil keluar.');
 }
-
-// ── PROFILE STEPS ──
 let currentStep = 1;
 
 function nextStep(step) {
@@ -1090,7 +1129,6 @@ function addExp() {
     </div>`);
 }
 
-// ── TAGS ──
 function addTag(e, store, inputId) {
   if (e.key === 'Enter' || e.key === ',') {
     e.preventDefault();
@@ -1124,9 +1162,7 @@ function renderTags(store, inputId) {
   });
 }
 
-// ── FINISH PROFILE ──
 function finishProfile() {
-  // Kumpulkan semua entry pengalaman kerja dari DOM
   const expEntries = [];
   document.querySelectorAll('#exp-list .exp-item').forEach(item => {
     const inputs    = item.querySelectorAll('input');
@@ -1164,7 +1200,6 @@ function finishProfile() {
   goTo('dashboard');
 }
 
-// ── DASHBOARD ──
 function updateDashboard() {
   const name = profileData.name || currentUser?.name || 'Pengguna';
   document.getElementById('dash-greet').textContent = 'Halo, ' + name + ' 👋';
@@ -1185,8 +1220,15 @@ function updateDashboard() {
   if (analysisHistory.length === 0) {
     list.innerHTML = '<p style="color:var(--text-muted);font-size:14px;">Belum ada analisis. <a class="link" onclick="goTo(\'analysis\')">Mulai analisis pertamamu →</a></p>';
   } else {
-    list.innerHTML = [...analysisHistory].reverse().map(h => `
-      <div class="history-item">
+    let displayHistory = [...analysisHistory];
+    if (!currentUser.isPro) {
+      displayHistory = displayHistory.slice(-3);
+    }
+
+    list.innerHTML = displayHistory.reverse().map(h => {
+      const originalIdx = analysisHistory.indexOf(h);
+      return `
+      <div class="history-item" style="cursor:pointer;" onclick="showHistoryDetail(${originalIdx})">
         <div class="history-info">
           <h4>${h.job}</h4>
           <p>${h.date}</p>
@@ -1197,43 +1239,33 @@ function updateDashboard() {
           </span>
           <div class="history-score">${h.score}</div>
         </div>
-      </div>`).join('');
+      </div>`;
+    }).join('');
+
+    if (!currentUser.isPro && analysisHistory.length > 3) {
+      list.innerHTML += `<div style="text-align:center;margin-top:16px;"><a class="link" onclick="goTo('upgrade')">Upgrade ke Pro untuk melihat semua riwayat</a></div>`;
+    }
+  }
+
+  const adDash = document.getElementById('dash-ad');
+  const adAnalysis = document.getElementById('analysis-ad');
+  const btnUpgrade = document.getElementById('btn-upgrade-dash');
+  
+  if (currentUser.isPro) {
+    if (adDash) adDash.classList.remove('show');
+    if (adAnalysis) adAnalysis.classList.remove('show');
+    if (btnUpgrade) btnUpgrade.style.display = 'none';
+  } else {
+    if (adDash) adDash.classList.add('show');
+    if (adAnalysis) adAnalysis.classList.add('show');
+    if (btnUpgrade) btnUpgrade.style.display = 'inline-flex';
   }
 }
-
-// ═══════════════════════════════════════════════════════════════════
-//  ANALISIS — HUGGING FACE INFERENCE API
-//  Tidak ada lagi generateResult() / setTimeout / random / keyword
-//  matching lokal. Semua diproses oleh model SBERT di Hugging Face.
-// ═══════════════════════════════════════════════════════════════════
-
-// ═══════════════════════════════════════════════════════════════════
-//  STEP 1 — BANGUN PAYLOAD
-//  Kumpulkan semua data dari form dan profileData, susun jadi
-//  satu objek JSON yang siap dikirim ke model.
-//
-//  Struktur payload yang dikirim ke model:
-//  {
-//    "inputs": {
-//      "jd":           string   — job description dari textarea
-//      "req":          string   — requirements dari textarea
-//      "profile_text": string   — teks naratif profil (untuk SBERT)
-//      "profile":      object   — data terstruktur profil (untuk logika tambahan di model)
-//    }
-//  }
-//
-//  ⚠️  CATATAN UNTUK PEMBUAT MODEL:
-//  Jika model mengharapkan format input yang berbeda
-//  (misal: hanya "inputs" berupa string, atau field dengan nama lain),
-//  cukup ubah fungsi buildPayload() di bawah ini saja.
-//  Tidak perlu mengubah bagian lain dari script ini.
-// ═══════════════════════════════════════════════════════════════════
 
 function buildPayload(jd, req) {
   const p   = profileData;
   const edu = p.education || {};
 
-  // ── Teks naratif: versi "kalimat" dari profil, optimal untuk SBERT ──
   const expText = (p.experiences || [])
     .map(e => `${e.position} di ${e.company} (${e.start}–${e.end}): ${e.description}`)
     .join('. ');
@@ -1251,7 +1283,6 @@ function buildPayload(jd, req) {
     edu.school ? `Pendidikan: ${edu.degree} ${edu.major}, ${edu.school} (${edu.year}).` : '',
   ].filter(Boolean).join(' ');
 
-  // ── Data terstruktur: JSON tabular, bisa dikonversi ke DataFrame di model ──
   const profile = {
     name:        p.name        || '',
     location:    p.location    || '',
@@ -1276,17 +1307,10 @@ function buildPayload(jd, req) {
     },
   };
 
-  // ── Payload final yang dikirim ke model ──
   return {
     inputs: { jd, req, profile_text, profile }
   };
 }
-
-// ═══════════════════════════════════════════════════════════════════
-//  STEP 2 — KIRIM KE MODEL & TERIMA HASIL
-//  Satu-satunya tempat komunikasi dengan model terjadi.
-//  Tidak ada analisis apapun di fungsi ini.
-// ═══════════════════════════════════════════════════════════════════
 
 async function runAnalysis() {
   const jd  = document.getElementById('jd-input').value.trim();
@@ -1302,44 +1326,114 @@ async function runAnalysis() {
     return;
   }
 
-  // Tampilkan loading, sembunyikan hasil lama
-  setLoading(true);
+  const today = new Date().toISOString().split('T')[0];
+  if (currentUser.lastCheckDate !== today) {
+    currentUser.checksToday = 0;
+    currentUser.lastCheckDate = today;
+  }
+
+  const limit = currentUser.isPro ? 30 : 3;
+  if (currentUser.checksToday >= limit) {
+    showToast(`Batas pengecekan harian tercapai (${limit}x). ${currentUser.isPro ? 'Coba lagi besok.' : 'Upgrade ke Pro untuk 30x pengecekan.'}`);
+    if (!currentUser.isPro) setTimeout(() => goTo('upgrade'), 2000);
+    return;
+  }
+
   document.getElementById('result-section').classList.remove('show');
   const prevBanner = document.getElementById('error-banner');
   if (prevBanner) prevBanner.remove();
 
+  if (!currentUser.isPro) {
+    showAdPopupAndRun();
+  } else {
+    executeAnalysis(jd, req);
+  }
+}
+
+let adInterval;
+let adTimeoutSkip;
+let adTimeoutClose;
+
+function showAdPopupAndRun() {
+  const popup = document.getElementById('ad-popup');
+  const video = document.getElementById('ad-popup-video');
+  const skipBtn = document.getElementById('ad-popup-skip');
+  const closeBtn = document.getElementById('ad-popup-close');
+  const countdown = document.getElementById('ad-popup-countdown');
+
+  popup.classList.add('show');
+  skipBtn.style.display = 'none';
+  closeBtn.style.display = 'none';
+  countdown.style.display = 'block';
+
+  let timeleft = 5;
+  countdown.textContent = `Video dapat di-skip dalam ${timeleft}...`;
+
+  video.currentTime = 0;
+  video.play().catch(e => console.log('Video autoplay prevented', e));
+
+  clearInterval(adInterval);
+  clearTimeout(adTimeoutSkip);
+  clearTimeout(adTimeoutClose);
+
+  adInterval = setInterval(() => {
+    timeleft--;
+    if (timeleft > 0) {
+      countdown.textContent = `Video dapat di-skip dalam ${timeleft}...`;
+    } else {
+      clearInterval(adInterval);
+    }
+  }, 1000);
+
+  adTimeoutSkip = setTimeout(() => {
+    countdown.style.display = 'none';
+    skipBtn.style.display = 'block';
+
+    adTimeoutClose = setTimeout(() => {
+      closeBtn.style.display = 'block';
+    }, 3000);
+  }, 5000);
+}
+
+function closeAdPopup() {
+  clearInterval(adInterval);
+  clearTimeout(adTimeoutSkip);
+  clearTimeout(adTimeoutClose);
+  document.getElementById('ad-popup-video').pause();
+  document.getElementById('ad-popup').classList.remove('show');
+  
+  const jd  = document.getElementById('jd-input').value.trim();
+  const req = document.getElementById('req-input').value.trim();
+  executeAnalysis(jd, req);
+}
+
+async function executeAnalysis(jd, req) {
+  setLoading(true);
+
   try {
-    // ── Kirim request ke proxy lokal ───────────────────────────────
-    // Proxy (proxy.js) yang meneruskan ke Hugging Face dengan token.
-    // Token tidak pernah ada di browser — aman dari inspeksi.
     const response = await fetch(PROXY_URL, {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(buildPayload(jd, req)),
     });
 
-    // Tangani HTTP error dengan pesan yang informatif
     if (!response.ok) {
       const body = await response.text().catch(() => '');
       throw new Error(httpErrorMessage(response.status, body));
     }
 
-    // ── Terima hasil dari model ─────────────────────────────────────
     const modelResponse = await response.json();
-
-    // ── Petakan ke format UI ────────────────────────────────────────
-    // mapModelToUI() hanya bertugas menerjemahkan field model → field UI.
-    // Tidak ada kalkulasi apapun di dalamnya.
     const uiData = mapModelToUI(modelResponse);
 
-    // ── Tampilkan ke UI ─────────────────────────────────────────────
     displayResult(uiData);
 
-    // ── Simpan ke riwayat ───────────────────────────────────────────
+    currentUser.checksToday++;
     analysisHistory.push({
       job:   uiData.jobTitle,
       score: uiData.score,
       date:  new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
+      jd:    jd,
+      req:   req
     });
 
   } catch (err) {
@@ -1351,51 +1445,19 @@ async function runAnalysis() {
   }
 }
 
-// ═══════════════════════════════════════════════════════════════════
-//  STEP 3 — PEMETAAN RESPONSE MODEL → FORMAT UI
-//
-//  Fungsi ini hanya menerjemahkan nama field dari model ke nama field
-//  yang dibutuhkan oleh displayResult(). Tidak ada logika analisis.
-//
-//  ⚠️  SESUAIKAN BAGIAN INI ketika tahu persis format output model.
-//  Saat ini mendukung beberapa variasi nama field yang umum.
-//
-//  Output model yang diharapkan (nilai integer 0–100 atau float 0–1):
-//  {
-//    "overall_score":    number   — skor keseluruhan
-//    "skill_score":      number   — skor kecocokan skill
-//    "experience_score": number   — skor kecocokan pengalaman
-//    "education_score":  number   — skor kecocokan pendidikan
-//    "soft_score":       number   — skor soft skill
-//    "job_title":        string   — judul posisi yang dideteksi
-//    "summary":          string   — teks ringkasan hasil analisis
-//    "skill_gap": [               — daftar skill dari JD
-//      { "name": string, "status": "match" | "miss" }
-//    ],
-//    "recommendations": [         — rekomendasi kursus
-//      { "skill": string, "desc": string }
-//    ]
-//  }
-// ═══════════════════════════════════════════════════════════════════
-
 function mapModelToUI(raw) {
-  // Beberapa model HF mengembalikan array — ambil elemen pertama
   if (Array.isArray(raw)) raw = raw[0];
   raw = raw || {};
 
-  // ── Skor — toleran terhadap variasi nama field ──
-  // Juga menangani nilai float 0–1 (cosine similarity) → int 0–100
   const score     = toScore(raw.overall_score    ?? raw.score    ?? raw.match_score);
   const skillSim  = toScore(raw.skill_score      ?? raw.skill    ?? raw.skill_similarity);
   const expMatch  = toScore(raw.experience_score ?? raw.exp      ?? raw.exp_score);
   const eduMatch  = toScore(raw.education_score  ?? raw.edu      ?? raw.edu_score);
   const softMatch = toScore(raw.soft_score       ?? raw.soft     ?? raw.soft_skill_score);
 
-  // ── Teks ──
   const jobTitle = String(raw.job_title || raw.jobTitle || raw.position || 'Posisi yang Dilamar').slice(0, 60);
   const summary  = String(raw.summary   || raw.description || raw.analysis || fallbackSummary(score));
 
-  // ── Skill gap — normalisasi ke [{name, status}] ──
   const rawGap = raw.skill_gap ?? raw.skillGap ?? raw.gap ?? raw.skills ?? [];
   const skillGapList = Array.isArray(rawGap) && rawGap.length > 0
     ? rawGap.map(g => ({
@@ -1404,7 +1466,6 @@ function mapModelToUI(raw) {
       }))
     : [{ name: 'Data skill gap tidak tersedia', status: 'match' }];
 
-  // ── Rekomendasi kursus — normalisasi ke [{skill, desc}] ──
   const rawRec = raw.recommendations ?? raw.courses ?? raw.rec ?? raw.course_list ?? [];
   const recList = Array.isArray(rawRec) && rawRec.length > 0
     ? rawRec.map(r => {
@@ -1412,7 +1473,6 @@ function mapModelToUI(raw) {
         const desc  = String(r?.desc  ?? r?.description ?? r?.detail ?? r?.platform
                              ?? 'Pelajari skill ini untuk meningkatkan peluang kamu.');
         const rawUrl = String(r?.url ?? r?.link ?? r?.course_url ?? '').trim();
-        // Jika backend tidak kirim url, generate otomatis dari nama skill
         const url = (rawUrl && rawUrl !== 'undefined')
           ? rawUrl
           : 'https://www.coursera.org/search?query=' + encodeURIComponent(skill);
@@ -1420,42 +1480,31 @@ function mapModelToUI(raw) {
       })
     : [{ skill: 'Kembangkan Portofolio', desc: 'Buat proyek nyata dan upload ke GitHub untuk memperkuat profilmu.', url: 'https://github.com' }];
 
-  // ── Verdict berdasarkan skor ──
   const verdict     = score >= 75 ? 'great' : score >= 55 ? 'good' : 'low';
   const verdictText = score >= 75 ? 'Sangat Cocok ✓' : score >= 55 ? 'Cukup Cocok ~' : 'Perlu Ditingkatkan ✗';
 
   return { jobTitle, score, skillSim, expMatch, eduMatch, summary, skillGapList, recList, verdict, verdictText };
 }
 
-// ═══════════════════════════════════════════════════════════════════
-//  HELPERS — Tidak ada logika analisis, hanya konversi & sanitasi
-// ═══════════════════════════════════════════════════════════════════
-
-/** Konversi nilai skor ke integer 0–100.
- *  Tangani: null/undefined → 0, float 0–1 → ×100, angka >1 → clamp */
 function toScore(val) {
   if (val === null || val === undefined) return 0;
   const n = Number(val);
   if (isNaN(n))       return 0;
-  if (n >= 0 && n <= 1) return Math.round(n * 100);   // cosine similarity
-  return Math.min(100, Math.max(0, Math.round(n)));    // integer 0–100
+  if (n >= 0 && n <= 1) return Math.round(n * 100);  
+  return Math.min(100, Math.max(0, Math.round(n)));    
 }
 
-/** Normalisasi berbagai representasi status menjadi 'match' atau 'miss' */
 function normalizeGapStatus(val) {
   const s = String(val ?? '').toLowerCase().trim();
   if (['match','found','dimiliki','ada','yes','have','1','true','owned'].includes(s)) return 'match';
   return 'miss';
 }
 
-/** Teks ringkasan fallback jika model tidak mengembalikan summary */
 function fallbackSummary(score) {
   if (score >= 75) return 'Profilmu sangat cocok untuk posisi ini! Skill utama yang dibutuhkan sudah kamu miliki.';
   if (score >= 55) return 'Profilmu cukup cocok. Ada beberapa skill teknis yang bisa ditingkatkan.';
   return 'Ada beberapa gap yang perlu ditutup sebelum melamar posisi ini.';
 }
-
-/** Pesan error HTTP yang informatif */
 function httpErrorMessage(status, body) {
   const excerpt = body ? ` — ${body.slice(0, 150)}` : '';
   if (status === 401) return `Token tidak valid (401). Periksa nilai HF_TOKEN di dalam file proxy.js.`;
@@ -1466,35 +1515,25 @@ function httpErrorMessage(status, body) {
   return `Request gagal dengan status HTTP ${status}.${excerpt}`;
 }
 
-// ═══════════════════════════════════════════════════════════════════
-//  STEP 4 — VISUALISASI HASIL
-//  displayResult() hanya mengisi elemen HTML dengan data dari model.
-//  Tidak ada kalkulasi apapun di sini.
-// ═══════════════════════════════════════════════════════════════════
-
 function displayResult(r) {
-  // Bersihkan banner error lama jika ada
   const oldBanner = document.getElementById('error-banner');
   if (oldBanner) oldBanner.remove();
 
-  // ── Match Score + Donut Chart ──
   document.getElementById('res-score').textContent   = r.score;
   document.getElementById('res-jobtitle').textContent = r.jobTitle;
   const verdictEl = document.getElementById('res-verdict');
   verdictEl.textContent = r.verdictText;
   verdictEl.className   = 'score-verdict ' + r.verdict;
 
-  // Animate donut: circumference = 2π × 70 ≈ 440
   const donut = document.getElementById('donut-fill');
   donut.className = 'donut-fill ' + r.verdict;
   const offset = 440 - (440 * r.score / 100);
-  // Trigger animation after paint
+
   requestAnimationFrame(() => {
     donut.style.strokeDashoffset = '440';
     setTimeout(() => { donut.style.strokeDashoffset = offset; }, 80);
   });
 
-  // ── Breakdown bars (animated) ──
   const bars = [
     ['skill', r.skillSim],
     ['exp',   r.expMatch],
@@ -1507,25 +1546,21 @@ function displayResult(r) {
     setTimeout(() => { fill.style.width = val + '%'; }, 100);
   });
 
-  // ── Teks ringkasan ──
   document.getElementById('res-summary').textContent = r.summary;
 
-  // ── Skill gap — chip pills ──
   document.getElementById('skill-gap-list').innerHTML = r.skillGapList.map(s => `
     <span class="skill-chip ${s.status === 'match' ? 'chip-match' : 'chip-miss'}">
       <span class="chip-dot"></span>${esc(s.name)}
     </span>`).join('');
 
-  // ── Rekomendasi kursus — card style dengan hyperlink ──
   const icons = ['📖','🎯','💡','🚀','⚡'];
   const recContainer = document.getElementById('rec-list');
   recContainer.innerHTML = '';
-  console.log('[FitScore] recList:', r.recList); // debug — cek URL di console browser
+  console.log('[FitScore] recList:', r.recList); 
   r.recList.forEach((rec, i) => {
     const url    = (rec.url || '').trim();
     const hasUrl = url !== '';
 
-    // Buat elemen card — pakai <a> jika ada URL agar seluruh card bisa diklik
     const card = document.createElement(hasUrl ? 'a' : 'div');
     card.className = 'rec-card';
     if (hasUrl) {
@@ -1561,7 +1596,6 @@ function displayResult(r) {
   showToast('Analisis selesai! 🎉');
 }
 
-// ── Tampilkan/sembunyikan loading overlay ──
 function setLoading(on) {
   const el = document.getElementById('loading');
   if (on) {
@@ -1573,7 +1607,6 @@ function setLoading(on) {
   }
 }
 
-// ── Tampilkan banner error di halaman hasil ──
 function showErrorBanner(msg) {
   const section = document.getElementById('result-section');
   let banner = document.getElementById('error-banner');
@@ -1606,7 +1639,6 @@ function showErrorBanner(msg) {
   showToast('Analisis gagal. Lihat pesan error di bawah. ❌');
 }
 
-// ── Sanitasi HTML ──
 function esc(str) {
   return String(str)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;')
@@ -1622,15 +1654,83 @@ function resetAnalysis() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ── FAQ ──
 function toggleFaq(el) { el.classList.toggle('open'); }
 
-// ── TOAST ──
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+function showHistoryDetail(index) {
+  const item = analysisHistory[index];
+  if (!item) return;
+  document.getElementById('modal-job-title').textContent = item.job;
+  document.getElementById('modal-jd-content').textContent = item.jd;
+  document.getElementById('modal-req-content').textContent = item.req;
+  document.getElementById('history-modal').classList.add('show');
+}
+
+function closeHistoryModal() {
+  document.getElementById('history-modal').classList.remove('show');
+}
+
+function processUpgrade() {
+  if (!currentUser) return;
+  currentUser.isPro = true;
+  showToast('Berhasil Upgrade ke Pro! 🎉');
+  goTo('dashboard');
+}
+
+function prefillProfile() {
+  if (!profileData || !profileData.done) return;
+  document.getElementById('p-loc').value = profileData.location || '';
+  document.getElementById('p-field').value = profileData.field || '';
+  document.getElementById('p-years').value = profileData.years_exp || profileData.years || '';
+  document.getElementById('p-summary').value = profileData.summary || '';
+
+  document.getElementById('exp-list').innerHTML = '';
+  expCount = 0;
+  if (profileData.experiences) {
+    profileData.experiences.forEach(exp => {
+      expCount++;
+      const id = 'exp-' + expCount;
+      document.getElementById('exp-list').insertAdjacentHTML('beforeend', `
+        <div class="exp-item" id="${id}">
+          <button class="exp-remove" onclick="document.getElementById('${id}').remove()">✕</button>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Nama Perusahaan</label><input type="text" class="form-input" value="${exp.company || ''}" placeholder="PT. Google Indonesia"></div>
+            <div class="form-group"><label class="form-label">Jabatan / Posisi</label><input type="text" class="form-input" value="${exp.position || ''}" placeholder="Software Engineer"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Mulai</label><input type="text" class="form-input" value="${exp.start || ''}" placeholder="Jan 2021"></div>
+            <div class="form-group"><label class="form-label">Selesai</label><input type="text" class="form-input" value="${exp.end || ''}" placeholder="Des 2022 / Sekarang"></div>
+          </div>
+          <div class="form-group"><label class="form-label">Deskripsi Pekerjaan</label><textarea class="form-input" placeholder="Jelaskan tanggung jawab dan pencapaianmu di posisi ini...">${exp.description || ''}</textarea></div>
+        </div>`);
+    });
+  }
+
+  techTagsData = profileData.techSkills ? [...profileData.techSkills] : [];
+  softTagsData = profileData.softSkills ? [...profileData.softSkills] : [];
+  toolsTagsData = profileData.tools ? [...profileData.tools] : [];
+  renderTags('tech-tags', 'tech-input');
+  renderTags('soft-tags', 'soft-input');
+  renderTags('tools-tags', 'tools-input');
+
+  if (profileData.education) {
+    document.getElementById('edu-school').value = profileData.education.school || '';
+    document.getElementById('edu-major').value = profileData.education.major || '';
+    document.getElementById('edu-degree').value = profileData.education.degree || 'S1';
+    document.getElementById('edu-year').value = profileData.education.year || '';
+  }
+}
+
+function goToEditProfile() {
+  document.getElementById('p-name').disabled = true;
+  prefillProfile();
+  goTo('profile');
 }
 
 // ── INIT ──

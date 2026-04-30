@@ -18,13 +18,9 @@ import os
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
-
-# ── Load handler dari folder model ──
 MODEL_PATH = "C:/Users/USER/OneDrive/Desktop/NLP/NER-AI-resume"
 sys.path.insert(0, os.path.abspath(MODEL_PATH))
 
-# Pindah working directory ke folder model agar
-# handler.py bisa load model dengan AutoTokenizer.from_pretrained(".")
 os.chdir(os.path.abspath(MODEL_PATH))
 
 from handler import predict

@@ -1,41 +1,10 @@
-/**
- * FitScore — Proxy Lokal
- * ========================
- * Meneruskan request dari browser ke model server lokal (model_server.py).
- *
- * Arsitektur:
- *   Browser → POST /analyze (proxy, port 5500)
- *   Proxy   → POST /predict (model server, port 8000)
- *   Model   → kembalikan hasil analisis
- *
- * Cara pakai:
- *   1. Jalankan model server dulu:  python model_server.py
- *   2. Jalankan proxy ini:          node proxy.js
- *   3. Buka mainfinal.html dan klik Analisis Sekarang
- *
- * Untuk menghentikan: tekan Ctrl+C
- */
-
-// ─────────────────────────────────────────────────────────────────
-//  KONFIGURASI
-// ─────────────────────────────────────────────────────────────────
-
-// Port proxy — harus sama dengan PROXY_URL di mainfinal.html
 const PORT = 5500;
 
-// URL model server lokal (model_server.py)
 const MODEL_SERVER_URL = "http://localhost:8000/predict";
-
-// ─────────────────────────────────────────────────────────────────
-//  SERVER
-// ─────────────────────────────────────────────────────────────────
-
 const http = require('http');
 const url  = require('url');
 
 const server = http.createServer((req, res) => {
-
-  // ── CORS headers ──
   res.setHeader('Access-Control-Allow-Origin',  '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -52,7 +21,6 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // ── Kumpulkan body dari browser ──
   let body = '';
   req.on('data', chunk => { body += chunk.toString(); });
 
@@ -85,7 +53,6 @@ const server = http.createServer((req, res) => {
     console.log('\nPROFILE (structured):\n', JSON.stringify(parsedBody.inputs?.profile, null, 2));
     console.log('═════════════════════════════════════════════════\n');
 
-    // ── Kirim ke model server lokal (HTTP, bukan HTTPS) ──
     const modelUrl = new url.URL(MODEL_SERVER_URL);
     const options  = {
       hostname: modelUrl.hostname,
