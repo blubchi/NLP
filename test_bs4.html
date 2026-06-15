@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 
 <html lang="id">
-
 <head>
-  <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>FitScore for Recruiters</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
-    rel="stylesheet" />
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FitScore for Recruiters</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
     * {
       box-sizing: border-box;
       margin: 0;
@@ -801,9 +799,9 @@
 
     .ph-meta {
       display: flex;
-      flex-direction: column;
-      gap: 6px;
+      gap: 12px;
       margin-top: 8px;
+      flex-wrap: wrap;
     }
 
     .ph-meta-item {
@@ -2198,549 +2196,704 @@
     }
   </style>
 </head>
-
 <body>
-  <!-- LANDING -->
-  <div class="page active" id="pg-land" style="background:var(--bg);">
-    <nav>
-      <div class="nav-logo">
-        <div class="logo-icon">F</div>
-        <div style="color:var(--navy);font-weight:700;">Fit Score</div>
-        <div class="logo-sub">FOR RECRUITERS</div>
-      </div>
-      <div class="nav-right">
-        <button class="btn-ghost" onclick="go('pg-login')">Masuk</button>
-        <button class="btn-primary" onclick="go('pg-login');showReg()">Daftar Gratis →</button>
-      </div>
-    </nav>
-    <div
-      style="flex:1;display:grid;grid-template-columns:1fr 1fr;max-width:1200px;margin:0 auto;padding:5rem 3rem 4rem;gap:4rem;align-items:center;width:100%;">
-      <div>
-        <div
-          style="display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid #C7D7FD;color:var(--blue);font-size:11px;font-weight:700;padding:6px 14px;border-radius:20px;margin-bottom:1.5rem;letter-spacing:0.8px;">
-          <div style="width:7px;height:7px;border-radius:50%;background:var(--blue);"></div> AI-POWERED RECRUITMENT TOOL
+<!-- LANDING -->
+<div class="page active" id="pg-land" style="background:var(--bg);">
+<nav>
+<div class="nav-logo">
+<div class="logo-icon">F</div>
+<div style="color:var(--navy);font-weight:700;">Fit Score</div>
+<div class="logo-sub">FOR RECRUITERS</div>
+</div>
+<div class="nav-right">
+<button class="btn-ghost" onclick="go('pg-login')">Masuk</button>
+<button class="btn-primary" onclick="go('pg-login');showReg()">Daftar Gratis →</button>
+</div>
+</nav>
+<div style="flex:1;display:grid;grid-template-columns:1fr 1fr;max-width:1200px;margin:0 auto;padding:5rem 3rem 4rem;gap:4rem;align-items:center;width:100%;">
+<div>
+<div style="display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid #C7D7FD;color:var(--blue);font-size:11px;font-weight:700;padding:6px 14px;border-radius:20px;margin-bottom:1.5rem;letter-spacing:0.8px;">
+<div style="width:7px;height:7px;border-radius:50%;background:var(--blue);"></div> AI-POWERED RECRUITMENT TOOL
         </div>
-        <h1 style="font-size:50px;font-weight:800;color:var(--navy);line-height:1.1;margin-bottom:1.25rem;">Temukan
+<h1 style="font-size:50px;font-weight:800;color:var(--navy);line-height:1.1;margin-bottom:1.25rem;">Temukan
           Kandidat <span style="color:var(--blue);">Terbaik</span> untuk Posisi Kamu</h1>
-        <p style="font-size:16px;color:var(--gray);line-height:1.8;max-width:460px;margin-bottom:2rem;">FitScore
+<p style="font-size:16px;color:var(--gray);line-height:1.8;max-width:460px;margin-bottom:2rem;">FitScore
           membantu recruiter IT menganalisis CV kandidat, mencocokkan dengan job vacancy, dan menemukan talenta terbaik
           secara otomatis dengan teknologi AI.</p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <button class="btn-primary" onclick="go('pg-login')"
-            style="padding:14px 28px;font-size:15px;border-radius:10px;">🚀 Mulai Rekrut Gratis</button>
-
+<div style="display:flex;gap:12px;flex-wrap:wrap;">
+<button class="btn-primary" onclick="go('pg-login')" style="padding:14px 28px;font-size:15px;border-radius:10px;">🚀 Mulai Rekrut Gratis</button>
+<button class="btn-ghost" onclick="openPricingModal()" style="padding:14px 28px;font-size:15px;border-radius:10px;">💎 Lihat Paket Pro →</button>
+</div>
+</div>
+<div style="background:var(--white);border-radius:20px;box-shadow:0 20px 60px rgba(37,99,235,0.12);padding:1.75rem;position:relative;overflow:hidden;">
+<div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--cyan));">
+</div>
+<div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:14px;">Dashboard Recruiter — CV Masuk
         </div>
-      </div>
-      <div
-        style="background:var(--white);border-radius:20px;box-shadow:0 20px 60px rgba(37,99,235,0.12);padding:1.75rem;position:relative;overflow:hidden;">
-        <div
-          style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--cyan));">
-        </div>
-        <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:14px;">Dashboard Recruiter - CV Masuk
-        </div>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div
-            style="display:flex;align-items:center;gap:12px;padding:10px;background:#FAFBFF;border-radius:10px;border:1px solid #E8EEFA;">
-            <div class="cv-avatar c-blue"
-              style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--blue);">
+<div style="display:flex;flex-direction:column;gap:10px;">
+<div style="display:flex;align-items:center;gap:12px;padding:10px;background:#FAFBFF;border-radius:10px;border:1px solid #E8EEFA;">
+<div class="cv-avatar c-blue" style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--blue);">
               RH</div>
-            <div style="flex:1;">
-              <div style="font-size:13px;font-weight:700;color:var(--navy);">Rizky Hidayat</div>
-              <div style="font-size:11px;color:var(--gray);">Backend Engineer · 4 thn</div>
-            </div>
-            <div style="display:flex;gap:5px;"><span class="skill-pill">Python</span><span class="skill-pill">AWS</span>
-            </div>
-            <div class="badge badge-new">Baru</div>
-          </div>
-          <div
-            style="display:flex;align-items:center;gap:12px;padding:10px;background:#FAFBFF;border-radius:10px;border:1px solid #E8EEFA;">
-            <div class="cv-avatar c-teal"
-              style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--green);">
+<div style="flex:1;">
+<div style="font-size:13px;font-weight:700;color:var(--navy);">Rizky Hidayat</div>
+<div style="font-size:11px;color:var(--gray);">Backend Engineer · 4 thn</div>
+</div>
+<div style="display:flex;gap:5px;"><span class="skill-pill">Python</span><span class="skill-pill">AWS</span>
+</div>
+<div class="badge badge-new">Baru</div>
+</div>
+<div style="display:flex;align-items:center;gap:12px;padding:10px;background:#FAFBFF;border-radius:10px;border:1px solid #E8EEFA;">
+<div class="cv-avatar c-teal" style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--green);">
               SA</div>
-            <div style="flex:1;">
-              <div style="font-size:13px;font-weight:700;color:var(--navy);">Sarah Aulia</div>
-              <div style="font-size:11px;color:var(--gray);">Frontend Dev · 2 thn</div>
-            </div>
-            <div style="display:flex;gap:5px;"><span class="skill-pill">React</span><span class="skill-pill">Vue</span>
-            </div>
-            <div class="badge badge-hot">⚡ Hot</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- LOGIN / REGISTER -->
-  <div class="page login-page" id="pg-login">
-    <nav>
-      <div class="nav-logo" onclick="go('pg-land')">
-        <div class="logo-icon">F</div>
-        <div style="color:var(--navy);font-weight:700;">Fit Score</div>
-        <div class="logo-sub">FOR RECRUITERS</div>
-      </div>
-      <div></div>
-    </nav>
-    <div class="login-body">
-      <div class="login-left">
-        <h1>Platform Rekrutmen IT <span>Lebih Cerdas</span></h1>
-        <p>Akses CV kandidat IT, analisis kecocokan dengan AI, dan posting lowongan kerja — semua dalam satu platform.
+<div style="flex:1;">
+<div style="font-size:13px;font-weight:700;color:var(--navy);">Sarah Aulia</div>
+<div style="font-size:11px;color:var(--gray);">Frontend Dev · 2 thn</div>
+</div>
+<div style="display:flex;gap:5px;"><span class="skill-pill">React</span><span class="skill-pill">Vue</span>
+</div>
+<div class="badge badge-hot">⚡ Hot</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- LOGIN / REGISTER -->
+<div class="page login-page" id="pg-login">
+<nav>
+<div class="nav-logo" onclick="go('pg-land')">
+<div class="logo-icon">F</div>
+<div style="color:var(--navy);font-weight:700;">Fit Score</div>
+<div class="logo-sub">FOR RECRUITERS</div>
+</div>
+<div></div>
+</nav>
+<div class="login-body">
+<div class="login-left">
+<h1>Platform Rekrutmen IT <span>Lebih Cerdas</span></h1>
+<p>Akses CV kandidat IT, analisis kecocokan dengan AI, dan posting lowongan kerja — semua dalam satu platform.
         </p>
-        <div class="rec-chips">
-          <div class="rec-chip">Dashboard CV Kandidat</div>
-          <div class="rec-chip">AI Match Analysis</div>
-          <div class="rec-chip">Post Job Vacancy</div>
-          <div class="rec-chip">Skill Gap Report</div>
-          <div class="rec-chip">Course Recommendation</div>
+<div class="rec-chips">
+<div class="rec-chip">Dashboard CV Kandidat</div>
+<div class="rec-chip">AI Match Analysis</div>
+<div class="rec-chip">Post Job Vacancy</div>
+<div class="rec-chip">Skill Gap Report</div>
+<div class="rec-chip">Course Recommendation</div>
+</div>
+</div>
+<div class="login-right">
+<div class="login-card" id="lc-login">
+<h2>Masuk sebagai Recruiter</h2>
+<p class="sub">Kelola rekrutmen IT kamu dengan lebih efisien</p>
+<div class="fg"><label>Email Perusahaan</label><input id="li-email" placeholder="hr@perusahaan.com" type="email"/></div>
+<div class="fg"><label>Password</label><input id="li-pass" placeholder="••••••••" type="password"/></div>
+<button class="btn-full" onclick="doLogin()">Masuk ke Dashboard</button>
+<div class="divider">atau</div>
+<div class="toggle-txt">Belum punya akun? <a onclick="showReg()">Daftar sekarang</a></div>
+</div>
+<div class="login-card" id="lc-reg" style="display:none;">
+<h2>Daftar sebagai Recruiter</h2>
+<p class="sub">Buat akun untuk mulai merekrut kandidat IT terbaik</p>
+<div class="form-row">
+<div class="fg"><label>Nama Depan</label><input id="rg-fn" placeholder="Nama" type="text"/></div>
+<div class="fg"><label>Nama Belakang</label><input id="rg-ln" placeholder="Belakang" type="text"/></div>
+</div>
+<div class="fg"><label>Nama Perusahaan / Lembaga</label><input id="rg-company" placeholder="Contoh: PT. Gojek Indonesia" type="text"/></div>
+<div class="form-row">
+<div class="fg"><label>Industri</label>
+<select id="rg-industry">
+<option>Teknologi / IT</option>
+<option>Fintech</option>
+<option>E-Commerce</option>
+<option>Startup</option>
+<option>Konsultan IT</option>
+<option>Perbankan</option>
+<option>Lainnya</option>
+</select>
+</div>
+<div class="fg"><label>Jabatan Kamu</label><input id="rg-jobtitle" placeholder="Contoh: HR Manager" type="text"/></div>
+</div>
+<div class="fg"><label>Email Perusahaan</label><input id="rg-email" placeholder="hr@perusahaan.com" type="email"/></div>
+<div class="fg"><label>Password</label><input id="rg-pass" placeholder="Min. 8 karakter" type="password"/>
+</div>
+<button class="btn-full" onclick="doReg()">Buat Akun Recruiter</button>
+<div class="toggle-txt" style="margin-top:14px;">Sudah punya akun? <a onclick="showLogin()">Masuk</a></div>
+</div>
+</div>
+</div>
+</div>
+<!-- MAIN APP -->
+<div class="page" id="pg-app">
+<nav>
+<div class="nav-logo">
+<div class="logo-icon">F</div>
+<div style="color:var(--navy);font-weight:700;">Fit Score</div>
+<div class="logo-sub">FOR RECRUITERS</div>
+</div>
+<div class="nav-right">
+<div class="token-bar" id="nav-token-bar">
+<div>
+<div class="tk-label">Token Cek Hari Ini</div>
+<div class="tk-total">Reset setiap hari</div>
+</div>
+<div class="tk-val" id="nav-token-val">3/3</div>
+</div>
+<button class="btn-primary" onclick="openPricingModal()" style="background:linear-gradient(135deg,#7C3AED,#2563EB);font-size:12px;padding:7px 14px;">💎 Upgrade Pro</button>
+<div onclick="openProfileModal()" onmouseout="this.style.background='transparent'" onmouseover="this.style.background='#F1F5F9'" style="display:flex;align-items:center;gap:12px;cursor:pointer;padding:5px 10px;border-radius:8px;transition:0.2s;">
+<div style="text-align:right;">
+<div class="nav-name" id="nav-nm">—</div>
+<div class="nav-company" id="nav-co">—</div>
+</div>
+<div class="nav-avatar" id="nav-av">?</div>
+</div>
+<button class="btn-ghost" onclick="doLogout()">Keluar</button>
+</div>
+</nav>
+<div class="shell">
+<div class="sidebar">
+<div class="sb-section">MENU UTAMA</div>
+<div class="sb-item active" id="sb-dashboard" onclick="showSection('dashboard')">
+<span class="sb-icon">📊</span> Dashboard
+          <span class="sb-badge" id="sb-cv-count">12</span>
+</div>
+<div class="sb-item" id="sb-vacancies" onclick="showSection('vacancies')">
+<span class="sb-icon">💼</span> Job Vacancies
         </div>
-      </div>
-      <div class="login-right">
-        <div class="login-card" id="lc-login">
-          <h2>Masuk sebagai Recruiter</h2>
-          <p class="sub">Kelola rekrutmen IT kamu dengan lebih efisien</p>
-          <div class="fg"><label>Email Perusahaan</label><input id="li-email" placeholder="hr@perusahaan.com"
-              type="email" /></div>
-          <div class="fg"><label>Password</label><input id="li-pass" placeholder="••••••••" type="password" /></div>
-          <button class="btn-full" onclick="doLogin()">Masuk ke Dashboard</button>
-          <div class="divider">atau</div>
-          <div class="toggle-txt">Belum punya akun? <a onclick="showReg()">Daftar sekarang</a></div>
+<div class="sb-item" id="sb-ranking" onclick="showSection('ranking')">
+<span class="sb-icon">🏆</span> Ranking Candidates
         </div>
-        <div class="login-card" id="lc-reg" style="display:none;">
-          <h2>Daftar sebagai Recruiter</h2>
-          <p class="sub">Buat akun untuk mulai merekrut kandidat IT terbaik</p>
-          <div class="form-row">
-            <div class="fg"><label>Nama Depan</label><input id="rg-fn" placeholder="Nama" type="text" /></div>
-            <div class="fg"><label>Nama Belakang</label><input id="rg-ln" placeholder="Belakang" type="text" /></div>
-          </div>
-          <div class="fg"><label>Nama Perusahaan / Lembaga</label><input id="rg-company"
-              placeholder="Contoh: PT. Gojek Indonesia" type="text" /></div>
-          <div class="form-row">
-            <div class="fg"><label>Industri</label>
-              <select id="rg-industry">
-                <option>Teknologi / IT</option>
-                <option>Fintech</option>
-                <option>E-Commerce</option>
-                <option>Startup</option>
-                <option>Konsultan IT</option>
-                <option>Perbankan</option>
-                <option>Lainnya</option>
-              </select>
-            </div>
-            <div class="fg"><label>Jabatan Kamu</label><input id="rg-jobtitle" placeholder="Contoh: HR Manager"
-                type="text" /></div>
-          </div>
-          <div class="fg"><label>Email Perusahaan</label><input id="rg-email" placeholder="hr@perusahaan.com"
-              type="email" /></div>
-          <div class="fg"><label>Password</label><input id="rg-pass" placeholder="Min. 8 karakter" type="password" />
-          </div>
-          <button class="btn-full" onclick="doReg()">Buat Akun Recruiter</button>
-          <div class="toggle-txt" style="margin-top:14px;">Sudah punya akun? <a onclick="showLogin()">Masuk</a></div>
+<div class="sb-item" id="sb-history" onclick="showSection('history')">
+<span class="sb-icon">🕒</span> History
         </div>
-      </div>
-    </div>
-  </div>
-  <!-- MAIN APP -->
-  <div class="page" id="pg-app">
-    <nav>
-      <div class="nav-logo">
-        <div class="logo-icon">F</div>
-        <div style="color:var(--navy);font-weight:700;">Fit Score</div>
-        <div class="logo-sub">FOR RECRUITERS</div>
-      </div>
-      <div class="nav-right">
-
-
-        <div onclick="openProfileModal()" onmouseout="this.style.background='transparent'"
-          onmouseover="this.style.background='#F1F5F9'"
-          style="display:flex;align-items:center;gap:12px;cursor:pointer;padding:5px 10px;border-radius:8px;transition:0.2s;">
-          <div style="text-align:right;">
-            <div class="nav-name" id="nav-nm">—</div>
-            <div class="nav-company" id="nav-co">—</div>
-          </div>
-          <div class="nav-avatar" id="nav-av">?</div>
+<div class="sb-section">LANGGANAN</div>
+<div class="sb-item" onclick="openPricingModal()">
+<span class="sb-icon">💎</span> Upgrade Plan
         </div>
-        <button class="btn-ghost" onclick="doLogout()">Keluar</button>
-      </div>
-    </nav>
-    <div class="shell">
-      <div class="sidebar">
-        <div class="sb-section">MENU UTAMA</div>
-        <div class="sb-item active" id="sb-dashboard" onclick="showSection('dashboard')">
-          <span class="sb-icon">Dashboard
-            <span class="sb-badge" id="sb-cv-count">12</span>
+<div class="sb-section">AKUN</div>
+<div class="sb-item" onclick="doLogout()">
+<span class="sb-icon">🚪</span> Keluar
         </div>
-        <div class="sb-item" id="sb-vacancies" onclick="showSection('vacancies')">
-          <span class="sb-icon">Job Vacancies
-        </div>
-        <div class="sb-item" id="sb-ranking" onclick="showSection('ranking')">
-          <span class="sb-icon">Ranking Candidates
-        </div>
-        <div class="sb-item" id="sb-history" onclick="showSection('history')">
-          <span class="sb-icon">History
-        </div>
-        <div class="sb-section">AKUN</div>
-        <div class="sb-item" onclick="doLogout()">
-          <span class="sb-icon">Keluar
-        </div>
-      </div>
-      <div class="main-area" id="main-area">
-        <!-- DASHBOARD -->
-        <div id="sec-dashboard">
-          <div class="dash-header">
-            <div>
-              <h2>Dashboard Kandidat</h2>
-              <p id="dash-sub">CV yang masuk dari job seeker IT</p>
-            </div>
-            <button class="btn-primary" onclick="showSection('add-vacancy')">+ Add Job Vacancy</button>
-          </div>
-          <div class="stats-row">
-            <div class="stat-card">
-              <div class="sc-label">Total CV Masuk</div>
-              <div class="sc-val" id="stat-total">12</div>
-              <div class="sc-sub">↑ 3 baru minggu ini</div>
-            </div>
-            <div class="stat-card">
-              <div class="sc-label">Belum Direview</div>
-              <div class="sc-val" id="stat-new">5</div>
-              <div class="sc-sub" style="color:var(--amber);">Perlu ditinjau</div>
-            </div>
-            <div class="stat-card">
-              <div class="sc-label">Job Vacancy Aktif</div>
-              <div class="sc-val" id="stat-vac">0</div>
-              <div class="sc-sub" style="color:var(--blue);">Posisi terbuka</div>
-            </div>
-
-          </div>
-          <div class="filters-row">
-            <div class="search-box">
-              <span class="search-icon">🔍</span>
-              <input id="cv-search" oninput="filterCVs()" placeholder="Cari nama, skill, jabatan..." type="text" />
-            </div>
-            <select class="filter-select" id="filter-role" onchange="filterCVs()">
-              <option value="">Semua Bidang</option>
-              <option>Backend Engineer</option>
-              <option>Frontend Developer</option>
-              <option>Data Scientist</option>
-              <option>Mobile Developer</option>
-              <option>DevOps Engineer</option>
-              <option>UI/UX Designer</option>
-              <option>Full Stack Developer</option>
-            </select>
-            <select class="filter-select" id="filter-exp" onchange="filterCVs()">
-              <option value="">Semua Pengalaman</option>
-              <option>0–1 tahun</option>
-              <option>1–3 tahun</option>
-              <option>3–5 tahun</option>
-              <option>5+ tahun</option>
-            </select>
-          </div>
-          <div class="cv-table-wrap">
-            <table class="cv-table" id="cv-table">
-              <thead>
-                <tr>
-                  <th>Kandidat</th>
-                  <th>Bidang</th>
-                  <th>Pengalaman</th>
-                  <th>Top Skills</th>
-                  <th>Status</th>
-                  <th>Aksi</th>
-                </tr>
-              </thead>
-              <tbody id="cv-tbody"></tbody>
-            </table>
-          </div>
-        </div>
-        <!-- CV DETAIL -->
-        <div id="sec-cv-detail" style="display:none;">
-          <div class="cv-detail-body">
-            <button class="back-btn" onclick="showSection('dashboard')">← Kembali ke Dashboard</button>
-            <div class="cv-detail-grid">
-              <div id="cv-detail-left"></div>
-              <div class="analysis-panel">
-                <div class="ap-card">
-                  <div class="ap-title">Cek Kecocokan</div>
-                  <div class="ap-sub">Pilih job vacancy lalu analisis kecocokan CV ini</div>
-
-                  <div class="vacancy-select-wrap">
-                    <label>Pilih Job Vacancy</label>
-                    <select id="vac-selector">
-                      <option value="">- Pilih vacancy -</option>
-                    </select>
-                  </div>
-                  <button class="btn-analyze" id="btn-analyze" onclick="runAnalysis()">
-                    <span id="analyze-txt">Analisis Kecocokan</span>
-                    <div class="spin" id="spin-el"></div>
-                  </button>
-                  <div class="result-mini" id="result-mini"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- VACANCIES -->
-        <div id="sec-vacancies" style="display:none;">
-          <div class="vac-header">
-            <div>
-              <h2 style="font-size:22px;font-weight:800;color:var(--navy);">Job Vacancies</h2>
-              <p style="font-size:13px;color:var(--gray);margin-top:3px;">Kelola semua lowongan kerja yang kamu buat</p>
-            </div>
-            <button class="btn-primary" onclick="showSection('add-vacancy')">+ Add Job Vacancy</button>
-          </div>
-          <div class="vac-grid" id="vac-grid">
-            <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--gray);">
-              <div style="font-size:15px;font-weight:600;color:var(--navy);margin-bottom:6px;">Belum ada vacancy</div>
-              <div style="font-size:13px;margin-bottom:16px;">Buat job vacancy pertama kamu</div>
-              <button class="btn-primary" onclick="showSection('add-vacancy')">+ Buat Vacancy</button>
-            </div>
-          </div>
-        </div>
-        <!-- ADD VACANCY -->
-        <div id="sec-add-vacancy" style="display:none;">
-          <div class="addvac-body">
-            <button class="back-btn" onclick="showSection('vacancies')">← Kembali ke Vacancies</button>
-            <h2>Tambah Job Vacancy</h2>
-            <p class="sub">Isi detail lowongan kerja yang ingin kamu posting</p>
-            <div class="form-card">
-              <h3>Informasi Posisi</h3>
-              <div class="form-row">
-                <div class="fg"><label>Nama Posisi</label><input id="vac-title"
-                    placeholder="Contoh: Senior Backend Engineer" type="text" /></div>
-                <div class="fg"><label>Bidang / Divisi</label>
-                  <select id="vac-field">
-                    <option>Backend Engineering</option>
-                    <option>Frontend Development</option>
-                    <option>Full Stack Development</option>
-                    <option>Data Science / AI</option>
-                    <option>Mobile Development</option>
-                    <option>DevOps / Cloud</option>
-                    <option>UI/UX Design</option>
-                    <option>QA Engineering</option>
-                    <option>Cybersecurity</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="fg"><label>Tipe Pekerjaan</label>
-                  <select id="vac-type">
-                    <option>Full-time</option>
-                    <option>Part-time</option>
-                    <option>Contract</option>
-                    <option>Internship</option>
-                  </select>
-                </div>
-                <div class="fg"><label>Lokasi</label><input id="vac-location" placeholder="Contoh: Jakarta / Remote"
-                    type="text" /></div>
-              </div>
-              <div class="form-row">
-                <div class="fg"><label>Rentang Gaji (Opsional)</label><input id="vac-salary"
-                    placeholder="Contoh: Rp 15–25 juta / bulan" type="text" /></div>
-                <div class="fg"><label>Pengalaman Minimum</label>
-                  <select id="vac-min-exp">
-                    <option>Fresh Graduate</option>
-                    <option>1 tahun</option>
-                    <option>2 tahun</option>
-                    <option>3 tahun</option>
-                    <option>5 tahun</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="form-card">
-              <h3>Job Description</h3>
-              <div class="fg"><label>Deskripsi Pekerjaan</label>
-                <textarea id="vac-jd"
-                  placeholder="Deskripsikan tanggung jawab, lingkungan kerja, dan detail posisi ini..."
-                  style="min-height:160px;"></textarea>
-              </div>
-            </div>
-            <div class="form-card">
-              <h3>Requirements &amp; Qualifications</h3>
-              <div class="req-list" id="req-list">
-                <div class="req-row"><input placeholder="Contoh: Minimal 3 tahun pengalaman dengan Python"
-                    type="text" /><button class="req-del" onclick="delReq(this)">×</button></div>
-                <div class="req-row"><input placeholder="Contoh: Familiar dengan microservices architecture"
-                    type="text" /><button class="req-del" onclick="delReq(this)">×</button></div>
-              </div>
-              <button class="btn-add-req" onclick="addReq()">+ Tambah Requirement</button>
-            </div>
-            <div class="form-actions">
-              <button class="btn-cancel" onclick="showSection('vacancies')">Batal</button>
-              <button class="btn-primary" onclick="saveVacancy()"
-                style="padding:11px 28px;font-size:14px;border-radius:9px;">Simpan Vacancy</button>
-            </div>
-          </div>
-        </div>
-        <!-- RANKING -->
-        <div id="sec-ranking" style="display:none;">
-          <div class="vac-header">
-            <div>
-              <h2 style="font-size:22px;font-weight:800;color:var(--navy);">Ranking Candidates</h2>
-              <p style="font-size:13px;color:var(--gray);margin-top:3px;">Lihat ranking kandidat terbaik berdasarkan
+</div>
+<div class="main-area" id="main-area">
+<!-- DASHBOARD -->
+<div id="sec-dashboard">
+<div class="dash-header">
+<div>
+<h2>Dashboard Kandidat</h2>
+<p id="dash-sub">CV yang masuk dari job seeker IT</p>
+</div>
+<button class="btn-primary" onclick="showSection('add-vacancy')">+ Add Job Vacancy</button>
+</div>
+<div class="stats-row">
+<div class="stat-card">
+<div class="sc-label">Total CV Masuk</div>
+<div class="sc-val" id="stat-total">12</div>
+<div class="sc-sub">↑ 3 baru minggu ini</div>
+</div>
+<div class="stat-card">
+<div class="sc-label">Belum Direview</div>
+<div class="sc-val" id="stat-new">5</div>
+<div class="sc-sub" style="color:var(--amber);">Perlu ditinjau</div>
+</div>
+<div class="stat-card">
+<div class="sc-label">Job Vacancy Aktif</div>
+<div class="sc-val" id="stat-vac">0</div>
+<div class="sc-sub" style="color:var(--blue);">Posisi terbuka</div>
+</div>
+<div class="stat-card">
+<div class="sc-label">Token Tersisa Hari Ini</div>
+<div class="sc-val" id="stat-token">3</div>
+<div class="sc-sub" id="stat-token-sub" style="color:var(--blue);">dari 3 cek/hari</div>
+</div>
+</div>
+<div class="filters-row">
+<div class="search-box">
+<span class="search-icon">🔍</span>
+<input id="cv-search" oninput="filterCVs()" placeholder="Cari nama, skill, jabatan..." type="text"/>
+</div>
+<select class="filter-select" id="filter-role" onchange="filterCVs()">
+<option value="">Semua Bidang</option>
+<option>Backend Engineer</option>
+<option>Frontend Developer</option>
+<option>Data Scientist</option>
+<option>Mobile Developer</option>
+<option>DevOps Engineer</option>
+<option>UI/UX Designer</option>
+<option>Full Stack Developer</option>
+</select>
+<select class="filter-select" id="filter-exp" onchange="filterCVs()">
+<option value="">Semua Pengalaman</option>
+<option>0–1 tahun</option>
+<option>1–3 tahun</option>
+<option>3–5 tahun</option>
+<option>5+ tahun</option>
+</select>
+</div>
+<div class="cv-table-wrap">
+<table class="cv-table" id="cv-table">
+<thead>
+<tr>
+<th>Kandidat</th>
+<th>Bidang</th>
+<th>Pengalaman</th>
+<th>Top Skills</th>
+<th>Status</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody id="cv-tbody"></tbody>
+</table>
+</div>
+</div>
+<!-- CV DETAIL -->
+<div id="sec-cv-detail" style="display:none;">
+<div class="cv-detail-body">
+<button class="back-btn" onclick="showSection('dashboard')">← Kembali ke Dashboard</button>
+<div class="cv-detail-grid">
+<div id="cv-detail-left"></div>
+<div class="analysis-panel">
+<div class="ap-card">
+<div class="ap-title">⚡ Cek Kecocokan</div>
+<div class="ap-sub">Pilih job vacancy lalu analisis kecocokan CV ini</div>
+<div class="token-info-box" id="token-info-box">
+<div class="tib-left">
+<div class="tib-label">Token Tersisa</div>
+<div class="tib-val" id="tib-val">3 cek tersisa</div>
+<div class="tib-reset">Reset setiap hari pukul 00:00</div>
+</div>
+<div class="tib-right">
+<button onclick="openPricingModal()">Upgrade ✨</button>
+</div>
+</div>
+<div class="vacancy-select-wrap">
+<label>Pilih Job Vacancy</label>
+<select id="vac-selector">
+<option value="">— Pilih vacancy —</option>
+</select>
+</div>
+<button class="btn-analyze" id="btn-analyze" onclick="runAnalysis()">
+<span id="analyze-txt">🔍 Analisis Kecocokan</span>
+<div class="spin" id="spin-el"></div>
+</button>
+<div class="result-mini" id="result-mini"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- VACANCIES -->
+<div id="sec-vacancies" style="display:none;">
+<div class="vac-header">
+<div>
+<h2 style="font-size:22px;font-weight:800;color:var(--navy);">Job Vacancies</h2>
+<p style="font-size:13px;color:var(--gray);margin-top:3px;">Kelola semua lowongan kerja yang kamu buat</p>
+</div>
+<button class="btn-primary" onclick="showSection('add-vacancy')">+ Add Job Vacancy</button>
+</div>
+<div class="vac-grid" id="vac-grid">
+<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--gray);">
+<div style="font-size:32px;margin-bottom:12px;">💼</div>
+<div style="font-size:15px;font-weight:600;color:var(--navy);margin-bottom:6px;">Belum ada vacancy</div>
+<div style="font-size:13px;margin-bottom:16px;">Buat job vacancy pertama kamu</div>
+<button class="btn-primary" onclick="showSection('add-vacancy')">+ Buat Vacancy</button>
+</div>
+</div>
+</div>
+<!-- ADD VACANCY -->
+<div id="sec-add-vacancy" style="display:none;">
+<div class="addvac-body">
+<button class="back-btn" onclick="showSection('vacancies')">← Kembali ke Vacancies</button>
+<h2>Tambah Job Vacancy</h2>
+<p class="sub">Isi detail lowongan kerja yang ingin kamu posting</p>
+<div class="form-card">
+<h3>Informasi Posisi</h3>
+<div class="form-row">
+<div class="fg"><label>Nama Posisi</label><input id="vac-title" placeholder="Contoh: Senior Backend Engineer" type="text"/></div>
+<div class="fg"><label>Bidang / Divisi</label>
+<select id="vac-field">
+<option>Backend Engineering</option>
+<option>Frontend Development</option>
+<option>Full Stack Development</option>
+<option>Data Science / AI</option>
+<option>Mobile Development</option>
+<option>DevOps / Cloud</option>
+<option>UI/UX Design</option>
+<option>QA Engineering</option>
+<option>Cybersecurity</option>
+</select>
+</div>
+</div>
+<div class="form-row">
+<div class="fg"><label>Tipe Pekerjaan</label>
+<select id="vac-type">
+<option>Full-time</option>
+<option>Part-time</option>
+<option>Contract</option>
+<option>Internship</option>
+</select>
+</div>
+<div class="fg"><label>Lokasi</label><input id="vac-location" placeholder="Contoh: Jakarta / Remote" type="text"/></div>
+</div>
+<div class="form-row">
+<div class="fg"><label>Rentang Gaji (Opsional)</label><input id="vac-salary" placeholder="Contoh: Rp 15–25 juta / bulan" type="text"/></div>
+<div class="fg"><label>Pengalaman Minimum</label>
+<select id="vac-min-exp">
+<option>Fresh Graduate</option>
+<option>1 tahun</option>
+<option>2 tahun</option>
+<option>3 tahun</option>
+<option>5 tahun</option>
+</select>
+</div>
+</div>
+</div>
+<div class="form-card">
+<h3>Job Description</h3>
+<div class="fg"><label>Deskripsi Pekerjaan</label>
+<textarea id="vac-jd" placeholder="Deskripsikan tanggung jawab, lingkungan kerja, dan detail posisi ini..." style="min-height:160px;"></textarea>
+</div>
+</div>
+<div class="form-card">
+<h3>Requirements &amp; Qualifications</h3>
+<div class="req-list" id="req-list">
+<div class="req-row"><input placeholder="Contoh: Minimal 3 tahun pengalaman dengan Python" type="text"/><button class="req-del" onclick="delReq(this)">×</button></div>
+<div class="req-row"><input placeholder="Contoh: Familiar dengan microservices architecture" type="text"/><button class="req-del" onclick="delReq(this)">×</button></div>
+</div>
+<button class="btn-add-req" onclick="addReq()">+ Tambah Requirement</button>
+</div>
+<div class="form-actions">
+<button class="btn-cancel" onclick="showSection('vacancies')">Batal</button>
+<button class="btn-primary" onclick="saveVacancy()" style="padding:11px 28px;font-size:14px;border-radius:9px;">💾 Simpan Vacancy</button>
+</div>
+</div>
+</div>
+<!-- RANKING -->
+<div id="sec-ranking" style="display:none;">
+<div class="vac-header">
+<div>
+<h2 style="font-size:22px;font-weight:800;color:var(--navy);">Ranking Candidates</h2>
+<p style="font-size:13px;color:var(--gray);margin-top:3px;">Lihat ranking kandidat terbaik berdasarkan
                 vacancy (Khusus Ultra)</p>
-            </div>
-          </div>
-          <div id="ranking-content">
-
-            <div id="ranking-unlocked" style="">
-              <div style="margin-bottom:1rem;">
-                <label
-                  style="font-size:11px;font-weight:700;color:var(--navy);letter-spacing:0.5px;text-transform:uppercase;display:block;margin-bottom:6px;">Pilih
+</div>
+</div>
+<div id="ranking-content">
+<div id="ranking-locked" style="background:var(--white);border-radius:16px;border:1px solid #E8EEFA;padding:2rem;text-align:center;">
+<div style="font-size:40px;margin-bottom:12px;">🔒</div>
+<div style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px;">Fitur Ranking Otomatis
+                Terkunci</div>
+<p style="font-size:13px;color:var(--gray);margin-bottom:16px;">Upgrade ke paket Ultra untuk melihat
+                ranking otomatis dari seluruh database CV kandidat.</p>
+<button class="btn-primary" onclick="openPricingModal()">Upgrade ke Ultra</button>
+</div>
+<div id="ranking-unlocked" style="display:none;">
+<div style="margin-bottom:1rem;">
+<label style="font-size:11px;font-weight:700;color:var(--navy);letter-spacing:0.5px;text-transform:uppercase;display:block;margin-bottom:6px;">Pilih
                   Job Vacancy</label>
-                <select id="ranking-vac-select" onchange="generateRanking()"
-                  style="padding:10px 12px;border:1.5px solid var(--gray-light);border-radius:9px;font-size:13px;width:300px;font-family:var(--font);background:var(--white);"></select>
-              </div>
-              <div class="cv-table-wrap">
-                <table class="cv-table">
-                  <thead>
-                    <tr>
-                      <th>Rank</th>
-                      <th>Kandidat</th>
-                      <th>Match Score</th>
-                      <th>Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody id="ranking-tbody"></tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- HISTORY -->
-        <div id="sec-history" style="display:none;">
-          <div class="vac-header">
-            <div>
-              <h2 style="font-size:22px;font-weight:800;color:var(--navy);">History Pengecekan</h2>
-              <p style="font-size:13px;color:var(--gray);margin-top:3px;">Riwayat CV yang telah dianalisis (Limit: <span
-                  id="history-limit-txt">5</span>)</p>
-            </div>
-          </div>
-          <div class="cv-table-wrap">
-            <table class="cv-table">
-              <thead>
-                <tr>
-                  <th>Waktu</th>
-                  <th>Kandidat</th>
-                  <th>Vacancy</th>
-                  <th>Match Score</th>
-                </tr>
-              </thead>
-              <tbody id="history-tbody"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ═══════════════════════════════════════
+<select id="ranking-vac-select" onchange="generateRanking()" style="padding:10px 12px;border:1.5px solid var(--gray-light);border-radius:9px;font-size:13px;width:300px;font-family:var(--font);background:var(--white);"></select>
+</div>
+<div class="cv-table-wrap">
+<table class="cv-table">
+<thead>
+<tr>
+<th>Rank</th>
+<th>Kandidat</th>
+<th>Match Score</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody id="ranking-tbody"></tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- HISTORY -->
+<div id="sec-history" style="display:none;">
+<div class="vac-header">
+<div>
+<h2 style="font-size:22px;font-weight:800;color:var(--navy);">History Pengecekan</h2>
+<p style="font-size:13px;color:var(--gray);margin-top:3px;">Riwayat CV yang telah dianalisis (Limit: <span id="history-limit-txt">5</span>)</p>
+</div>
+</div>
+<div class="cv-table-wrap">
+<table class="cv-table">
+<thead>
+<tr>
+<th>Waktu</th>
+<th>Kandidat</th>
+<th>Vacancy</th>
+<th>Match Score</th>
+</tr>
+</thead>
+<tbody id="history-tbody"></tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ═══════════════════════════════════════
      VIDEO AD OVERLAY
      ════════════════════════════════════════
      GANTI "YOUR_VIDEO_URL_HERE.mp4" dengan link MP4 iklan Anda.
      Contoh: src="https://cdn.example.com/iklan-dicoding.mp4"
      ════════════════════════════════════════ -->
-
-  <!-- ═══════════ SUBSCRIPTION POPUP ═══════════ -->
-
-  <!-- ═══════════ PRICING MODAL ═══════════ -->
-
-  <!-- NO TOKEN MODAL -->
-
-  <!-- SUCCESS MODAL -->
-  <div class="modal-backdrop" id="modal-success">
-    <div class="modal">
-      <div style="font-size:36px;text-align:center;margin-bottom:12px;">✅</div>
-      <h3 style="text-align:center;">Vacancy Berhasil Disimpan!</h3>
-      <p class="msub" style="text-align:center;">Job vacancy kamu sudah ditambahkan. Kamu sekarang bisa memilihnya saat
-        menganalisis CV kandidat.</p>
-      <div class="modal-actions" style="justify-content:center;">
-        <button class="btn-primary" onclick="closeModal()">Lihat Semua Vacancy</button>
-      </div>
-    </div>
-  </div>
-  <!-- PROFILE MODAL -->
-  <div class="modal-backdrop" id="profile-modal">
-    <div class="modal" style="max-width:800px;width:95%;padding:2rem;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
-        <h3>Pengaturan Profil Recruiter</h3>
-        <button class="btn-ghost" onclick="closeProfileModal()" style="padding:5px 10px;">✕</button>
-      </div>
-      <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:2rem;">
-        <!-- Kiri: Form Edit -->
-        <div>
-          <label style="display:block;margin-bottom:6px;font-size:13px;font-weight:600;color:var(--navy);">Nama Lengkap
-            (Tidak bisa diubah)</label>
-          <input disabled="" id="prof-name"
-            style="width:100%;padding:10px;border-radius:8px;border:1px solid #E2E8F0;margin-bottom:12px;background:#F8FAFF;color:var(--gray);"
-            type="text" />
-          <label style="display:block;margin-bottom:6px;font-size:13px;font-weight:600;color:var(--navy);">Perusahaan
-            (PT)</label>
-          <input id="prof-pt"
-            style="width:100%;padding:10px;border-radius:8px;border:1px solid #E2E8F0;margin-bottom:12px;"
-            type="text" />
-          <label
-            style="display:block;margin-bottom:6px;font-size:13px;font-weight:600;color:var(--navy);">Departemen</label>
-          <input id="prof-dept"
-            style="width:100%;padding:10px;border-radius:8px;border:1px solid #E2E8F0;margin-bottom:12px;"
-            type="text" />
-          <label style="display:block;margin-bottom:6px;font-size:13px;font-weight:600;color:var(--navy);">Bio
-            Singkat</label>
-          <textarea id="prof-bio"
-            style="width:100%;padding:10px;border-radius:8px;border:1px solid #E2E8F0;margin-bottom:12px;height:60px;resize:vertical;"></textarea>
-          <label style="display:block;margin-bottom:6px;font-size:13px;font-weight:600;color:var(--navy);">Profil
-            Perusahaan (Company Profile)</label>
-          <textarea id="prof-coprof"
-            style="width:100%;padding:10px;border-radius:8px;border:1px solid #E2E8F0;margin-bottom:12px;height:60px;resize:vertical;"></textarea>
-          <label style="display:block;margin-bottom:6px;font-size:13px;font-weight:600;color:var(--navy);">Template
-            Confirmation Email</label>
-          <textarea id="prof-tpl"
-            style="width:100%;padding:10px;border-radius:8px;border:1px solid #E2E8F0;margin-bottom:16px;height:100px;resize:vertical;"></textarea>
-          <button class="btn-primary" onclick="saveProfile()" style="width:100%;">Simpan Perubahan</button>
-        </div>
-        <!-- Kanan: History Log -->
-        <div style="background:#F8FAFF;border-radius:12px;padding:1.5rem;border:1px solid #E2E8F0;">
-          <h4
-            style="margin-bottom:1rem;color:var(--navy);font-size:14px;border-bottom:1px solid #E2E8F0;padding-bottom:10px;">
-            Log Perubahan Profil</h4>
-          <div id="prof-log"
-            style="display:flex;flex-direction:column;gap:12px;max-height:400px;overflow-y:auto;font-size:12px;padding-right:5px;">
-            <!-- Log items will be inserted here -->
+<div id="ad-overlay">
+<div class="ad-container">
+<!-- Tombol X (muncul setelah 5s skip + 3s countdown) -->
+<button class="ad-close-btn" id="ad-close-btn" onclick="closeAd()">✕</button>
+<!-- VIDEO WRAPPER -->
+<div class="ad-video-wrap">
+<!-- HUD atas: label IKLAN + dot merah -->
+<div class="ad-hud">
+<div class="ad-hud-label">
+<span class="ad-hud-dot"></span>
+            Iklan Sponsor
           </div>
-        </div>
+</div>
+<!-- Elemen video — ganti src dengan URL MP4 Anda -->
+<video id="ad-video" playsinline="" preload="auto" src="src/iklan_fitrecruiters.mp4" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+</video>
+<!-- Countdown badge (tampil 0-5 detik) -->
+<div class="ad-countdown-badge" id="ad-countdown-badge">
+<span>⏱</span>
+<span id="ad-countdown-txt">Skip dalam 5 detik</span>
+</div>
+<!-- Skip button (tampil setelah 5 detik) -->
+<button class="ad-skip-btn" id="ad-skip-btn" onclick="skipAd()">
+          Lewati Iklan ›
+        </button>
+<!-- Progress bar bawah video -->
+<div class="ad-video-progress">
+<div class="ad-video-progress-fill" id="ad-prog-fill"></div>
+</div>
+</div>
+<!-- /VIDEO WRAPPER -->
+<!-- Bar bawah: info brand + tombol CTA -->
+<div class="ad-info-bar">
+<div class="ad-brand-row">
+<div class="ad-brand-icon">🎓</div>
+<div>
+<div class="ad-brand-name">Dicoding Academy</div>
+<div class="ad-brand-tagline">Platform belajar coding #1 di Indonesia</div>
+</div>
+</div>
+<button class="ad-cta-btn" onclick="window.open('https://dicoding.com/enterprise','_blank')">
+          Coba Gratis →
+        </button>
+</div>
+<!-- Closing countdown bar (muncul setelah klik Skip) -->
+<div class="ad-closing-bar" id="ad-closing-bar">
+<div class="ad-closing-txt">Iklan akan ditutup dalam</div>
+<div class="ad-closing-count" id="ad-closing-count">3</div>
+<div class="ad-closing-txt">detik...</div>
+</div>
+</div>
+</div>
+<!-- ═══════════ SUBSCRIPTION POPUP ═══════════ -->
+<div id="sub-popup">
+<div class="sp-card">
+<div class="sp-top">
+<div class="sp-top-inner">
+<button class="sp-close" onclick="dismissSubPopup()">✕</button>
+<div class="sp-crown">👑</div>
+<div class="sp-title">Upgrade ke FitScore Pro</div>
+<div class="sp-subtitle">Rekrut tanpa batas, tanpa iklan</div>
+</div>
+</div>
+<div class="sp-body">
+<div class="sp-plans">
+<div class="sp-plan featured">
+<div class="sp-plan-badge">POPULER</div>
+<div class="sp-plan-name">Recruiter Pro</div>
+<div class="sp-plan-price">Rp 149.999 <span>/bulan</span></div>
+<div class="sp-plan-perks">
+<div class="sp-plan-perk">30 cek CV per hari</div>
+<div class="sp-plan-perk">Analisis lebih detail</div>
+<div class="sp-plan-perk">Tanpa iklan</div>
+</div>
+</div>
+<div class="sp-plan">
+<div class="sp-plan-name">Recruiter Ultra</div>
+<div class="sp-plan-price">Rp 499.999 <span>/bulan</span></div>
+<div class="sp-plan-perks">
+<div class="sp-plan-perk">Unlimited cek CV</div>
+<div class="sp-plan-perk">Akses FitScore Pro website</div>
+<div class="sp-plan-perk">Tanpa iklan selamanya</div>
+</div>
+</div>
+</div>
+<button class="sp-btn" onclick="openPricingModal()">Lihat Semua Paket →</button>
+<button class="sp-dismiss" onclick="dismissSubPopup()">Nanti saja, terima kasih</button>
+</div>
+</div>
+</div>
+<!-- ═══════════ PRICING MODAL ═══════════ -->
+<div id="pricing-modal">
+<div class="pm-card">
+<div class="pm-header">
+<div style="font-size:11px;font-weight:700;color:var(--blue);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">
+          ✦ Paket Langganan FitScore</div>
+<h2>Pilih Plan yang Tepat untuk Kamu</h2>
+<p>Tingkatkan efisiensi rekrutmen IT kamu dengan fitur AI premium</p>
+</div>
+<div class="pm-plans">
+<div class="pm-plan">
+<div class="pm-plan-icon">🆓</div>
+<div class="pm-plan-name">Gratis</div>
+<div class="pm-plan-price">Rp 0 <span class="period">/ bulan</span></div>
+<div class="pm-plan-desc">Cocok untuk recruiter yang baru mulai</div>
+<div class="pm-perks">
+<div class="pm-perk"><span class="ck">✓</span> 3 cek CV per hari</div>
+<div class="pm-perk"><span class="ck">✓</span> Analisis dasar kecocokan</div>
+<div class="pm-perk"><span class="ck">✓</span> Dashboard kandidat</div>
+<div class="pm-perk"><span class="ck">✓</span> Job vacancy management</div>
+<div class="pm-perk"><span class="cx">✗</span> <span style="color:#CBD5E1;">Analisis detail</span></div>
+<div class="pm-perk"><span class="cx">✗</span> <span style="color:#CBD5E1;">Tanpa iklan</span></div>
+<div class="pm-perk"><span class="cx">✗</span> <span style="color:#CBD5E1;">FitScore Pro website</span>
+</div>
+</div>
+<button class="pm-plan-btn ghost" onclick="closePricingModal()">Gunakan Gratis</button>
+</div>
+<div class="pm-plan recommended">
+<div class="rec-badge">⭐ PALING POPULER</div>
+<div class="pm-plan-icon">💎</div>
+<div class="pm-plan-name">Recruiter Pro</div>
+<div class="pm-plan-price">Rp 149.999 <span class="period">/ bulan</span></div>
+<div class="pm-plan-desc">Untuk recruiter aktif yang butuh lebih banyak analisis</div>
+<div class="pm-perks">
+<div class="pm-perk"><span class="ck">✓</span> <strong>30 cek CV per hari</strong></div>
+<div class="pm-perk"><span class="ck">✓</span> Analisis kecocokan lebih detail</div>
+<div class="pm-perk"><span class="ck">✓</span> Rekomendasi kursus premium</div>
+<div class="pm-perk"><span class="ck">✓</span> <strong>Tanpa iklan sama sekali</strong></div>
+<div class="pm-perk"><span class="ck">✓</span> Dashboard kandidat lengkap</div>
+<div class="pm-perk"><span class="ck">✓</span> Job vacancy management</div>
+<div class="pm-perk"><span class="cx">✗</span> <span style="color:#CBD5E1;">FitScore Pro website</span>
+</div>
+</div>
+<button class="pm-plan-btn primary" onclick="subscribePro()">🚀 Mulai Berlangganan Pro</button>
+</div>
+<div class="pm-plan">
+<div class="pm-plan-icon">🏆</div>
+<div class="pm-plan-name">Recruiter Ultra</div>
+<div class="pm-plan-price">Rp 499.999 <span class="period">/ bulan</span></div>
+<div class="pm-plan-desc">Untuk tim rekrutmen yang membutuhkan akses penuh</div>
+<div class="pm-perks">
+<div class="pm-perk"><span class="ck">✓</span> <strong>Unlimited cek CV</strong></div>
+<div class="pm-perk"><span class="ck">✓</span> Analisis kecocokan ultra-detail</div>
+<div class="pm-perk"><span class="ck">✓</span> Semua fitur Recruiter Pro</div>
+<div class="pm-perk"><span class="ck">✓</span> <strong>Tanpa iklan selamanya</strong></div>
+<div class="pm-perk"><span class="ck">✓</span> <strong>Akses FitScore Pro website</strong></div>
+<div class="pm-perk"><span class="ck">✓</span> Priority customer support</div>
+<div class="pm-perk"><span class="ck">✓</span> Early access fitur baru</div>
+</div>
+<button class="pm-plan-btn ghost" onclick="subscribeUltra()">⚡ Mulai Berlangganan Ultra</button>
+</div>
+</div>
+<div style="background:#F8FAFF;border:1px solid #BFDBFE;border-radius:12px;padding:14px 18px;margin-bottom:1.5rem;text-align:center;">
+<span style="font-size:12px;color:var(--gray);">🔒 Pembayaran aman · Batalkan kapan saja · Tanpa biaya
+          tersembunyi · Garansi uang kembali 7 hari</span>
+</div>
+<div class="pm-close-row">
+<button onclick="closePricingModal()">← Kembali ke Dashboard</button>
+</div>
+</div>
+</div>
+<!-- NO TOKEN MODAL -->
+<div id="no-token-modal">
+<div class="ntm-card">
+<div class="ntm-icon">🔒</div>
+<div class="ntm-title">Token Harian Habis!</div>
+<div class="ntm-desc">Kamu sudah menggunakan 3 token cek CV gratis hari ini. Upgrade ke <strong>Recruiter
+          Pro</strong> untuk mendapatkan 30 cek/hari atau ke <strong>Recruiter Ultra</strong> untuk cek tanpa batas!
       </div>
-    </div>
-  </div>
-  <!-- EMAIL MODAL (GMAIL SIMULATION) -->
-  <div class="modal-backdrop" id="email-modal">
-    <div class="modal" style="width:600px;max-width:95%;padding:0;overflow:hidden;border-radius:12px;">
-      <!-- Header -->
-      <div
-        style="background:#202124;color:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;">
-        <div style="font-weight:600;font-size:14px;">Pesan Baru</div>
-        <button class="btn-ghost" onclick="closeEmailModal()" style="color:#fff;padding:0;min-width:auto;">✕</button>
-      </div>
-      <!-- Form -->
-      <div style="padding:0 16px;">
-        <div style="border-bottom:1px solid #E2E8F0;padding:10px 0;display:flex;align-items:center;">
-          <span style="color:var(--gray);width:60px;font-size:13px;">Kepada</span>
-          <input id="email-to" readonly="" style="flex:1;border:none;outline:none;font-size:14px;" type="text" />
-        </div>
-        <div style="border-bottom:1px solid #E2E8F0;padding:10px 0;display:flex;align-items:center;">
-          <span style="color:var(--gray);width:60px;font-size:13px;">Subjek</span>
-          <input id="email-subject" style="flex:1;border:none;outline:none;font-size:14px;font-weight:600;"
-            type="text" />
-        </div>
-        <div style="padding:16px 0;">
-          <textarea id="email-body"
-            style="width:100%;height:250px;border:none;outline:none;resize:none;font-family:inherit;font-size:14px;line-height:1.6;"></textarea>
-        </div>
-      </div>
-      <!-- Footer -->
-      <div
-        style="padding:12px 16px;border-top:1px solid #E2E8F0;background:#F8FAFF;display:flex;align-items:center;gap:12px;">
-        <button class="btn-primary" id="btn-send-email" onclick="sendEmailAction()"
-          style="background:#0B57D0;border-radius:24px;padding:8px 24px;font-size:13px;">Kirim</button>
-        <div class="hidden" id="email-loading" style="font-size:12px;color:var(--gray);">Mengirim pesan...</div>
-      </div>
-    </div>
-  </div>
-  <script>
+<div class="ntm-reset">Token gratis reset pada: <span id="ntm-reset-time">00:00 besok</span></div>
+<button class="btn-primary" onclick="closeNoTokenModal();openPricingModal()" style="width:100%;padding:12px;border-radius:9px;font-size:14px;margin-bottom:10px;">💎 Lihat Paket Pro &amp; Ultra</button>
+<button class="btn-ghost" onclick="closeNoTokenModal()" style="width:100%;padding:11px;">Kembali ke
+        Dashboard</button>
+</div>
+</div>
+<!-- SUCCESS MODAL -->
+<div class="modal-backdrop" id="modal-success">
+<div class="modal">
+<div style="font-size:36px;text-align:center;margin-bottom:12px;">✅</div>
+<h3 style="text-align:center;">Vacancy Berhasil Disimpan!</h3>
+<p class="msub" style="text-align:center;">Job vacancy kamu sudah ditambahkan. Kamu sekarang bisa memilihnya saat
+        menganalisis CV kandidat.</p>
+<div class="modal-actions" style="justify-content:center;">
+<button class="btn-primary" onclick="closeModal()">Lihat Semua Vacancy</button>
+</div>
+</div>
+</div>
+<!-- PROFILE MODAL -->
+<div class="modal-backdrop" id="profile-modal">
+<div class="modal" style="max-width:800px;width:95%;padding:2rem;">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+<h3>Pengaturan Profil Recruiter</h3>
+<button class="btn-ghost" onclick="closeProfileModal()" style="padding:5px 10px;">✕</button>
+</div>
+<div style="display:grid;grid-template-columns:1.5fr 1fr;gap:2rem;">
+<!-- Kiri: Form Edit -->
+<div>
+<label style="display:block;margin-bottom:6px;font-size:13px;font-weight:600;color:var(--navy);">Nama Lengkap
+            (Tidak bisa diubah)</label>
+<input disabled="" id="prof-name" style="width:100%;padding:10px;border-radius:8px;border:1px solid #E2E8F0;margin-bottom:12px;background:#F8FAFF;color:var(--gray);" type="text"/>
+<label style="display:block;margin-bottom:6px;font-size:13px;font-weight:600;color:var(--navy);">Perusahaan
+            (PT)</label>
+<input id="prof-pt" style="width:100%;padding:10px;border-radius:8px;border:1px solid #E2E8F0;margin-bottom:12px;" type="text"/>
+<label style="display:block;margin-bottom:6px;font-size:13px;font-weight:600;color:var(--navy);">Departemen</label>
+<input id="prof-dept" style="width:100%;padding:10px;border-radius:8px;border:1px solid #E2E8F0;margin-bottom:12px;" type="text"/>
+<label style="display:block;margin-bottom:6px;font-size:13px;font-weight:600;color:var(--navy);">Bio
+            Singkat</label>
+<textarea id="prof-bio" style="width:100%;padding:10px;border-radius:8px;border:1px solid #E2E8F0;margin-bottom:12px;height:60px;resize:vertical;"></textarea>
+<label style="display:block;margin-bottom:6px;font-size:13px;font-weight:600;color:var(--navy);">Profil
+            Perusahaan (Company Profile)</label>
+<textarea id="prof-coprof" style="width:100%;padding:10px;border-radius:8px;border:1px solid #E2E8F0;margin-bottom:12px;height:60px;resize:vertical;"></textarea>
+<label style="display:block;margin-bottom:6px;font-size:13px;font-weight:600;color:var(--navy);">Template
+            Confirmation Email</label>
+<textarea id="prof-tpl" style="width:100%;padding:10px;border-radius:8px;border:1px solid #E2E8F0;margin-bottom:16px;height:100px;resize:vertical;"></textarea>
+<button class="btn-primary" onclick="saveProfile()" style="width:100%;">Simpan Perubahan</button>
+</div>
+<!-- Kanan: History Log -->
+<div style="background:#F8FAFF;border-radius:12px;padding:1.5rem;border:1px solid #E2E8F0;">
+<h4 style="margin-bottom:1rem;color:var(--navy);font-size:14px;border-bottom:1px solid #E2E8F0;padding-bottom:10px;">
+            Log Perubahan Profil</h4>
+<div id="prof-log" style="display:flex;flex-direction:column;gap:12px;max-height:400px;overflow-y:auto;font-size:12px;padding-right:5px;">
+<!-- Log items will be inserted here -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- EMAIL MODAL (GMAIL SIMULATION) -->
+<div class="modal-backdrop" id="email-modal">
+<div class="modal" style="width:600px;max-width:95%;padding:0;overflow:hidden;border-radius:12px;">
+<!-- Header -->
+<div style="background:#202124;color:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;">
+<div style="font-weight:600;font-size:14px;">Pesan Baru</div>
+<button class="btn-ghost" onclick="closeEmailModal()" style="color:#fff;padding:0;min-width:auto;">✕</button>
+</div>
+<!-- Form -->
+<div style="padding:0 16px;">
+<div style="border-bottom:1px solid #E2E8F0;padding:10px 0;display:flex;align-items:center;">
+<span style="color:var(--gray);width:60px;font-size:13px;">Kepada</span>
+<input id="email-to" readonly="" style="flex:1;border:none;outline:none;font-size:14px;" type="text"/>
+</div>
+<div style="border-bottom:1px solid #E2E8F0;padding:10px 0;display:flex;align-items:center;">
+<span style="color:var(--gray);width:60px;font-size:13px;">Subjek</span>
+<input id="email-subject" style="flex:1;border:none;outline:none;font-size:14px;font-weight:600;" type="text"/>
+</div>
+<div style="padding:16px 0;">
+<textarea id="email-body" style="width:100%;height:250px;border:none;outline:none;resize:none;font-family:inherit;font-size:14px;line-height:1.6;"></textarea>
+</div>
+</div>
+<!-- Footer -->
+<div style="padding:12px 16px;border-top:1px solid #E2E8F0;background:#F8FAFF;display:flex;align-items:center;gap:12px;">
+<button class="btn-primary" id="btn-send-email" onclick="sendEmailAction()" style="background:#0B57D0;border-radius:24px;padding:8px 24px;font-size:13px;">Kirim</button>
+<div class="hidden" id="email-loading" style="font-size:12px;color:var(--gray);">Mengirim pesan...</div>
+</div>
+</div>
+</div>
+<script>
     /* ══ STATE ══ */
     let user = null;
     let vacancies = [];
@@ -2809,18 +2962,18 @@
 
     /* ══ DEMO CV DATA ══ */
     const demoCV = [
-      { id: 1, name: "Rizky Hidayat", initials: "RH", colorClass: "c-blue", textColor: "var(--blue)", role: "Backend Engineer", exp: "4 tahun", expBand: "3–5 tahun", location: "Jakarta", edu: "S1 Teknik Informatika - Universitas Indonesia", email: "rizky.h@email.com", linkedin: "linkedin.com/in/rizkyhidayat", summary: "Backend engineer berpengalaman 4 tahun dengan fokus di Python, FastAPI, dan infrastruktur cloud. Pernah handle sistem dengan 100rb+ daily active users.", skills: ["Python", "FastAPI", "PostgreSQL", "Redis", "Docker", "AWS"], softskills: ["Problem Solving", "Leadership", "Komunikasi", "Mentoring"], knowledge: ["Microservices", "REST API", "CI/CD", "Agile"], status: "Baru", experiences: [{ company: "Tokopedia", role: "Senior Backend Engineer", period: "Mar 2022 – Sekarang", duration: "2 thn 1 bln", desc: "Membangun dan maintain microservices untuk fitur pembayaran. Menangani 50rb+ transaksi/hari." }, { company: "Bukalapak", role: "Backend Developer", period: "Jan 2020 – Feb 2022", duration: "2 thn 1 bln", desc: "Mengembangkan API untuk platform marketplace. Stack: Python, Django, MySQL." }] },
-      { id: 2, name: "Sarah Aulia", initials: "SA", colorClass: "c-teal", textColor: "var(--green)", role: "Frontend Developer", exp: "2 tahun", expBand: "1–3 tahun", location: "Bandung", edu: "S1 Sistem Informasi - ITB", email: "sarah.aulia@email.com", linkedin: "linkedin.com/in/sarahaulia", summary: "Frontend developer passionate tentang UI/UX dengan keahlian di React dan Vue.js.", skills: ["React", "Vue.js", "TypeScript", "Tailwind CSS", "Next.js", "Figma"], softskills: ["Kreativitas", "Kolaborasi", "Detail-oriented", "Komunikasi"], knowledge: ["UI/UX Principles", "Responsive Design", "Web Performance", "Accessibility"], status: "Hot", experiences: [{ company: "Gojek", role: "Frontend Developer", period: "Jun 2022 – Sekarang", duration: "1 thn 10 bln", desc: "Mengembangkan fitur-fitur baru di dashboard merchant Gojek menggunakan React dan TypeScript." }, { company: "Freelance", role: "Frontend Developer", period: "Jan 2022 – Mei 2022", duration: "5 bln", desc: "Membangun website dan landing page untuk berbagai klien UMKM." }] },
-      { id: 3, name: "Dwi Wulandari", initials: "DW", colorClass: "c-purple", textColor: "var(--purple)", role: "Data Scientist", exp: "3 tahun", expBand: "3–5 tahun", location: "Jakarta", edu: "S1 Statistika - Universitas Gadjah Mada", email: "dwi.w@email.com", linkedin: "linkedin.com/in/dwiwulandari", summary: "Data scientist dengan keahlian di machine learning, NLP, dan data visualization.", skills: ["Python", "TensorFlow", "PyTorch", "SQL", "Pandas", "Scikit-learn"], softskills: ["Analytical Thinking", "Presentasi", "Storytelling Data", "Teamwork"], knowledge: ["Machine Learning", "Deep Learning", "NLP", "Data Pipeline", "BI Tools"], status: "Review", experiences: [{ company: "OVO", role: "Data Scientist", period: "Apr 2021 – Sekarang", duration: "3 thn", desc: "Membangun model prediksi fraud detection dengan akurasi 94%." }, { company: "Shopee", role: "Data Analyst", period: "Jul 2020 – Mar 2021", duration: "9 bln", desc: "Analisis perilaku pengguna untuk product team." }] },
-      { id: 4, name: "Budi Santoso", initials: "BS", colorClass: "c-orange", textColor: "var(--amber)", role: "DevOps Engineer", exp: "5 tahun", expBand: "5+ tahun", location: "Surabaya", edu: "S1 Ilmu Komputer - Universitas Airlangga", email: "budi.s@email.com", linkedin: "linkedin.com/in/budisantoso", summary: "DevOps engineer senior dengan 5 tahun pengalaman membangun infrastruktur cloud skala besar.", skills: ["Kubernetes", "Docker", "Terraform", "AWS", "GCP", "Jenkins", "Ansible"], softskills: ["Problem Solving", "Dokumentasi", "On-call Management", "Mentoring"], knowledge: ["Cloud Architecture", "IaC", "Site Reliability", "Security"], status: "Baru", experiences: [{ company: "Traveloka", role: "Senior DevOps Engineer", period: "Feb 2020 – Sekarang", duration: "4 thn 2 bln", desc: "Mengelola infrastruktur Kubernetes dengan 500+ pods." }, { company: "DANA", role: "DevOps Engineer", period: "Mar 2019 – Jan 2020", duration: "11 bln", desc: "Setup CI/CD pipeline menggunakan Jenkins dan GitLab CI." }] },
-      { id: 5, name: "Citra Permata", initials: "CP", colorClass: "c-blue", textColor: "var(--blue)", role: "Mobile Developer", exp: "2 tahun", expBand: "1–3 tahun", location: "Yogyakarta", edu: "S1 Teknik Informatika - Universitas Atma Jaya", email: "citra.p@email.com", linkedin: "linkedin.com/in/citrapermata", summary: "Mobile developer spesialis Flutter dan React Native. 4 aplikasi di App Store & Play Store.", skills: ["Flutter", "Dart", "React Native", "Firebase", "Swift", "Kotlin"], softskills: ["Kreatif", "Self-motivated", "Cepat Belajar", "Time Management"], knowledge: ["Mobile UI Patterns", "App Performance", "Push Notifications", "ASO"], status: "Baru", experiences: [{ company: "Kita Bisa", role: "Flutter Developer", period: "Jul 2022 – Sekarang", duration: "1 thn 9 bln", desc: "Membangun aplikasi donasi mobile cross-platform. 50k+ downloads." }, { company: "Startup Lokal", role: "Mobile Intern", period: "Jan 2022 – Jun 2022", duration: "6 bln", desc: "Pengembangan fitur aplikasi e-commerce mobile." }] },
-      { id: 6, name: "Ahmad Fauzi", initials: "AF", colorClass: "c-teal", textColor: "var(--green)", role: "Full Stack Developer", exp: "3 tahun", expBand: "3–5 tahun", location: "Jakarta", edu: "D3 Manajemen Informatika - Politeknik Negeri Jakarta", email: "ahmad.f@email.com", linkedin: "linkedin.com/in/ahmadfauzi", summary: "Full stack developer dengan keahlian di Node.js dan React. Berpengalaman di startup e-commerce.", skills: ["Node.js", "React", "MongoDB", "Express", "GraphQL", "TypeScript"], softskills: ["Adaptif", "Fast Learner", "Kolaborasi", "Ownership"], knowledge: ["REST API", "GraphQL", "Database Design", "Agile/Scrum"], status: "Review", experiences: [{ company: "Ralali.com", role: "Full Stack Developer", period: "Mar 2021 – Sekarang", duration: "3 thn", desc: "Platform B2B procurement frontend hingga backend. Reduce API latency 40%." }, { company: "Freelance", role: "Web Developer", period: "Jun 2020 – Feb 2021", duration: "9 bln", desc: "Website dan web app untuk berbagai klien." }] },
-      { id: 7, name: "Indah Pratiwi", initials: "IP", colorClass: "c-purple", textColor: "var(--purple)", role: "UI/UX Designer", exp: "4 tahun", expBand: "3–5 tahun", location: "Bali", edu: "S1 Desain Komunikasi Visual - ISI Yogyakarta", email: "indah.p@email.com", linkedin: "linkedin.com/in/indahpratiwi", summary: "UI/UX designer berpengalaman dengan track record produk digital jutaan user.", skills: ["Figma", "Adobe XD", "Principle", "Zeplin", "HTML/CSS", "Framer"], softskills: ["Empati User", "Presentasi", "Storytelling", "Kolaborasi"], knowledge: ["Design Thinking", "User Research", "Usability Testing", "Design System"], status: "Hot", experiences: [{ company: "Tiket.com", role: "Senior UI/UX Designer", period: "Jan 2021 – Sekarang", duration: "3 thn 3 bln", desc: "Lead designer aplikasi mobile Tiket.com. Redesign onboarding meningkatkan konversi 23%." }, { company: "Agency Digital", role: "UI Designer", period: "Mar 2020 – Des 2020", duration: "10 bln", desc: "Antarmuka web dan mobile untuk berbagai klien brand." }] },
-      { id: 8, name: "Fajar Nugroho", initials: "FN", colorClass: "c-orange", textColor: "var(--amber)", role: "Backend Engineer", exp: "1 tahun", expBand: "0–1 tahun", location: "Semarang", edu: "S1 Teknik Informatika - UNDIP", email: "fajar.n@email.com", linkedin: "linkedin.com/in/fajarnugroho", summary: "Junior backend engineer fresh graduate aktif di open source dengan beberapa personal project.", skills: ["Go", "Python", "MySQL", "Redis", "Docker", "Linux"], softskills: ["Eagerness to Learn", "Problem Solving", "Kerja Keras", "Inisiatif"], knowledge: ["REST API", "Database", "Version Control", "Basic Cloud"], status: "Baru", experiences: [{ company: "Startup Fintech", role: "Backend Intern", period: "Sep 2023 – Feb 2024", duration: "6 bln", desc: "API payment gateway menggunakan Go. Fixing bugs dan unit tests." }] },
-      { id: 9, name: "Lia Rahayu", initials: "LR", colorClass: "c-blue", textColor: "var(--blue)", role: "Data Analyst", exp: "2 tahun", expBand: "1–3 tahun", location: "Jakarta", edu: "S1 Matematika - Universitas Padjadjaran", email: "lia.r@email.com", linkedin: "linkedin.com/in/liarahayu", summary: "Data analyst dengan keahlian di SQL, Python, dan BI tools. Mengubah data menjadi insight actionable.", skills: ["SQL", "Python", "Tableau", "Looker", "Excel", "dbt"], softskills: ["Analytical", "Komunikasi", "Presentasi", "Detail-oriented"], knowledge: ["Business Intelligence", "Data Warehouse", "ELT Pipeline", "Statistical Analysis"], status: "Review", experiences: [{ company: "Shopee", role: "Data Analyst", period: "Aug 2022 – Sekarang", duration: "1 thn 8 bln", desc: "Analisis data transaksi, trend, dan dashboard eksekutif mingguan." }, { company: "Startup EdTech", role: "Business Analyst Intern", period: "Feb 2022 – Jul 2022", duration: "6 bln", desc: "Analisis data pengguna dan laporan performa produk." }] },
-      { id: 10, name: "Kevin Pratama", initials: "KP", colorClass: "c-teal", textColor: "var(--green)", role: "Backend Engineer", exp: "6 tahun", expBand: "5+ tahun", location: "Jakarta", edu: "S1 Ilmu Komputer - Universitas Bina Nusantara", email: "kevin.p@email.com", linkedin: "linkedin.com/in/kevinpratama", summary: "Senior backend engineer 6 tahun di sistem berskala besar. Expert Java, Spring Boot, distributed systems.", skills: ["Java", "Spring Boot", "Kafka", "Elasticsearch", "PostgreSQL", "Kubernetes"], softskills: ["Technical Leadership", "Arsitektur Design", "Mentoring", "Problem Solving"], knowledge: ["Distributed Systems", "Event-driven Architecture", "High Availability", "Performance Tuning"], status: "Hot", experiences: [{ company: "Bank BCA Digital", role: "Lead Backend Engineer", period: "Jan 2021 – Sekarang", duration: "3 thn 3 bln", desc: "Tim 5 engineer, core banking API, 2jt+ transaksi/hari." }, { company: "Fintech Startup", role: "Backend Engineer", period: "Mar 2018 – Des 2020", duration: "2 thn 9 bln", desc: "Sistem payment dan wallet digital menggunakan Spring Boot." }] },
-      { id: 11, name: "Nanda Kusuma", initials: "NK", colorClass: "c-purple", textColor: "var(--purple)", role: "Mobile Developer", exp: "3 tahun", expBand: "3–5 tahun", location: "Bandung", edu: "S1 Teknik Informatika - Universitas Telkom", email: "nanda.k@email.com", linkedin: "linkedin.com/in/nandakusuma", summary: "Mobile developer Android/iOS 3 tahun. Spesialis React Native, 6+ aplikasi production.", skills: ["React Native", "Swift", "Kotlin", "Firebase", "Redux", "Jest"], softskills: ["Detail-oriented", "Ownership", "Kolaborasi", "Komunikasi"], knowledge: ["Native Mobile Dev", "Cross-platform", "App Performance", "CI/CD Mobile"], status: "Baru", experiences: [{ company: "Grab", role: "Mobile Developer", period: "Nov 2021 – Sekarang", duration: "2 thn 5 bln", desc: "Fitur driver app Grab, React Native. Improve app performance 30%." }, { company: "Startup Lokal", role: "Android Developer", period: "Mar 2021 – Okt 2021", duration: "8 bln", desc: "Aplikasi delivery food native Android." }] },
-      { id: 12, name: "Reza Firmansyah", initials: "RF", colorClass: "c-orange", textColor: "var(--amber)", role: "Cybersecurity Engineer", exp: "4 tahun", expBand: "3–5 tahun", location: "Jakarta", edu: "S1 Teknik Informatika - UI", email: "reza.f@email.com", linkedin: "linkedin.com/in/rezafirmansyah", summary: "Cybersecurity engineer sertifikasi OSCP dan CEH. Spesialis penetration testing dan security audit.", skills: ["Penetration Testing", "Kali Linux", "Burp Suite", "Python", "Metasploit", "SIEM"], softskills: ["Analytical", "Ketelitian", "Reporting", "Etika Kerja"], knowledge: ["Network Security", "Web Security", "Cloud Security", "Compliance", "OWASP"], status: "Review", experiences: [{ company: "Mandiri Sekuritas", role: "Cybersecurity Engineer", period: "Feb 2021 – Sekarang", duration: "3 thn 2 bln", desc: "Penetration testing rutin, 50+ critical vulnerabilities mitigated." }, { company: "Konsultan IT", role: "Security Analyst", period: "Apr 2020 – Jan 2021", duration: "10 bln", desc: "Security assessment klien perbankan dan fintech." }] }
+      { id: 1, name: "Rizky Hidayat", initials: "RH", colorClass: "c-blue", textColor: "var(--blue)", role: "Backend Engineer", exp: "4 tahun", expBand: "3–5 tahun", location: "Jakarta", edu: "S1 Teknik Informatika — Universitas Indonesia", email: "rizky.h@email.com", linkedin: "linkedin.com/in/rizkyhidayat", summary: "Backend engineer berpengalaman 4 tahun dengan fokus di Python, FastAPI, dan infrastruktur cloud. Pernah handle sistem dengan 100rb+ daily active users.", skills: ["Python", "FastAPI", "PostgreSQL", "Redis", "Docker", "AWS"], softskills: ["Problem Solving", "Leadership", "Komunikasi", "Mentoring"], knowledge: ["Microservices", "REST API", "CI/CD", "Agile"], status: "Baru", experiences: [{ company: "Tokopedia", role: "Senior Backend Engineer", period: "Mar 2022 – Sekarang", duration: "2 thn 1 bln", desc: "Membangun dan maintain microservices untuk fitur pembayaran. Menangani 50rb+ transaksi/hari." }, { company: "Bukalapak", role: "Backend Developer", period: "Jan 2020 – Feb 2022", duration: "2 thn 1 bln", desc: "Mengembangkan API untuk platform marketplace. Stack: Python, Django, MySQL." }] },
+      { id: 2, name: "Sarah Aulia", initials: "SA", colorClass: "c-teal", textColor: "var(--green)", role: "Frontend Developer", exp: "2 tahun", expBand: "1–3 tahun", location: "Bandung", edu: "S1 Sistem Informasi — ITB", email: "sarah.aulia@email.com", linkedin: "linkedin.com/in/sarahaulia", summary: "Frontend developer passionate tentang UI/UX dengan keahlian di React dan Vue.js.", skills: ["React", "Vue.js", "TypeScript", "Tailwind CSS", "Next.js", "Figma"], softskills: ["Kreativitas", "Kolaborasi", "Detail-oriented", "Komunikasi"], knowledge: ["UI/UX Principles", "Responsive Design", "Web Performance", "Accessibility"], status: "Hot", experiences: [{ company: "Gojek", role: "Frontend Developer", period: "Jun 2022 – Sekarang", duration: "1 thn 10 bln", desc: "Mengembangkan fitur-fitur baru di dashboard merchant Gojek menggunakan React dan TypeScript." }, { company: "Freelance", role: "Frontend Developer", period: "Jan 2022 – Mei 2022", duration: "5 bln", desc: "Membangun website dan landing page untuk berbagai klien UMKM." }] },
+      { id: 3, name: "Dwi Wulandari", initials: "DW", colorClass: "c-purple", textColor: "var(--purple)", role: "Data Scientist", exp: "3 tahun", expBand: "3–5 tahun", location: "Jakarta", edu: "S1 Statistika — Universitas Gadjah Mada", email: "dwi.w@email.com", linkedin: "linkedin.com/in/dwiwulandari", summary: "Data scientist dengan keahlian di machine learning, NLP, dan data visualization.", skills: ["Python", "TensorFlow", "PyTorch", "SQL", "Pandas", "Scikit-learn"], softskills: ["Analytical Thinking", "Presentasi", "Storytelling Data", "Teamwork"], knowledge: ["Machine Learning", "Deep Learning", "NLP", "Data Pipeline", "BI Tools"], status: "Review", experiences: [{ company: "OVO", role: "Data Scientist", period: "Apr 2021 – Sekarang", duration: "3 thn", desc: "Membangun model prediksi fraud detection dengan akurasi 94%." }, { company: "Shopee", role: "Data Analyst", period: "Jul 2020 – Mar 2021", duration: "9 bln", desc: "Analisis perilaku pengguna untuk product team." }] },
+      { id: 4, name: "Budi Santoso", initials: "BS", colorClass: "c-orange", textColor: "var(--amber)", role: "DevOps Engineer", exp: "5 tahun", expBand: "5+ tahun", location: "Surabaya", edu: "S1 Ilmu Komputer — Universitas Airlangga", email: "budi.s@email.com", linkedin: "linkedin.com/in/budisantoso", summary: "DevOps engineer senior dengan 5 tahun pengalaman membangun infrastruktur cloud skala besar.", skills: ["Kubernetes", "Docker", "Terraform", "AWS", "GCP", "Jenkins", "Ansible"], softskills: ["Problem Solving", "Dokumentasi", "On-call Management", "Mentoring"], knowledge: ["Cloud Architecture", "IaC", "Site Reliability", "Security"], status: "Baru", experiences: [{ company: "Traveloka", role: "Senior DevOps Engineer", period: "Feb 2020 – Sekarang", duration: "4 thn 2 bln", desc: "Mengelola infrastruktur Kubernetes dengan 500+ pods." }, { company: "DANA", role: "DevOps Engineer", period: "Mar 2019 – Jan 2020", duration: "11 bln", desc: "Setup CI/CD pipeline menggunakan Jenkins dan GitLab CI." }] },
+      { id: 5, name: "Citra Permata", initials: "CP", colorClass: "c-blue", textColor: "var(--blue)", role: "Mobile Developer", exp: "2 tahun", expBand: "1–3 tahun", location: "Yogyakarta", edu: "S1 Teknik Informatika — Universitas Atma Jaya", email: "citra.p@email.com", linkedin: "linkedin.com/in/citrapermata", summary: "Mobile developer spesialis Flutter dan React Native. 4 aplikasi di App Store & Play Store.", skills: ["Flutter", "Dart", "React Native", "Firebase", "Swift", "Kotlin"], softskills: ["Kreatif", "Self-motivated", "Cepat Belajar", "Time Management"], knowledge: ["Mobile UI Patterns", "App Performance", "Push Notifications", "ASO"], status: "Baru", experiences: [{ company: "Kita Bisa", role: "Flutter Developer", period: "Jul 2022 – Sekarang", duration: "1 thn 9 bln", desc: "Membangun aplikasi donasi mobile cross-platform. 50k+ downloads." }, { company: "Startup Lokal", role: "Mobile Intern", period: "Jan 2022 – Jun 2022", duration: "6 bln", desc: "Pengembangan fitur aplikasi e-commerce mobile." }] },
+      { id: 6, name: "Ahmad Fauzi", initials: "AF", colorClass: "c-teal", textColor: "var(--green)", role: "Full Stack Developer", exp: "3 tahun", expBand: "3–5 tahun", location: "Jakarta", edu: "D3 Manajemen Informatika — Politeknik Negeri Jakarta", email: "ahmad.f@email.com", linkedin: "linkedin.com/in/ahmadfauzi", summary: "Full stack developer dengan keahlian di Node.js dan React. Berpengalaman di startup e-commerce.", skills: ["Node.js", "React", "MongoDB", "Express", "GraphQL", "TypeScript"], softskills: ["Adaptif", "Fast Learner", "Kolaborasi", "Ownership"], knowledge: ["REST API", "GraphQL", "Database Design", "Agile/Scrum"], status: "Review", experiences: [{ company: "Ralali.com", role: "Full Stack Developer", period: "Mar 2021 – Sekarang", duration: "3 thn", desc: "Platform B2B procurement frontend hingga backend. Reduce API latency 40%." }, { company: "Freelance", role: "Web Developer", period: "Jun 2020 – Feb 2021", duration: "9 bln", desc: "Website dan web app untuk berbagai klien." }] },
+      { id: 7, name: "Indah Pratiwi", initials: "IP", colorClass: "c-purple", textColor: "var(--purple)", role: "UI/UX Designer", exp: "4 tahun", expBand: "3–5 tahun", location: "Bali", edu: "S1 Desain Komunikasi Visual — ISI Yogyakarta", email: "indah.p@email.com", linkedin: "linkedin.com/in/indahpratiwi", summary: "UI/UX designer berpengalaman dengan track record produk digital jutaan user.", skills: ["Figma", "Adobe XD", "Principle", "Zeplin", "HTML/CSS", "Framer"], softskills: ["Empati User", "Presentasi", "Storytelling", "Kolaborasi"], knowledge: ["Design Thinking", "User Research", "Usability Testing", "Design System"], status: "Hot", experiences: [{ company: "Tiket.com", role: "Senior UI/UX Designer", period: "Jan 2021 – Sekarang", duration: "3 thn 3 bln", desc: "Lead designer aplikasi mobile Tiket.com. Redesign onboarding meningkatkan konversi 23%." }, { company: "Agency Digital", role: "UI Designer", period: "Mar 2020 – Des 2020", duration: "10 bln", desc: "Antarmuka web dan mobile untuk berbagai klien brand." }] },
+      { id: 8, name: "Fajar Nugroho", initials: "FN", colorClass: "c-orange", textColor: "var(--amber)", role: "Backend Engineer", exp: "1 tahun", expBand: "0–1 tahun", location: "Semarang", edu: "S1 Teknik Informatika — UNDIP", email: "fajar.n@email.com", linkedin: "linkedin.com/in/fajarnugroho", summary: "Junior backend engineer fresh graduate aktif di open source dengan beberapa personal project.", skills: ["Go", "Python", "MySQL", "Redis", "Docker", "Linux"], softskills: ["Eagerness to Learn", "Problem Solving", "Kerja Keras", "Inisiatif"], knowledge: ["REST API", "Database", "Version Control", "Basic Cloud"], status: "Baru", experiences: [{ company: "Startup Fintech", role: "Backend Intern", period: "Sep 2023 – Feb 2024", duration: "6 bln", desc: "API payment gateway menggunakan Go. Fixing bugs dan unit tests." }] },
+      { id: 9, name: "Lia Rahayu", initials: "LR", colorClass: "c-blue", textColor: "var(--blue)", role: "Data Analyst", exp: "2 tahun", expBand: "1–3 tahun", location: "Jakarta", edu: "S1 Matematika — Universitas Padjadjaran", email: "lia.r@email.com", linkedin: "linkedin.com/in/liarahayu", summary: "Data analyst dengan keahlian di SQL, Python, dan BI tools. Mengubah data menjadi insight actionable.", skills: ["SQL", "Python", "Tableau", "Looker", "Excel", "dbt"], softskills: ["Analytical", "Komunikasi", "Presentasi", "Detail-oriented"], knowledge: ["Business Intelligence", "Data Warehouse", "ELT Pipeline", "Statistical Analysis"], status: "Review", experiences: [{ company: "Shopee", role: "Data Analyst", period: "Aug 2022 – Sekarang", duration: "1 thn 8 bln", desc: "Analisis data transaksi, trend, dan dashboard eksekutif mingguan." }, { company: "Startup EdTech", role: "Business Analyst Intern", period: "Feb 2022 – Jul 2022", duration: "6 bln", desc: "Analisis data pengguna dan laporan performa produk." }] },
+      { id: 10, name: "Kevin Pratama", initials: "KP", colorClass: "c-teal", textColor: "var(--green)", role: "Backend Engineer", exp: "6 tahun", expBand: "5+ tahun", location: "Jakarta", edu: "S1 Ilmu Komputer — Universitas Bina Nusantara", email: "kevin.p@email.com", linkedin: "linkedin.com/in/kevinpratama", summary: "Senior backend engineer 6 tahun di sistem berskala besar. Expert Java, Spring Boot, distributed systems.", skills: ["Java", "Spring Boot", "Kafka", "Elasticsearch", "PostgreSQL", "Kubernetes"], softskills: ["Technical Leadership", "Arsitektur Design", "Mentoring", "Problem Solving"], knowledge: ["Distributed Systems", "Event-driven Architecture", "High Availability", "Performance Tuning"], status: "Hot", experiences: [{ company: "Bank BCA Digital", role: "Lead Backend Engineer", period: "Jan 2021 – Sekarang", duration: "3 thn 3 bln", desc: "Tim 5 engineer, core banking API, 2jt+ transaksi/hari." }, { company: "Fintech Startup", role: "Backend Engineer", period: "Mar 2018 – Des 2020", duration: "2 thn 9 bln", desc: "Sistem payment dan wallet digital menggunakan Spring Boot." }] },
+      { id: 11, name: "Nanda Kusuma", initials: "NK", colorClass: "c-purple", textColor: "var(--purple)", role: "Mobile Developer", exp: "3 tahun", expBand: "3–5 tahun", location: "Bandung", edu: "S1 Teknik Informatika — Universitas Telkom", email: "nanda.k@email.com", linkedin: "linkedin.com/in/nandakusuma", summary: "Mobile developer Android/iOS 3 tahun. Spesialis React Native, 6+ aplikasi production.", skills: ["React Native", "Swift", "Kotlin", "Firebase", "Redux", "Jest"], softskills: ["Detail-oriented", "Ownership", "Kolaborasi", "Komunikasi"], knowledge: ["Native Mobile Dev", "Cross-platform", "App Performance", "CI/CD Mobile"], status: "Baru", experiences: [{ company: "Grab", role: "Mobile Developer", period: "Nov 2021 – Sekarang", duration: "2 thn 5 bln", desc: "Fitur driver app Grab, React Native. Improve app performance 30%." }, { company: "Startup Lokal", role: "Android Developer", period: "Mar 2021 – Okt 2021", duration: "8 bln", desc: "Aplikasi delivery food native Android." }] },
+      { id: 12, name: "Reza Firmansyah", initials: "RF", colorClass: "c-orange", textColor: "var(--amber)", role: "Cybersecurity Engineer", exp: "4 tahun", expBand: "3–5 tahun", location: "Jakarta", edu: "S1 Teknik Informatika — UI", email: "reza.f@email.com", linkedin: "linkedin.com/in/rezafirmansyah", summary: "Cybersecurity engineer sertifikasi OSCP dan CEH. Spesialis penetration testing dan security audit.", skills: ["Penetration Testing", "Kali Linux", "Burp Suite", "Python", "Metasploit", "SIEM"], softskills: ["Analytical", "Ketelitian", "Reporting", "Etika Kerja"], knowledge: ["Network Security", "Web Security", "Cloud Security", "Compliance", "OWASP"], status: "Review", experiences: [{ company: "Mandiri Sekuritas", role: "Cybersecurity Engineer", period: "Feb 2021 – Sekarang", duration: "3 thn 2 bln", desc: "Penetration testing rutin, 50+ critical vulnerabilities mitigated." }, { company: "Konsultan IT", role: "Security Analyst", period: "Apr 2020 – Jan 2021", duration: "10 bln", desc: "Security assessment klien perbankan dan fintech." }] }
     ];
 
     /* ══ NAVIGATION ══ */
@@ -2847,7 +3000,7 @@
       const e = document.getElementById('li-email').value;
       const p = document.getElementById('li-pass').value;
       if (!e || !p) { alert('Isi email dan password!'); return; }
-      user = { name: e.split('@')[0], company: e.split('@')[1] || 'Perusahaan Anda', email: e };
+      user = { name: e.split('@')[0], company: e.split('@')[1] || 'Perusahaan Anda', email: e, plan: 'free' };
       enterApp();
     }
     function doReg() {
@@ -2858,11 +3011,13 @@
       const e = document.getElementById('rg-email').value;
       const p = document.getElementById('rg-pass').value;
       if (!fn || !co || !e || !p) { alert('Lengkapi form pendaftaran!'); return; }
-      user = { name: fn + (ln ? ' ' + ln : ''), company: co, jobTitle: jt, email: e };
+      user = { name: fn + (ln ? ' ' + ln : ''), company: co, jobTitle: jt, email: e, plan: 'free' };
       enterApp();
     }
     function doLogout() {
-      user = null;
+      user = null; subPopupDismissed = false;
+      if (subPopupTimer) clearTimeout(subPopupTimer);
+      document.getElementById('sub-popup').classList.remove('show');
       go('pg-land');
     }
     function enterApp() {
@@ -2879,7 +3034,7 @@
       go('pg-app');
       renderCVTable(demoCV);
       updateStats();
-
+      updateTokenUI();
       showSection('dashboard');
       if (!subPopupDismissed) {
         subPopupTimer = setTimeout(() => { if (user && user.plan === 'free') showSubPopup(); }, 8000);
@@ -2928,7 +3083,7 @@
       document.getElementById('result-mini').innerHTML = '';
       populateVacancySelector();
       renderCVDetail(currentCV);
-
+      updateTokenUI();
       showSection('cv-detail');
     }
     function renderCVDetail(cv) {
@@ -2941,16 +3096,16 @@
           <div class="ph-name">${cv.name}</div>
           <div class="ph-title">${cv.role} · ${cv.exp} pengalaman</div>
           <div class="ph-meta">
-            <span class="ph-meta-item">${cv.location}</span>
-            <span class="ph-meta-item">${cv.edu}</span>
-            <span class="ph-meta-item">${cv.email}</span>
+            <span class="ph-meta-item">📍 ${cv.location}</span>
+            <span class="ph-meta-item">🎓 ${cv.edu}</span>
+            <span class="ph-meta-item">✉️ ${cv.email}</span>
           </div>
         </div>
       </div>
       <div style="background:#FAFBFF;border-radius:10px;padding:12px;font-size:13px;color:var(--gray);line-height:1.7;border:1px solid #E8EEFA;">${cv.summary}</div>
     </div>
     <div class="detail-card">
-      <h3><span class="dc-icon"></span>Pengalaman Kerja</h3>
+      <h3><span class="dc-icon">💼</span> Pengalaman Kerja</h3>
       ${cv.experiences.map(e => `
         <div class="exp-item">
           <div class="exp-company">${e.company}</div>
@@ -2960,15 +3115,15 @@
         </div>`).join('')}
     </div>
     <div class="detail-card">
-      <h3><span class="dc-icon"></span>Hard Skills / Technical Skills</h3>
+      <h3><span class="dc-icon">⚙️</span> Hard Skills / Technical Skills</h3>
       <div class="tags-wrap">${cv.skills.map(s => `<span class="stag">${s}</span>`).join('')}</div>
     </div>
     <div class="detail-card">
-      <h3><span class="dc-icon"></span>Soft Skills</h3>
+      <h3><span class="dc-icon">🤝</span> Soft Skills</h3>
       <div class="tags-wrap">${cv.softskills.map(s => `<span class="stag stag-green">${s}</span>`).join('')}</div>
     </div>
     <div class="detail-card">
-      <h3><span class="dc-icon"></span>Knowledge & Bidang Keahlian</h3>
+      <h3><span class="dc-icon">🧠</span> Knowledge & Bidang Keahlian</h3>
       <div class="tags-wrap">${cv.knowledge.map(s => `<span class="stag stag-purple">${s}</span>`).join('')}</div>
     </div>`;
     }
@@ -3118,11 +3273,11 @@
         <span class="badge badge-open">Aktif</span>
       </div>
       <div class="vac-meta">
-        <span class="vac-meta-chip">${v.field}</span>
-        <span class="vac-meta-chip">${v.type}</span>
-        ${v.location ? `<span class="vac-meta-chip">${v.location}</span>` : ''}
-        ${v.minExp ? `<span class="vac-meta-chip">${v.minExp}</span>` : ''}
-        ${v.salary ? `<span class="vac-meta-chip">${v.salary}</span>` : ''}
+        <span class="vac-meta-chip">💼 ${v.field}</span>
+        <span class="vac-meta-chip">⏱ ${v.type}</span>
+        ${v.location ? `<span class="vac-meta-chip">📍 ${v.location}</span>` : ''}
+        ${v.minExp ? `<span class="vac-meta-chip">🎓 ${v.minExp}</span>` : ''}
+        ${v.salary ? `<span class="vac-meta-chip">💰 ${v.salary}</span>` : ''}
       </div>
       <div class="vac-desc">${v.jd}</div>
       <div class="vac-footer"><div class="vac-apps">Dibuat: ${v.createdAt}</div><button class="btn-view">Lihat Detail →</button></div>
@@ -3139,7 +3294,7 @@
       document.getElementById('stat-new').textContent = demoCV.filter(c => c.status === 'Baru').length;
       document.getElementById('stat-vac').textContent = vacancies.length;
       document.getElementById('sb-cv-count').textContent = demoCV.length;
-
+      updateTokenUI();
     }
 
     /* ══════════════════════════════════════════
@@ -3267,18 +3422,31 @@
       if (!vacId) { alert('Pilih job vacancy terlebih dahulu!'); return; }
       const vac = vacancies.find(v => v.id == vacId);
       if (!vac) return;
-      doActualAnalysis(vac);
+      const left = getTokensLeft();
+      if (left <= 0 && user?.plan !== 'ultra') {
+        const now = new Date();
+        const tomorrow = new Date(now); tomorrow.setDate(tomorrow.getDate() + 1); tomorrow.setHours(0, 0, 0, 0);
+        const diff = tomorrow - now; const h = Math.floor(diff / 3600000); const m = Math.floor((diff % 3600000) / 60000);
+        document.getElementById('ntm-reset-time').textContent = h + 'j ' + m + 'm lagi';
+        document.getElementById('no-token-modal').classList.add('show');
+        return;
+      }
+      if (user?.plan === 'free') {
+        showAd(() => doActualAnalysis(vac));
+      } else {
+        doActualAnalysis(vac);
+      }
     }
 
     async function doActualAnalysis(vac) {
-
+      useToken(); updateTokenUI();
       const btn = document.getElementById('btn-analyze');
       const txt = document.getElementById('analyze-txt');
       const spin = document.getElementById('spin-el');
       btn.disabled = true; txt.textContent = 'Menganalisis...'; spin.classList.add('show');
       document.getElementById('result-mini').classList.remove('show');
       const cv = currentCV;
-      const isDetail = true;
+      const isDetail = (user?.plan === 'pro' || user?.plan === 'ultra');
       const prompt = `Kamu adalah AI career analyst untuk platform rekrutmen IT. Analisis kecocokan antara profil kandidat IT dan job vacancy berikut.${isDetail ? ' Berikan analisis SANGAT DETAIL dan mendalam.' : ''}
 
 PROFIL KANDIDAT:
@@ -3320,18 +3488,18 @@ Berikan ${isDetail ? '7-9' : '5-7'} gap items dan ${isDetail ? '4-5' : '3'} cour
         renderAnalysisResult(JSON.parse(clean), vac.title);
       } catch (e) {
         let mockResult = { overall_score: 74, skill_score: 80, experience_score: 70, education_score: 72, verdict: "Cocok", title: "Kandidat cocok untuk posisi ini", description: "Berdasarkan pengalaman dan skill yang dimiliki, kandidat ini memenuhi sebagian besar requirement posisi yang dibutuhkan.", gaps: [{ skill: cv.skills[0], status: "match", note: "Sudah ada di profil" }, { skill: cv.skills[1], status: "match", note: "Tercantum di pengalaman" }, { skill: "Kubernetes", status: "partial", note: "Perlu diperdalam" }, { skill: "GraphQL", status: "missing", note: "Tidak ditemukan" }, { skill: cv.softskills[0], status: "match", note: "Terlihat dari pengalaman" }], courses: [{ name: "Advanced Cloud Architecture", platform: "Udemy", emoji: "☁️", priority: "Disarankan" }, { name: "GraphQL Complete Course", platform: "Coursera", emoji: "🔗", priority: "Wajib" }, { name: "Kubernetes for Developers", platform: "LinkedIn Learning", emoji: "⚙️", priority: "Opsional" }] };
-        if (true) {
+        if (user?.plan === 'pro' || user?.plan === 'ultra') {
           mockResult.strengths = ["Pengalaman solid", "Pemahaman arsitektur"];
           mockResult.interview_tips = ["Tanyakan soal microservices", "Gali pengalaman tim"];
         }
-        if (true) {
+        if (user?.plan === 'ultra') {
           mockResult.cultural_fit = 85;
           mockResult.leadership_potential = 78;
           mockResult.description = "Berdasarkan pengalaman dan skill yang dimiliki, kandidat ini memenuhi sebagian besar requirement posisi yang dibutuhkan secara teknis maupun culture. Secara detail, kandidat memiliki kemampuan komunikasi yang sangat baik dan terindikasi mampu mengelola proyek lintas divisi dengan sangat efektif berdasarkan rekam jejak pekerjaannya. Kemampuan technical depth dalam pemecahan masalah (troubleshooting) juga sangat menonjol yang sangat diperlukan dalam tim kita saat ini.";
         }
         renderAnalysisResult(mockResult, vac.title);
       }
-      btn.disabled = false; txt.textContent = 'Analisis Kecocokan'; spin.classList.remove('show');
+      btn.disabled = false; txt.textContent = '🔍 Analisis Kecocokan'; spin.classList.remove('show');
       if (user?.plan === 'free' && getTokensLeft() <= 1 && !subPopupDismissed) {
         setTimeout(showSubPopup, 2000);
       }
@@ -3355,14 +3523,16 @@ Berikan ${isDetail ? '7-9' : '5-7'} gap items dan ${isDetail ? '4-5' : '3'} cour
       const cls = { match: 'g-match', partial: 'g-partial', missing: 'g-miss' };
       const icon = { match: '✓', partial: '~', missing: '✗' };
       const perim = 188.4; const offset = perim - (perim * r.overall_score / 100);
-      const isDetail = true;
+      const isDetail = (user?.plan === 'pro' || user?.plan === 'ultra');
 
-      const emailBtnHtml = `<button class="btn-primary" style="width:100%;" onclick="openEmailModal()">📧 Send Confirmation Email</button>`;
+      const emailBtnHtml = user?.plan === 'free' ?
+        `<button class="btn-primary" style="width:100%;background:var(--gray-light);color:var(--gray);" disabled>📧 Send Confirmation Email (Upgrade to Pro)</button>` :
+        `<button class="btn-primary" style="width:100%;" onclick="openEmailModal()">📧 Send Confirmation Email</button>`;
 
       let extraHtml = '';
       if (isDetail && r.strengths) { extraHtml += `<div class="divider-line"></div><div class="rm-gap-title">KEKUATAN UTAMA KANDIDAT</div><div style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px;">${r.strengths.map(s => `<div style="display:flex;align-items:flex-start;gap:7px;font-size:12px;color:var(--text);"><span style="color:var(--green);font-weight:700;flex-shrink:0;">★</span>${s}</div>`).join('')}</div>`; }
       if (isDetail && r.interview_tips) { extraHtml += `<div class="divider-line"></div><div class="rm-gap-title">TIPS INTERVIEW</div><div style="display:flex;flex-direction:column;gap:6px;">${r.interview_tips.map((t, i) => `<div style="display:flex;align-items:flex-start;gap:7px;font-size:12px;color:var(--text);"><span style="color:var(--blue);font-weight:700;flex-shrink:0;">${i + 1}.</span>${t}</div>`).join('')}</div>`; }
-      if (r.cultural_fit) {
+      if (user?.plan === 'ultra' && r.cultural_fit) {
         extraHtml += `<div class="divider-line"></div><div class="rm-gap-title">ULTRA ASSESSMENT</div>
     <div style="display:flex;gap:10px;margin-bottom:10px;">
       <div style="flex:1;background:#F8FAFF;padding:10px;border-radius:8px;border:1px solid #E8EEFA;text-align:center;">
@@ -3375,7 +3545,9 @@ Berikan ${isDetail ? '7-9' : '5-7'} gap items dan ${isDetail ? '4-5' : '3'} cour
       </div>
     </div>`;
       }
+      const planBadge = isDetail ? `<div style="display:inline-flex;align-items:center;gap:4px;background:linear-gradient(135deg,#7C3AED,#2563EB);color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:10px;letter-spacing:0.5px;">${user?.plan === 'ultra' ? '⚡ ULTRA' : '💎 PRO'} DETAIL ANALYSIS</div>` : '';
       const html = `
+    ${planBadge}
     <div class="rm-score-row">
       <div class="rm-ring">
         <svg width="70" height="70" viewBox="0 0 70 70"><circle cx="35" cy="35" r="30" fill="none" stroke="#EEF2F8" stroke-width="7"/><circle cx="35" cy="35" r="30" fill="none" stroke="url(#rg3)" stroke-width="7" stroke-dasharray="${perim}" stroke-dashoffset="${offset}" stroke-linecap="round"/><defs><linearGradient id="rg3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#2563EB"/><stop offset="100%" stop-color="#06B6D4"/></linearGradient></defs></svg>
@@ -3425,12 +3597,12 @@ Berikan ${isDetail ? '7-9' : '5-7'} gap items dan ${isDetail ? '4-5' : '3'} cour
     function closePricingModal() { document.getElementById('pricing-modal').classList.remove('show'); }
     function subscribePro() {
       alert('🎉 Terima kasih! Fitur pembayaran akan segera tersedia.\n\nPaket Recruiter Pro: Rp 149.999/bulan\n✓ 30 cek CV per hari\n✓ Analisis detail\n✓ Tanpa iklan');
-      if (user) { user.plan = 'pro'; }
+      if (user) { user.plan = 'pro'; updateTokenUI(); }
       closePricingModal(); dismissSubPopup();
     }
     function subscribeUltra() {
       alert('⚡ Terima kasih! Fitur pembayaran akan segera tersedia.\n\nPaket Recruiter Ultra: Rp 499.999/bulan\n✓ Unlimited cek CV\n✓ Akses FitScore Pro website\n✓ Tanpa iklan selamanya');
-      if (user) { user.plan = 'ultra'; }
+      if (user) { user.plan = 'ultra'; updateTokenUI(); }
       closePricingModal(); dismissSubPopup();
     }
 
@@ -3445,7 +3617,11 @@ Berikan ${isDetail ? '7-9' : '5-7'} gap items dan ${isDetail ? '4-5' : '3'} cour
     function renderHistory() {
       const tbody = document.getElementById('history-tbody');
       if (!tbody) return;
-      const list = analysisHistory;
+      let limit = 5;
+      if (user?.plan === 'pro') limit = 25;
+      if (user?.plan === 'ultra') limit = analysisHistory.length;
+      document.getElementById('history-limit-txt').textContent = user?.plan === 'ultra' ? 'Unlimited' : limit;
+      const list = analysisHistory.slice(0, limit);
       if (list.length === 0) {
         tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:var(--gray);padding:20px;">Belum ada riwayat pengecekan.</td></tr>`;
         return;
@@ -3458,9 +3634,14 @@ Berikan ${isDetail ? '7-9' : '5-7'} gap items dan ${isDetail ? '4-5' : '3'} cour
       const sel = document.getElementById('ranking-vac-select');
       if (!sel) return;
       sel.innerHTML = '<option value="">-- Pilih Vacancy --</option>' + vacancies.map(v => `<option value="${v.id}">${v.title}</option>`).join('');
-      const rankUnlocked = document.getElementById('ranking-unlocked');
-      if (rankUnlocked) rankUnlocked.style.display = 'block';
-      generateRanking();
+      if (user?.plan !== 'ultra') {
+        document.getElementById('ranking-locked').style.display = 'block';
+        document.getElementById('ranking-unlocked').style.display = 'none';
+      } else {
+        document.getElementById('ranking-locked').style.display = 'none';
+        document.getElementById('ranking-unlocked').style.display = 'block';
+        generateRanking();
+      }
     }
 
     function generateRanking() {
@@ -3489,5 +3670,4 @@ Berikan ${isDetail ? '7-9' : '5-7'} gap items dan ${isDetail ? '4-5' : '3'} cour
     }
   </script>
 </body>
-
 </html>

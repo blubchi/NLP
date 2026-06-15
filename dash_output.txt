@@ -1,0 +1,74 @@
+Emojis found:
+⚡ ('⚡')
+← ('←')
+🔍 ('🔍')
+⚙ ('⚙')
+↑ ('↑')
+→ ('→')
+✕ ('✕')
+═ ('═')
+∞ ('∞')
+★ ('★')
+🎓 ('🎓')
+🚀 ('🚀')
+🏆 ('🏆')
+🤝 ('🤝')
+🧠 ('🧠')
+💼 ('💼')
+✓ ('✓')
+📧 ('📧')
+— ('—')
+️ ('️')
+🚪 ('🚪')
+· ('·')
+📊 ('📊')
+☁ ('☁')
+✗ ('✗')
+✅ ('✅')
+➔ ('➔')
+⏱ ('⏱')
+💰 ('💰')
+🎉 ('🎉')
+– ('–')
+• ('•')
+📍 ('📍')
+💎 ('💎')
+✉ ('✉')
+🕒 ('🕒')
+🔗 ('🔗')
+● ('●')
+💾 ('💾')
+📖 ('📖')
+× ('×')
+
+Lines with dashes:
+17: --bg: #EEF2F8;
+18: --white: #fff;
+19: --navy: #0D1B4B;
+20: --blue: #2563EB;
+21: --blue-light: #3B82F6;
+22: --blue-pale: #EFF4FF;
+23: --cyan: #06B6D4;
+24: --purple: #8B5CF6;
+25: --green: #10B981;
+26: --red: #EF4444;
+27: --amber: #F59E0B;
+28: --gray: #64748B;
+29: --gray-light: #E2E8F0;
+30: --text: #1E293B;
+31: --font: 'Plus Jakarta Sans', sans-serif;
+180: min-height: calc(100vh - 60px);
+1298: display: -webkit-box;
+1299: -webkit-line-clamp: 3;
+1300: -webkit-box-orient: vertical;
+1851: top: -8px;
+2006: top: -12px;
+2200: <!-- LANDING -->
+2260: <!-- LOGIN / REGISTER -->
+2324: <!-- MAIN APP -->
+2371: <!-- DASHBOARD -->
+2441: <!-- CV DETAIL -->
+2468: <!-- VACANCIES -->
+2486: <!-- ADD VACANCY -->
+2554: <!-- RANKING -->
+2587: <!-- HISTORY -->
